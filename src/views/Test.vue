@@ -2,6 +2,7 @@
   <h1>Hello {{ model ? 'true' : 'false' }}</h1>
   <div id="sketchpadapp">
     <div class="rightside">
+      <h5>Class: {{ predictedClass }} | %: {{ predictedClassPercent }}</h5>
       <canvas id="sketchpad" height="300" width="400"> </canvas>
       <canvas id="res"> </canvas>
       <button id="clearbutton" @click="clearCanvas">clear</button>
@@ -13,6 +14,7 @@
 
 <script>
 import * as tf from '@tensorflow/tfjs'
+import { toRaw } from 'vue'
 
 export default {
   data() {
@@ -34,37 +36,24 @@ export default {
         b: 0,
       },
       mousedown: false,
+      predictedClass: null,
+      predictedClassPercent: null,
     }
   },
   async mounted() {
     const status = document.getElementById('status')
     status.innerText = 'Loaded TensorFlow.js - version: ' + tf.version.tfjs
     this.init()
-    // tf.enableDebugMode()
-    this.model = Object.freeze(await tf.loadLayersModel('http://192.168.0.157:8080/model.json'))
-    // this.model.compile({optimizer: 'adam', loss:"sparseCategoricalCrossentropy", metrics:['accuracy']});
-    // this.model.summary()
-    // console.log(tf.getBackend());
-    // console.log(tf.zeros([null,48,48,1], 'int32'));
-    // tf.setBackend('cpu')
+    this.model = await tf.loadLayersModel('http://192.168.0.157:8080/model.json')
+    let ten = tf.zeros([1, 48, 48, 1], 'int32')
+    // console.log(ten)
+    // console.log(ten.shape)
+    // console.log(ten.toString())
 
-    // const srcBackend = info.backend;
-    let ten = tf.zeros([1,48,48,1], 'int32')
-    console.log(ten);
-    console.log(ten.shape);
-    console.log(ten.toString());
-    // const a = tf.tensor([[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]], [1, 48, 48, 1], 'int32');
-// console.log('shape:', a.shape);
-// console.log('dtype', a.dtype);
-// a.print();
-
-    // console.log(ten);
-    // let result = await this.model.predict(ten);
-    // console.log(result);
-    // warmupResult.dataSync();
-    // warmupResult.dispose();
-
-
+    //warm-up model
+    let model = toRaw(this.model)
+    await model.predict(ten)
+    // console.log(result.dataSync().indexOf(Math.max(...result.dataSync())))
   },
   methods: {
     init() {
@@ -148,47 +137,9 @@ export default {
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
     },
     async checkSign() {
-    //   let im = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
-    //   let imgPixel = tf.browser
-    //     .fromPixels(this.canvas)
-    //     .resizeNearestNeighbor([48, 48])
-    //     .div(255)
-    //     .toInt()
-    //     .mean(2)
-    //     .expandDims(2)
-    //     .expandDims(0)
-    //   // imgPixel.div(255)
-    //   // imgPixel.shape[0] = null
-    //   console.log(tf.stack(imgPixel.arraySync()))
-    //   //   console.log(imgPixel)
-    //   //   this.model.predict(tf.stack(imgPixel)).print()
-    //   await this.model.predict(imgPixel)
-
-
-
-    // let im = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
-    //   let imgPixel = tf.browser
-    //     .fromPixels(im, 1)
-    //     .resizeNearestNeighbor([48, 48])
-    //     .div(255)
-    //     .toInt()
-    //     .mean(2)
-    //     .expandDims(2)
-    //     .expandDims(0)
-    //   // imgPixel.div(255)
-    // //   imgPixel.shape[0] = null
-    //   console.log(tf.stack(imgPixel.arraySync()))
-    //   imgPixel = tf.stack(imgPixel.arraySync())
-    //   //   console.log(imgPixel)
-    //   //   this.model.predict(tf.stack(imgPixel)).print()
-    //   let asd = await (this.model.predict(imgPixel)).data()
-    //   console.log(asd);
-
-
-
-    let im = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
-      let imgPixel = tf.browser
-        .fromPixels(im)
+      let canvasImage = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
+      let tensorImage = tf.browser
+        .fromPixels(canvasImage)
         .resizeNearestNeighbor([48, 48])
         .div(255)
         .toInt()
@@ -196,29 +147,17 @@ export default {
         .expandDims(2)
         .expandDims(0)
         .arraySync()
-      // imgPixel.div(255)
-    //   imgPixel.shape[0] = null
-      imgPixel = tf.cast(imgPixel, 'int32')
-    //   imgPixel = tf.stack(imgPixel.arraySync())
-        console.log(imgPixel)
-      //   this.model.predict(tf.stack(imgPixel)).print()
+      tensorImage = tf.cast(tensorImage, 'int32')
+
       try {
-          let asd = await (this.model.predict(imgPixel))
-        //   .then(info => {
-        //         console.log("Final accuracy", info);
-        //     });
-          console.log(asd);
-
-      } catch(e) {
-          console.warn(e);
+        let model = toRaw(this.model)
+        let result = await model.predict(tensorImage)
+        console.log(result.dataSync().indexOf(Math.max(...result.dataSync())), Math.max(...result.dataSync()))
+        this.predictedClass = result.dataSync().indexOf(Math.max(...result.dataSync()))
+        this.predictedClassPercent = Math.max(...result.dataSync())
+      } catch (e) {
+        console.error(e)
       }
-
-
-
-      //   const canvas = document.querySelector('#res')
-      //   canvas.imgPixel = imgPixel.shape.width
-      //   canvas.imgPixel = imgPixel.shape.height
-      //   await tf.browser.toPixels(imgPixel, canvas)
     },
   },
 }
@@ -229,9 +168,7 @@ h1 {
   color: hsl(299, 81%, 29%);
 }
 
-/* Some CSS styling */
 #sketchpadapp {
-  /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -242,12 +179,12 @@ h1 {
 }
 
 #sketchpad {
-  /* $war: 50px; */
   max-width: 100%;
-  border: 10px solid #888;
+  border: 5px solid #888;
   border-radius: 4px;
   position: relative; /* Necessary for correct mouse co-ords in Firefox */
 }
+
 #clearbutton {
   font-size: 15px;
   padding: 10px;
