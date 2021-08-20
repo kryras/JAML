@@ -1,0 +1,246 @@
+{
+    "katakana1": {
+        "title": "Katakana 1",
+        "icon": "1",
+        "data": [
+            {
+                "character": "ア",
+                "meaning": "a"
+            },
+            {
+                "character": "イ",
+                "meaning": "i"
+            },
+            {
+                "character": "ウ",
+                "meaning": "u"
+            },
+            {
+                "character": "エ",
+                "meaning": "e"
+            },
+            {
+                "character": "オ",
+                "meaning": "o"
+            },
+            {
+                "character": "ン",
+                "meaning": "n"
+            }
+        ]
+    },
+    "katakana2": {
+        "title": "Katakana 2",
+        "icon": "2",
+        "data": [
+            {
+                "character": "カ",
+                "meaning": "ka"
+            },
+            {
+                "character": "キ",
+                "meaning": "ki"
+            },
+            {
+                "character": "ク",
+                "meaning": "ku"
+            },
+            {
+                "character": "ケ",
+                "meaning": "ke"
+            },
+            {
+                "character": "コ",
+                "meaning": "ko"
+            }
+        ]
+    },
+    "katakana3": {
+        "title": "Katakana 3",
+        "icon": "3",
+        "data": [
+            {
+                "character": "サ",
+                "meaning": "sa"
+            },
+            {
+                "character": "シ",
+                "meaning": "shi"
+            },
+            {
+                "character": "ス",
+                "meaning": "su"
+            },
+            {
+                "character": "セ",
+                "meaning": "se"
+            },
+            {
+                "character": "ソ",
+                "meaning": "so"
+            }
+        ]
+    },
+    "katakana4": {
+        "title": "Katakana 4",
+        "icon": "4",
+        "data": [
+            {
+                "character": "タ",
+                "meaning": "ta"
+            },
+            {
+                "character": "チ",
+                "meaning": "chi"
+            },
+            {
+                "character": "ツ",
+                "meaning": "tsu"
+            },
+            {
+                "character": "テ",
+                "meaning": "te"
+            },
+            {
+                "character": "ト",
+                "meaning": "to"
+            }
+        ]
+    },
+    "katakana5": {
+        "title": "Katakana 5",
+        "icon": "5",
+        "data": [
+            {
+                "character": "ナ",
+                "meaning": "na"
+            },
+            {
+                "character": "ニ",
+                "meaning": "ni"
+            },
+            {
+                "character": "ヌ",
+                "meaning": "nu"
+            },
+            {
+                "character": "ネ",
+                "meaning": "ne"
+            },
+            {
+                "character": "ノ",
+                "meaning": "no"
+            }
+        ]
+    },
+    "katakana6": {
+        "title": "Katakana 6",
+        "icon": "6",
+        "data": [
+            {
+                "character": "ハ",
+                "meaning": "ha"
+            },
+            {
+                "character": "ヒ",
+                "meaning": "hi"
+            },
+            {
+                "character": "フ",
+                "meaning": "fu"
+            },
+            {
+                "character": "ヘ",
+                "meaning": "he"
+            },
+            {
+                "character": "ホ",
+                "meaning": "ho"
+            }
+        ]
+    },
+    "katakana7": {
+        "title": "Katakana 7",
+        "icon": "7",
+        "data": [
+            {
+                "character": "マ",
+                "meaning": "ma"
+            },
+            {
+                "character": "ミ",
+                "meaning": "mi"
+            },
+            {
+                "character": "ム",
+                "meaning": "mu"
+            },
+            {
+                "character": "メ",
+                "meaning": "me"
+            },
+            {
+                "character": "モ",
+                "meaning": "mo"
+            }
+        ]
+    },
+    "katakana8": {
+        "title": "Katakana 8",
+        "icon": "8",
+        "data": [
+            {
+                "character": "ヤ",
+                "meaning": "ya"
+            },
+            {
+                "character": "ユ",
+                "meaning": "yu"
+            },
+            {
+                "character": "ヨ",
+                "meaning": "yo"
+            }
+        ]
+    },
+    "katakana9": {
+        "title": "Katakana 9",
+        "icon": "9",
+        "data": [
+            {
+                "character": "ラ",
+                "meaning": "ra"
+            },
+            {
+                "character": "リ",
+                "meaning": "ri"
+            },
+            {
+                "character": "ル",
+                "meaning": "ru"
+            },
+            {
+                "character": "レ",
+                "meaning": "re"
+            },
+            {
+                "character": "ロ",
+                "meaning": "ro"
+            }
+        ]
+    },
+    "katakana10": {
+        "title": "Katakana 10",
+        "icon": "10",
+        "data": [
+            {
+                "character": "ワ",
+                "meaning": "wa"
+            },
+            {
+                "character": "ヲ",
+                "meaning": "wo"
+            }
+        ]
+    }
+}
