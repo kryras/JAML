@@ -1,0 +1,208 @@
+{
+    "hiragana1": [
+        {
+            "character": "あ",
+            "meaning": "a"
+        },
+        {
+            "character": "い",
+            "meaning": "i"
+        },
+        {
+            "character": "う",
+            "meaning": "u"
+        },
+        {
+            "character": "え",
+            "meaning": "e"
+        },
+        {
+            "character": "お",
+            "meaning": "o"
+        },
+        {
+            "character": "ん",
+            "meaning": "n"
+        }
+    ],
+    "hiragana2": [
+        {
+            "character": "か",
+            "meaning": "ka"
+        },
+        {
+            "character": "き",
+            "meaning": "ki"
+        },
+        {
+            "character": "く",
+            "meaning": "ku"
+        },
+        {
+            "character": "け",
+            "meaning": "ke"
+        },
+        {
+            "character": "こ",
+            "meaning": "ko"
+        }
+    ],
+    "hiragana3": [
+        {
+            "character": "さ",
+            "meaning": "sa"
+        },
+        {
+            "character": "し",
+            "meaning": "shi"
+        },
+        {
+            "character": "す",
+            "meaning": "su"
+        },
+        {
+            "character": "せ",
+            "meaning": "se"
+        },
+        {
+            "character": "そ",
+            "meaning": "so"
+        }
+    ],
+    "hiragana4": [
+        {
+            "character": "た",
+            "meaning": "ta"
+        },
+        {
+            "character": "ち",
+            "meaning": "chi"
+        },
+        {
+            "character": "つ",
+            "meaning": "tsu"
+        },
+        {
+            "character": "て",
+            "meaning": "te"
+        },
+        {
+            "character": "と",
+            "meaning": "to"
+        }
+    ],
+    "hiragana5": [
+        {
+            "character": "な",
+            "meaning": "na"
+        },
+        {
+            "character": "に",
+            "meaning": "ni"
+        },
+        {
+            "character": "ぬ",
+            "meaning": "nu"
+        },
+        {
+            "character": "ね",
+            "meaning": "ne"
+        },
+        {
+            "character": "の",
+            "meaning": "no"
+        }
+    ],
+    "hiragana6": [
+        {
+            "character": "は",
+            "meaning": "ha"
+        },
+        {
+            "character": "ひ",
+            "meaning": "hi"
+        },
+        {
+            "character": "ふ",
+            "meaning": "fu"
+        },
+        {
+            "character": "へ",
+            "meaning": "he"
+        },
+        {
+            "character": "ほ",
+            "meaning": "ho"
+        }
+    ]
+    ,
+    "hiragana7": [
+        {
+            "character": "ま",
+            "meaning": "ma"
+        },
+        {
+            "character": "ま",
+            "meaning": "mi"
+        },
+        {
+            "character": "む",
+            "meaning": "mu"
+        },
+        {
+            "character": "め",
+            "meaning": "me"
+        },
+        {
+            "character": "も",
+            "meaning": "mo"
+        }
+    ],
+    "hiragana8": [
+        {
+            "character": "や",
+            "meaning": "ya"
+        },
+        {
+            "character": "ゆ",
+            "meaning": "yu"
+        },
+        {
+            "character": "よ",
+            "meaning": "yo"
+        }
+    ]
+    ,
+    "hiragana9": [
+        {
+            "character": "ら",
+            "meaning": "ra"
+        },
+        {
+            "character": "り",
+            "meaning": "ri"
+        },
+        {
+            "character": "る",
+            "meaning": "ru"
+        },
+        {
+            "character": "れ",
+            "meaning": "re"
+        },
+        {
+            "character": "ろ",
+            "meaning": "ro"
+        }
+    ],
+    "hiragana10": [
+        {
+            "character": "ろ",
+            "meaning": "wa"
+        },
+        {
+            "character": "を",
+            "meaning": "wo"
+        }
+    ]
+}
