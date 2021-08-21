@@ -1,10 +1,6 @@
 <template>
   <div id="main-container">
-    <Navbar> </Navbar>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
-      <router-link :to="{ name: 'Test' }">Test</router-link>
-    </div> -->
+    <Navbar />
     <div class="main-content">
       <router-view />
     </div>
@@ -22,15 +18,11 @@ export default {
 <style lang="scss">
 :root {
   /* colors */
-  --color-details: #ff7b42;
+  --color-details: hsl(18, 100%, 63%);
   --color-background-white: hsl(0, 0%, 100%);
   --color-light-gray: hsl(180, 1%, 75%);
   --color-mid-gray: hsl(218, 19%, 38%);
   --color-dark-gray: hsl(229, 19%, 22%);
-
-  /* breakpoints */
-  /* $md: 768px; */
-  /* $xxl: 1400px; */
 
   /* navbar */
   --navbar-width: 200px;
@@ -43,12 +35,10 @@ export default {
   margin: 0;
 }
 
-/* html {
-  padding:20px;
-} */
-body {
-  /* max-width:100vw;
-max-height: 100vh; */
+a,
+a:visited {
+  text-decoration: none;
+  color: black;
 }
 
 #app {
@@ -72,12 +62,11 @@ max-height: 100vh; */
   /* max-width: 1920px; */
   @media only screen and (min-width: 768px) {
     background-image: url(./assets/background_desktop.svg);
-    background-position: left calc(var(--navbar-width) / 2) center;  
+    background-position: left calc(var(--navbar-width) / 2) center;
     background-size: cover;
     max-width: calc(100vw - var(--navbar-width));
-    margin-left:var(--navbar-width);
+    margin-left: var(--navbar-width);
     /* background-size: 100vh 100vw; */
   }
 }
-
 </style>

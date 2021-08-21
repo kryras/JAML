@@ -6,8 +6,25 @@ import store from './store'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import { faCat, faBars, faPlus, faSearch, faHome, faInfoCircle} from '@fortawesome/free-solid-svg-icons'
-library.add(faCat, faBars, faPlus, faSearch, faHome, faInfoCircle);
+import {
+    faCat,
+    faBars,
+    faPlus,
+    faSearch,
+    faHome,
+    faInfoCircle,
+    faEraser,
+    faCheck
+} from '@fortawesome/free-solid-svg-icons'
+library.add(
+    faCat,
+    faBars,
+    faPlus,
+    faSearch,
+    faHome,
+    faInfoCircle,
+    faEraser,
+    faCheck);
 
 
 const app = createApp(App).use(store).use(router)

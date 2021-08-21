@@ -9,15 +9,15 @@
       <span>Home</span>
     </router-link>
     <router-link :to="{ name: 'MenuKatakana' }">
-      <img :class="['icon']" src="../assets/logo_katakana.svg" />
+      <img :class="['icon']" src="@/assets/logo_katakana.svg" />
       <span>Katakana</span>
     </router-link>
-    <router-link :to="{ name: 'MenuKatakana' }">
-      <img :class="['icon']" src="../assets/logo_hiragana.svg" />
+    <router-link :to="{ name: 'MenuHiragana' }">
+      <img :class="['icon']" src="@/assets/logo_hiragana.svg" />
       <span>Hiragana</span>
     </router-link>
-    <router-link :to="{ name: 'MenuKatakana' }">
-      <img :class="['icon']" src="../assets/logo_kanji.svg" />
+    <router-link :to="{ name: 'MenuKanji' }">
+      <img :class="['icon']" src="@/assets/logo_kanji.svg" />
       <span>Kanji</span>
     </router-link>
     <router-link :to="{ name: 'Test' }">
@@ -35,13 +35,26 @@
 export default {
   data() {
     return {
-      navOpen: true,
+      navOpen: false,
     }
+  },
+  created() {
+    window.addEventListener('resize', this.openNavigation)
+  },
+  mounted() {
+    this.openNavigation()
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.openNavigation)
   },
   methods: {
     toggleNavigation() {
-      console.log('toggle')
       this.navOpen = !this.navOpen
+    },
+    openNavigation() {
+      if (!this.navOpen && window.innerWidth >= 768) {
+        this.navOpen = true
+      }
     },
   },
 }
@@ -63,12 +76,12 @@ export default {
 
 .toggle {
   color: var(--color-details);
+  z-index: 102;
+  font-size: 2rem;
+
   &-open {
     transform: rotate(45deg);
   }
-
-  z-index: 102;
-  font-size: 2rem;
 }
 
 .icon {
@@ -77,6 +90,7 @@ export default {
   height: 2rem;
   z-index: 102;
   font-size: 2rem;
+  user-select: none;
 }
 
 .background {
@@ -111,6 +125,7 @@ export default {
   left: calc(var(--navbar-width) / 2);
   top: calc(50px / 2);
   transform: translate(-50%, -50%);
+  user-select: none;
 }
 
 a {

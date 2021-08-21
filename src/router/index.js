@@ -27,10 +27,18 @@ const routes = [
   {
     path: '/katakana',
     name: 'MenuKatakana',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/KatakanaMenu.vue')
+    component: () => import('../views/KatakanaMenu.vue')
+  }  ,
+  {
+    path: '/hiragana',
+    name: 'MenuHiragana',
+    component: () => import('../views/HiraganaMenu.vue')
+  }
+  ,
+  {
+    path: '/kanji',
+    name: 'MenuKanji',
+    component: () => import('../views/KanjiMenu.vue')
   }
 ]
 

@@ -1,13 +1,14 @@
 <template lang="">
   <div class="container">
     <div class="badge">
-      <!-- <font-awesome-icon :icon="['fas', 'user-secret']"  /> -->
-      <!-- <font-awesome-icon  class="badge__icon" :icon="['fas', 'cat']" /> -->
       <font-awesome-icon v-if="icon" :icon="icon" class="badge__icon" />
       <div v-else-if="character" class="badge__character">{{ character }}</div>
+      <div v-else-if="logo" class="badge__logo">
+        <img class="icon" :src="require(`@/assets/${logo}`)" />
+      </div>
     </div>
     <div class="title">{{ title }}</div>
-    <div v-if="completed" class="completion">Completed: {{ completed }}%</div>
+    <div v-if="completion" class="completion">completion: {{ completion }}%</div>
   </div>
 </template>
 
@@ -26,7 +27,11 @@ export default {
       type: [String, Number],
       required: false,
     },
-    completed: {
+    logo: {
+      type: [String, Number],
+      required: false,
+    },
+    completion: {
       type: [String, Number],
       required: false,
     },
@@ -36,15 +41,11 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  /* margin: 20px; */
   display: inline-flex;
   width: auto;
   flex-flow: column nowrap;
   justify-content: center;
-  /* align-items: center; */
   align-items: center;
-  /* margin: 200px; */
-  /* gap:20px; */
   &:hover > .badge,
   &:active > .badge {
     transform: scale(1.05, 1.05);
@@ -61,6 +62,7 @@ export default {
     border: 5px solid var(--color-details);
     box-shadow: 0 0 2px 2px var(--color-background-white);
     transition: transform 0.2s ease-in-out;
+    user-select: none;
 
     &__icon,
     &__character {
@@ -69,6 +71,12 @@ export default {
       color: var(--color-details);
       display: block;
       user-select: none;
+    }
+
+    &__logo > img {
+      filter: invert(54%) sepia(97%) saturate(1110%) hue-rotate(331deg) brightness(101%) contrast(101%);
+      width: 4rem;
+      height: 4rem;
     }
   }
 

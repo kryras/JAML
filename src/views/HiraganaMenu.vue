@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <h1 class="title">KATAKANA</h1>
+    <h1 class="title">HIRAGANA</h1>
     <div class="lessons-container">
-      <div class="lesson" v-for="(element, element_key) in katakana" :key="element_key">
+      <div class="lesson" v-for="(element, element_key) in hiragana" :key="element_key">
         <LessonBubble :title="element['title']" :character="element['icon']" completion="75" />
       </div>
     </div>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import katakanaData from '@/assets/lessons/hiraganakatakana/katakana.json'
+import hiraganaData from '@/assets/lessons/hiraganakatakana/hiragana.json'
 // import * as wanakana from '@/scripts/wanakana.js'
 // console.log(`test ${wanakana.toKana('TOFUGUnosushi')}`);
 import LessonBubble from '@/components/LessonBubble.vue'
@@ -19,11 +19,11 @@ export default {
   components: { LessonBubble },
   data() {
     return {
-      katakana: katakanaData,
+      hiragana: hiraganaData,
     }
   },
   mounted() {
-    console.log(this.katakana['katakana1']['data'])
+    console.log(this.hiragana['hiragana1']['data'])
     // console.log(wanakana.isJapanese('泣き虫。！〜２￥ｚｅｎｋａｋｕ'))
   },
   method: {},
@@ -50,7 +50,7 @@ export default {
       grid-gap: 70px 0;
     }
 
-    @media only screen and (max-width: 1024px) and (min-width:768px) {
+    @media only screen and (max-width: 1024px) and (min-width: 768px) {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 70px 0;
