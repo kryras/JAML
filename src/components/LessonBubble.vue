@@ -43,6 +43,8 @@ export default {
   justify-content: center;
   /* align-items: center; */
   align-items: center;
+  /* margin: 200px; */
+  /* gap:20px; */
   &:hover > .badge,
   &:active > .badge {
     transform: scale(1.05, 1.05);

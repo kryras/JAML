@@ -43,10 +43,29 @@ export default {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       grid-gap: 70px 0;
+      /* justify */
+    }
+
+    @media only screen and (max-width: 1024px) and (min-width:768px) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 70px 0;
+      /* justify */
+    }
+
+    .lesson {
+      margin: 20px;
     }
 
     .lesson:nth-child(3n + 3) {
       flex: 0 1 100%;
+
+      /* @media only screen and (min-width: 768px) { */
+      /* display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 70px 0; */
+      /* justify */
+    /* } */
     }
   }
 }
