@@ -40,6 +40,18 @@ const routes = [
     name: 'MenuKanji',
     component: () => import('../views/KanjiMenu.vue')
   }
+  ,
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('../views/Search.vue')
+  }
+  ,
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/About.vue')
+  }
 ]
 
 const router = createRouter({

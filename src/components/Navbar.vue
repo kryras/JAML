@@ -20,11 +20,11 @@
       <img :class="['icon']" src="@/assets/logo_kanji.svg" />
       <span>Kanji</span>
     </router-link>
-    <router-link :to="{ name: 'Test' }">
+    <router-link :to="{ name: 'Search' }">
       <font-awesome-icon :icon="'search'" :class="['icon']" />
       <span>Search</span>
     </router-link>
-    <router-link :to="{ name: 'Test' }">
+    <router-link :to="{ name: 'About' }">
       <font-awesome-icon :icon="'info-circle'" :class="['icon']" />
       <span>About</span>
     </router-link>
