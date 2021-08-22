@@ -7,24 +7,28 @@
     <!-- <img :class="['icon']" src="@/assets/logo_katakana.svg" /> -->
     <!-- <span>Katakana</span>? -->
     <!-- </router-link> -->
-    <div class="logo-container">
-      <h1>LOGO</h1>
-      <h1>NAME</h1>
+    <div class="logo">
+      <img class="logo__img" src="@/assets/logo.png" />
+      <h1 class="logo__title">An application for learning Japanese alphabets with machine learning assistance</h1>
     </div>
 
     <h2 class="main-container-title">Select an alphabet</h2>
     <div class="main-container">
-      <router-link :to="{ name: 'MenuHiragana' }">
-        <LessonBubble title="Hiragana" logo="logo_hiragana.svg"></LessonBubble>
-      </router-link>
-
-      <router-link :to="{ name: 'MenuKatakana' }">
-        <LessonBubble title="Katakana" logo="logo_katakana.svg"></LessonBubble>
-      </router-link>
-
-      <router-link :to="{ name: 'MenuKanji' }">
-        <LessonBubble title="Kanji" logo="logo_kanji.svg"></LessonBubble>
-      </router-link>
+      <div>
+        <router-link :to="{ name: 'MenuHiragana' }">
+          <LessonBubble title="Hiragana" logo="logo_hiragana.svg"></LessonBubble>
+        </router-link>
+      </div>
+      <div>
+        <router-link :to="{ name: 'MenuKatakana' }">
+          <LessonBubble title="Katakana" logo="logo_katakana.svg"></LessonBubble>
+        </router-link>
+      </div>
+      <div>
+        <router-link :to="{ name: 'MenuKanji' }">
+          <LessonBubble title="Kanji" logo="logo_kanji.svg"></LessonBubble>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -41,9 +45,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-container {
+.logo {
+  padding-left: 10px;
+  padding-right: 10px;
   margin-bottom: 60px;
   user-select: none;
+
+  &__img {
+    width: 300px;
+    height: auto;
+  }
+
+  &__title {
+    font-size: 1rem;
+  }
 }
 
 .main-container {
@@ -63,6 +78,7 @@ export default {
 
   a {
     text-decoration: none;
+    display: inline-block;
     &:visited {
       color: inherit;
     }

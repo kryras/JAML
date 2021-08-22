@@ -3,7 +3,7 @@
     <font-awesome-icon :icon="navOpen ? 'plus' : 'bars'" :class="[{ 'toggle-open': navOpen }, 'toggle']" />
   </div>
   <nav v-if="navOpen" class="navigation">
-    <span class="logo">LOGO</span>
+    <img class="logo__img" src="@/assets/logo.png" />
     <router-link :to="{ name: 'Home' }">
       <font-awesome-icon :icon="'home'" :class="['icon']" />
       <span>Home</span>
@@ -22,7 +22,7 @@
     </router-link>
     <router-link :to="{ name: 'Search' }">
       <font-awesome-icon :icon="'search'" :class="['icon']" />
-      <span>Search</span>
+      <span>Search kanji</span>
     </router-link>
     <router-link :to="{ name: 'About' }">
       <font-awesome-icon :icon="'info-circle'" :class="['icon']" />
@@ -120,12 +120,14 @@ export default {
   box-shadow: 0 0 2px var(--color-details);
 }
 
-.logo {
+.logo__img {
   position: fixed;
   left: calc(var(--navbar-width) / 2);
   top: calc(50px / 2);
   transform: translate(-50%, -50%);
   user-select: none;
+  width: 100px;
+  height: auto;
 }
 
 a {
