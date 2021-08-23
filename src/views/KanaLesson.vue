@@ -1,14 +1,16 @@
+
 <template>
   <Loader v-if="loading" />
   <div v-else class="container">
     kana lesson {{ $route.params.id }}
     <br />
     {{ data }}
-    <Canvas @getCanvas='checkSign' />
-    <!-- <component :is="Canvas"></component> -->
+    <!-- <Canvas @getCanvas='checkSign' /> -->
+    <!-- <component :is="'Canvas'" @getCanvas="checkSign"></component> -->
   </div>
 </template>
 <script>
+/* eslint-disable */ 
 import Loader from '@/components/Loader.vue'
 import Canvas from '@/components/Canvas.vue'
 import * as tf from '@tensorflow/tfjs'
@@ -21,27 +23,37 @@ export default {
       data: {},
       loading: true,
       model: null,
+      
     }
   },
   async created() {
+    window.scrollTo(0, 0)
     try {
       let alphabet = this.$route.path.split('/')[1]
       let lesson = require(`@/assets/lessons/hiraganakatakana/${alphabet}.json`)
       this.data = lesson[`${this.$route.params.id}`]['data']
-      
+
       this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/model.json`)
       // let ten = tf.zeros([1, 48, 48, 1], 'int32')
       // let model = toRaw(this.model)
       // await model.predict(ten)
-      
+
+
+      this.prepareLesson()
       this.loading = false
     } catch (e) {
-      console.log(e);
+      console.log(e)
       this.$router.push({ name: 'NotFound' })
     }
   },
 
   methods: {
+    prepareLesson() {
+      this.data.forEach(element => {
+        console.log(element.character);
+      });
+    },
+
     async checkSign(canvasImage) {
       let tensorImage = tf.browser
         .fromPixels(canvasImage)
@@ -53,7 +65,7 @@ export default {
         .expandDims(0)
         .arraySync()
       tensorImage = tf.cast(tensorImage, 'int32')
-      console.log(tensorImage);
+      console.log(tensorImage)
       // try {
       //   let model = toRaw(this.model)
       //   let result = await model.predict(tensorImage)
@@ -69,5 +81,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 </style>

@@ -38,7 +38,7 @@ export default {
 a,
 a:visited {
   text-decoration: none;
-  color: black;
+  color: #000000;
 }
 
 #app {
@@ -56,7 +56,6 @@ a:visited {
   background-size: cover;
   background-attachment: fixed;
   overflow-x: hidden;
-  /* width: 100vw; */
   height: 100vh;
   padding-top: 3rem;
   /* max-width: 1920px; */
@@ -66,7 +65,17 @@ a:visited {
     background-size: cover;
     max-width: calc(100vw - var(--navbar-width));
     margin-left: var(--navbar-width);
-    /* background-size: 100vh 100vw; */
   }
 }
+
+ ::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-details);
+  border-radius: 10px;
+  border: 1px solid var(--color-background-white);
+} 
+
 </style>

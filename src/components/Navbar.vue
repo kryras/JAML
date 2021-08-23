@@ -3,7 +3,9 @@
     <font-awesome-icon :icon="navOpen ? 'plus' : 'bars'" :class="[{ 'toggle-open': navOpen }, 'toggle']" />
   </div>
   <nav v-if="navOpen" class="navigation">
-    <img class="logo__img" src="@/assets/logo.png" />
+    <div class="logo">
+      <img class="logo__img" src="@/assets/logo.png" />
+    </div>
     <router-link :to="{ name: 'Home' }">
       <font-awesome-icon :icon="'home'" :class="['icon']" />
       <span>Home</span>
@@ -88,7 +90,7 @@ export default {
   filter: invert(54%) sepia(97%) saturate(1110%) hue-rotate(331deg) brightness(101%) contrast(101%); /* box-shadow: 0 0 10px  var(--color-background-white); */
   width: 2rem;
   height: 2rem;
-  z-index: 102;
+  z-index: -1;
   font-size: 2rem;
   user-select: none;
 }
@@ -108,26 +110,43 @@ export default {
   z-index: 100;
   background-color: var(--color-background-white);
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   align-items: flex-start;
   position: fixed;
-  padding-top: 50px;
   left: 0;
   top: 0;
   bottom: 0;
   min-width: var(--navbar-width);
-
+  overflow-y: auto;
+  direction: rtl;
+  margin-top: 50px;
   box-shadow: 0 0 2px var(--color-details);
+
+  & > * {
+    direction: ltr;
+  }
 }
 
-.logo__img {
+.logo {
   position: fixed;
-  left: calc(var(--navbar-width) / 2);
-  top: calc(50px / 2);
-  transform: translate(-50%, -50%);
-  user-select: none;
-  width: 100px;
-  height: auto;
+  top: 0;
+  left: 0;
+  background-color: var(--color-background-white);
+  width: calc(var(--navbar-width) - 0px);
+  height: 50px;
+  position: 101;
+  box-shadow: 0 0 2px var(--color-details);
+
+  &__img {
+    position: fixed;
+    left: calc(var(--navbar-width) / 2);
+    top: calc(50px / 2);
+    transform: translate(-50%, -50%);
+    user-select: none;
+    width: 100px;
+    height: auto;
+    z-index: 102;
+  }
 }
 
 a {
