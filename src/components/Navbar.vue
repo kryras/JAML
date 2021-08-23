@@ -96,7 +96,7 @@ export default {
 .background {
   position: fixed;
   inset: 0;
-  background-color: hsl(0, 0, 0, 0.4);
+  background-color: hsla(0, 0%, 0%, 0.4);
   z-index: 99;
 
   @media only screen and (min-width: 768px) {

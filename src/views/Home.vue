@@ -1,12 +1,6 @@
 <template>
   <div class="home-container">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
-    <!-- <router-link :to="{ name: 'MenuKatakana' }"> -->
-    <!-- <img :class="['icon']" src="@/assets/logo_katakana.svg" /> -->
-    <!-- <span>Katakana</span>? -->
-    <!-- </router-link> -->
     <div class="logo">
       <img class="logo__img" src="@/assets/logo.png" />
       <h1 class="logo__title">An application for learning Japanese alphabets with machine learning assistance</h1>

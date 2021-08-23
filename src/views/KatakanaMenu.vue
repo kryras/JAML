@@ -3,7 +3,13 @@
     <h1 class="title">KATAKANA</h1>
     <div class="lessons-container">
       <div class="lesson" v-for="(element, element_key) in katakana" :key="element_key">
-        <LessonBubble :title="element['title']" :character="element['icon']" completion="75" />
+        <LessonBubble
+          class="lesson__start"
+          :title="element['title']"
+          :character="element['icon']"
+          completion="75"
+          @click="startLesson(element_key)"
+        />
       </div>
     </div>
   </div>
@@ -23,10 +29,15 @@ export default {
     }
   },
   mounted() {
-    console.log(this.katakana['katakana1']['data'])
     // console.log(wanakana.isJapanese('泣き虫。！〜２￥ｚｅｎｋａｋｕ'))
   },
-  method: {},
+  methods: {
+    startLesson(element_key) {
+      // console.log(`Lesson key: ${element_key}`)
+      // console.log(this.katakana[`${element_key}`]['data'])
+      this.$router.push({ name: 'KanaLesson', params: { id: `${element_key}` }})
+    },
+  },
 }
 </script>
 
@@ -50,7 +61,7 @@ export default {
       grid-gap: 70px 0;
     }
 
-    @media only screen and (max-width: 1024px) and (min-width:768px) {
+    @media only screen and (max-width: 1024px) and (min-width: 768px) {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 70px 0;
@@ -58,6 +69,10 @@ export default {
 
     .lesson {
       margin: 20px;
+
+      &__start {
+        cursor: pointer;
+      }
     }
 
     .lesson:nth-child(3n + 3) {

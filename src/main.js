@@ -14,7 +14,8 @@ import {
     faHome,
     faInfoCircle,
     faEraser,
-    faCheck
+    faCheck,
+    faFrown
 } from '@fortawesome/free-solid-svg-icons'
 library.add(
     faCat,
@@ -24,7 +25,9 @@ library.add(
     faHome,
     faInfoCircle,
     faEraser,
-    faCheck);
+    faCheck,
+    faFrown
+);
 
 
 const app = createApp(App).use(store).use(router)

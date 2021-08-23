@@ -8,49 +8,44 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
     path: '/test',
     name: 'Test',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Test.vue')
-  }
-  ,
+    component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue')
+  },
   {
     path: '/katakana',
     name: 'MenuKatakana',
-    component: () => import('../views/KatakanaMenu.vue')
-  }  ,
+    component: () => import(/* webpackChunkName: "katakana" */ '../views/KatakanaMenu.vue')
+  },
+  {
+    path: '/katakana/:id',
+    name: 'KanaLesson',
+    component: () => import(/* webpackChunkName: "kanalesson" */'../views/KanaLesson.vue')
+  },
   {
     path: '/hiragana',
     name: 'MenuHiragana',
-    component: () => import('../views/HiraganaMenu.vue')
-  }
-  ,
+    component: () => import(/* webpackChunkName: "hiragana" */'../views/HiraganaMenu.vue')
+  },
   {
     path: '/kanji',
     name: 'MenuKanji',
-    component: () => import('../views/KanjiMenu.vue')
-  }
-  ,
+    component: () => import(/* webpackChunkName: "kanji" */'../views/KanjiMenu.vue')
+  },
   {
     path: '/search',
     name: 'Search',
-    component: () => import('../views/Search.vue')
-  }
-  ,
+    component: () => import(/* webpackChunkName: "search" */'../views/Search.vue')
+  },
   {
     path: '/about',
     name: 'About',
-    component: () => import('../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */'../views/About.vue')
+  },
+  {
+    path: "/:catchAll(.*)*",
+    name: 'NotFound',
+    component: () => import(/* webpackChunkName: "404" */'../views/NotFound.vue')
   }
 ]
 
