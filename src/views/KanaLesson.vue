@@ -1,29 +1,46 @@
-
 <template>
   <Loader v-if="loading" />
   <div v-else class="container">
-    kana lesson {{ $route.params.id }}
-    <br />
+    <!-- kana lesson {{ $route.params.id }} -->
     {{ data }}
     <!-- <Canvas @getCanvas='checkSign' /> -->
     <!-- <component :is="'Canvas'" @getCanvas="checkSign"></component> -->
   </div>
 </template>
 <script>
-/* eslint-disable */ 
+/* eslint-disable */
+
 import Loader from '@/components/Loader.vue'
 import Canvas from '@/components/Canvas.vue'
+import CharacterInfo from '@/components/CharacterInfo.vue'
+import ExcerciseDrawCharacter from '@/components/ExcerciseDrawCharacter.vue'
+import ExcerciseMeaningToCharacter from '@/components/ExcerciseMeaningToCharacter.vue'
+import ExcerciseCharacterToMeaning from '@/components/ExcerciseCharacterToMeaning.vue'
+import mixins from '@/scripts/mixins.js'
 import * as tf from '@tensorflow/tfjs'
 // import { toRaw } from 'vue'
 
 export default {
-  components: { Loader, Canvas },
+  components: {
+    Loader,
+    Canvas,
+    CharacterInfo,
+    ExcerciseDrawCharacter,
+    ExcerciseMeaningToCharacter,
+    ExcerciseCharacterToMeaning,
+  },
+  mixins: [mixins],
   data() {
     return {
-      data: {},
       loading: true,
       model: null,
-      
+      data: [],
+      excercises: [],
+      excercisesLength: null,
+      correctAnswers: 0,
+      secondChanceExcercises: [],
+      currentExcercise: null,
+      excercise: null,
     }
   },
   async created() {
@@ -38,7 +55,6 @@ export default {
       // let model = toRaw(this.model)
       // await model.predict(ten)
 
-
       this.prepareLesson()
       this.loading = false
     } catch (e) {
@@ -49,11 +65,26 @@ export default {
 
   methods: {
     prepareLesson() {
-      this.data.forEach(element => {
-        console.log(element.character);
-      });
+      const excercises = ['ExcerciseDrawCharacter', 'ExcerciseMeaningToCharacter', 'ExcerciseCharacterToMeaning']
+      this.excercisesLength = this.data.length * excercises.length
+      excercises.forEach((excercise) => {
+        const shuffledData = this.shuffleArray([...this.data])
+        shuffledData.forEach((data) => {
+          this.excercises.push({ type: excercise, character: data })
+        })
+      })
+      for (let index = this.data.length - 1; index >= 0; index--) {
+        this.excercises.push({ type: 'CharacterInfo', data: this.data[index] })
+      }
+      console.log(this.excercises)
     },
+    getExcercise() {
+      var nextIndex = 0
 
+      return {
+        next() {},
+      }
+    },
     async checkSign(canvasImage) {
       let tensorImage = tf.browser
         .fromPixels(canvasImage)
