@@ -1,8 +1,12 @@
 <template >
-    <h1>
-       draw character 
-    </h1>
-    <h1>{{data}}</h1>
+    <div>
+        <h1>
+           draw character 
+        </h1>
+        <h1>{{data}}</h1>
+
+
+    </div>
     
 </template>
 <script>

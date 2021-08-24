@@ -5,27 +5,27 @@
         "data": [
             {
                 "character": "あ",
-                "meaning": "a"
+                "meanings": ["a"]
             },
             {
                 "character": "い",
-                "meaning": "i"
+                "meanings": ["i"]
             },
             {
                 "character": "う",
-                "meaning": "u"
+                "meanings": ["u"]
             },
             {
                 "character": "え",
-                "meaning": "e"
+                "meanings": ["e"]
             },
             {
                 "character": "お",
-                "meaning": "o"
+                "meanings": ["o"]
             },
             {
                 "character": "ん",
-                "meaning": "n"
+                "meanings": ["n"]
             }
         ]
     },
@@ -35,23 +35,23 @@
         "data": [
             {
                 "character": "か",
-                "meaning": "ka"
+                "meanings": ["ka"]
             },
             {
                 "character": "き",
-                "meaning": "ki"
+                "meanings": ["ki"]
             },
             {
                 "character": "く",
-                "meaning": "ku"
+                "meanings": ["ku"]
             },
             {
                 "character": "け",
-                "meaning": "ke"
+                "meanings": ["ke"]
             },
             {
                 "character": "こ",
-                "meaning": "ko"
+                "meanings": ["ko"]
             }
         ]
     },
@@ -61,23 +61,23 @@
         "data": [
             {
                 "character": "さ",
-                "meaning": "sa"
+                "meanings": ["sa"]
             },
             {
                 "character": "し",
-                "meaning": "shi"
+                "meanings": ["shi"]
             },
             {
                 "character": "す",
-                "meaning": "su"
+                "meanings": ["su"]
             },
             {
                 "character": "せ",
-                "meaning": "se"
+                "meanings": ["se"]
             },
             {
                 "character": "そ",
-                "meaning": "so"
+                "meanings": ["so"]
             }
         ]
     },
@@ -87,23 +87,23 @@
         "data": [
             {
                 "character": "た",
-                "meaning": "ta"
+                "meanings": ["ta"]
             },
             {
                 "character": "ち",
-                "meaning": "chi"
+                "meanings": ["chi"]
             },
             {
                 "character": "つ",
-                "meaning": "tsu"
+                "meanings": ["tsu"]
             },
             {
                 "character": "て",
-                "meaning": "te"
+                "meanings": ["te"]
             },
             {
                 "character": "と",
-                "meaning": "to"
+                "meanings": ["to"]
             }
         ]
     },
@@ -113,23 +113,23 @@
         "data": [
             {
                 "character": "な",
-                "meaning": "na"
+                "meanings": ["na"]
             },
             {
                 "character": "に",
-                "meaning": "ni"
+                "meanings": ["ni"]
             },
             {
                 "character": "ぬ",
-                "meaning": "nu"
+                "meanings": ["nu"]
             },
             {
                 "character": "ね",
-                "meaning": "ne"
+                "meanings": ["ne"]
             },
             {
                 "character": "の",
-                "meaning": "no"
+                "meanings": ["no"]
             }
         ]
     },
@@ -139,23 +139,23 @@
         "data": [
             {
                 "character": "は",
-                "meaning": "ha"
+                "meanings": ["ha"]
             },
             {
                 "character": "ひ",
-                "meaning": "hi"
+                "meanings": ["hi"]
             },
             {
                 "character": "ふ",
-                "meaning": "fu"
+                "meanings": ["fu"]
             },
             {
                 "character": "へ",
-                "meaning": "he"
+                "meanings": ["he"]
             },
             {
                 "character": "ほ",
-                "meaning": "ho"
+                "meanings": ["ho"]
             }
         ]
     },
@@ -165,23 +165,23 @@
         "data": [
             {
                 "character": "ま",
-                "meaning": "ma"
+                "meanings": ["ma"]
             },
             {
                 "character": "ま",
-                "meaning": "mi"
+                "meanings": ["mi"]
             },
             {
                 "character": "む",
-                "meaning": "mu"
+                "meanings": ["mu"]
             },
             {
                 "character": "め",
-                "meaning": "me"
+                "meanings": ["me"]
             },
             {
                 "character": "も",
-                "meaning": "mo"
+                "meanings": ["mo"]
             }
         ]
     },
@@ -191,15 +191,15 @@
         "data": [
             {
                 "character": "や",
-                "meaning": "ya"
+                "meanings": ["ya"]
             },
             {
                 "character": "ゆ",
-                "meaning": "yu"
+                "meanings": ["yu"]
             },
             {
                 "character": "よ",
-                "meaning": "yo"
+                "meanings": ["yo"]
             }
         ]
     },
@@ -209,23 +209,23 @@
         "data": [
             {
                 "character": "ら",
-                "meaning": "ra"
+                "meanings": ["ra"]
             },
             {
                 "character": "り",
-                "meaning": "ri"
+                "meanings": ["ri"]
             },
             {
                 "character": "る",
-                "meaning": "ru"
+                "meanings": ["ru"]
             },
             {
                 "character": "れ",
-                "meaning": "re"
+                "meanings": ["re"]
             },
             {
                 "character": "ろ",
-                "meaning": "ro"
+                "meanings": ["ro"]
             }
         ]
     },
@@ -235,11 +235,11 @@
         "data": [
             {
                 "character": "ろ",
-                "meaning": "wa"
+                "meanings": ["wa"]
             },
             {
                 "character": "を",
-                "meaning": "wo"
+                "meanings": ["wo"]
             }
         ]
     }

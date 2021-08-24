@@ -1,16 +1,23 @@
 <template>
   <Loader v-if="loading" />
-  <div v-else class="container">
+  <div v-else class="kana-lesson-container">
     <!-- kana lesson {{ $route.params.id }} -->
-    {{ data }}
+    <!-- {{ data }} -->
     <!-- <Canvas @getCanvas='checkSign' /> -->
-    <!-- <component :is="'Canvas'" @getCanvas="checkSign"></component> -->
+    <component
+      v-if="currentExcercise"
+      :is="currentExcercise.type"
+      :data="currentExcercise.data"
+      v-dynamic-events="knownEvents"
+    ></component>
+    <Button color="orange" @click="nextExcercise">NEXT</Button>
   </div>
 </template>
 <script>
 /* eslint-disable */
 
 import Loader from '@/components/Loader.vue'
+import Button from '@/components/Button.vue'
 import Canvas from '@/components/Canvas.vue'
 import CharacterInfo from '@/components/CharacterInfo.vue'
 import ExcerciseDrawCharacter from '@/components/ExcerciseDrawCharacter.vue'
@@ -23,15 +30,34 @@ import * as tf from '@tensorflow/tfjs'
 export default {
   components: {
     Loader,
+    Button,
     Canvas,
     CharacterInfo,
     ExcerciseDrawCharacter,
     ExcerciseMeaningToCharacter,
     ExcerciseCharacterToMeaning,
   },
+  directives: {
+    DynamicEvents: {
+      bind: (el, binding, vnode) => {
+        const allEvents = binding.value
+        Object.keys(allEvents).forEach((event) => {
+          // register handler in the dynamic component
+          vnode.componentInstance.$on(event, (eventData) => {
+            const targetEvent = allEvents[event]
+            vnode.context[targetEvent](eventData)
+          })
+        })
+      },
+      unbind: function(el, binding, vnode) {
+        vnode.componentInstance.$off()
+      },
+    },
+  },
   mixins: [mixins],
   data() {
     return {
+      knownEvents: ['getCanvas', 'event-2'],
       loading: true,
       model: null,
       data: [],
@@ -56,6 +82,7 @@ export default {
       // await model.predict(ten)
 
       this.prepareLesson()
+      this.nextExcercise()
       this.loading = false
     } catch (e) {
       console.log(e)
@@ -70,20 +97,26 @@ export default {
       excercises.forEach((excercise) => {
         const shuffledData = this.shuffleArray([...this.data])
         shuffledData.forEach((data) => {
-          this.excercises.push({ type: excercise, character: data })
+          this.excercises.push({ type: excercise, data: data })
         })
       })
       for (let index = this.data.length - 1; index >= 0; index--) {
         this.excercises.push({ type: 'CharacterInfo', data: this.data[index] })
       }
-      console.log(this.excercises)
+      // console.log(this.excercises)
     },
-    getExcercise() {
-      var nextIndex = 0
-
-      return {
-        next() {},
+    nextExcercise() {
+      if (this.excercises.length > 0) {
+        this.currentExcercise = this.excercises.pop()
+      } else if (this.secondChanceExcercises.length > 0) {
+        this.currentExcercise = this.secondChanceExcercises.pop()
+      } else {
+        this.showResult()
       }
+      console.log(this.currentExcercise)
+    },
+    showResult() {
+      console.log('$$$$ RESLUT ###')
     },
     async checkSign(canvasImage) {
       let tensorImage = tf.browser
@@ -111,9 +144,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.container {
+.kana-lesson-container {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: space-around;
+  height: calc(100vh - 50px);
+  /* background-color:blue */
 }
 </style>

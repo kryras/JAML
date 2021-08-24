@@ -1,8 +1,12 @@
 <template>
-  <h1>
-    character to meaning
-  </h1>
-  <h1>{{data}}</h1>
+    <div>
+        <h1>
+          character to meaning
+        </h1>
+        <h1>{{data}}</h1>
+
+
+    </div>
     
 </template>
 <script>
