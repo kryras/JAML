@@ -1,5 +1,5 @@
 <template>
-  <button :class="color">
+  <button :class="color" :disabled="disabled">
     <font-awesome-icon v-if="icon" :icon="icon" />
     <span :class="{ 'icon-space': isIconWithText }">
       <slot></slot>
@@ -17,6 +17,10 @@ export default {
     icon: {
       required: false,
       type: String,
+    },
+    disabled: {
+      required: false,
+      default: false,
     },
   },
   computed: {
@@ -41,6 +45,13 @@ button {
   &:focus {
     box-shadow: 0 0 5px 0px var(--color-details);
     -webkit-tap-highlight-color: transparent;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: var(--color-light-gray);
+    cursor: default;
+    box-shadow: none;
   }
 }
 
