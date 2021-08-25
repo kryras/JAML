@@ -1,9 +1,9 @@
 <template>
   <div id="main-container">
     <Navbar />
-    <div class="main-content">
+    <main class="main-content">
       <router-view />
-    </div>
+    </main>
   </div>
 </template>
 
@@ -42,7 +42,7 @@ a:visited {
 }
 
 #app {
-  font-family: "Arial", "Helvetica", "sans-serif";
+  font-family: 'Arial', 'Helvetica', 'sans-serif';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -68,7 +68,7 @@ a:visited {
   }
 }
 
- ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 5px;
 }
 
@@ -76,6 +76,5 @@ a:visited {
   background: var(--color-details);
   border-radius: 10px;
   border: 1px solid var(--color-background-white);
-} 
-
+}
 </style>

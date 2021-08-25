@@ -1,5 +1,5 @@
 <template>
-  <button :class="color" :disabled="disabled">
+  <button :class="[color, answer]" :disabled="disabled">
     <font-awesome-icon v-if="icon" :icon="icon" />
     <span :class="{ 'icon-space': isIconWithText }">
       <slot></slot>
@@ -21,6 +21,10 @@ export default {
     disabled: {
       required: false,
       default: false,
+    },
+    answer: {
+      required: false,
+      type: String,
     },
   },
   computed: {
@@ -50,6 +54,8 @@ button {
   &:disabled,
   &[disabled] {
     background: var(--color-light-gray);
+    border: 1px solid var(--color-background-white);
+    color: var(--color-background-white);
     cursor: default;
     box-shadow: none;
   }
@@ -69,5 +75,17 @@ button {
   border: 1px solid var(--color-background-white);
   background: var(--color-details);
   color: var(--color-background-white);
+}
+
+.wrong {
+  box-shadow: 0 0 5px 5px hsl(0, 97%, 39%) !important;
+  background: var(--color-background-white) !important;
+  color: hsl(0, 97%, 39%) !important;
+}
+
+.correct {
+  box-shadow: 0 0 5px 5px hsl(120, 88%, 35%) !important;
+  background: var(--color-background-white) !important;
+  color: hsl(120, 88%, 35%) !important;
 }
 </style>

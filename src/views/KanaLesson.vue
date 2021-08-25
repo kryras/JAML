@@ -1,16 +1,17 @@
 <template>
   <Loader v-if="loading" />
   <div v-else class="kana-lesson-container">
-    <!-- kana lesson {{ $route.params.id }} -->
-    <!-- {{ data }} -->
     <!-- <Canvas @getCanvas='checkSign' /> -->
     <component
       v-if="currentExcercise"
       :is="currentExcercise.type"
       :data="currentExcercise.data"
+      :lesson="data"
       v-dynamic-events="knownEvents"
+      @excerciseChecked="excerciseChecked"
+      :key="currentExcercise.data"
     ></component>
-    <Button color="orange" @click="nextExcercise">NEXT</Button>
+    <Button color="orange" @click="nextExcercise" class="next-button" :disabled="buttonDisabled">NEXT</Button>
   </div>
 </template>
 <script>
@@ -18,7 +19,7 @@
 
 import Loader from '@/components/Loader.vue'
 import Button from '@/components/Button.vue'
-import Canvas from '@/components/Canvas.vue'
+// import Canvas from '@/components/Canvas.vue'
 import CharacterInfo from '@/components/CharacterInfo.vue'
 import ExcerciseDrawCharacter from '@/components/ExcerciseDrawCharacter.vue'
 import ExcerciseMeaningToCharacter from '@/components/ExcerciseMeaningToCharacter.vue'
@@ -31,7 +32,7 @@ export default {
   components: {
     Loader,
     Button,
-    Canvas,
+    // Canvas,
     CharacterInfo,
     ExcerciseDrawCharacter,
     ExcerciseMeaningToCharacter,
@@ -57,7 +58,7 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      knownEvents: ['getCanvas', 'event-2'],
+      knownEvents: ['getCanvas', 'excerciseChecked'],
       loading: true,
       model: null,
       data: [],
@@ -65,8 +66,9 @@ export default {
       excercisesLength: null,
       correctAnswers: 0,
       secondChanceExcercises: [],
+      secondChanceExcercisesLength: null,
       currentExcercise: null,
-      excercise: null,
+      disableButton: false,
     }
   },
   async created() {
@@ -103,20 +105,31 @@ export default {
       for (let index = this.data.length - 1; index >= 0; index--) {
         this.excercises.push({ type: 'CharacterInfo', data: this.data[index] })
       }
-      // console.log(this.excercises)
     },
     nextExcercise() {
+      this.disableButton = true
       if (this.excercises.length > 0) {
         this.currentExcercise = this.excercises.pop()
+        this.disableButton = this.currentExcercise.type === 'CharacterInfo' ? false : true
       } else if (this.secondChanceExcercises.length > 0) {
+        this.secondChanceExcercisesLength = this.secondChanceExcercisesLength === null ? this.secondChanceExcercises.length : this.secondChanceExcercisesLength
         this.currentExcercise = this.secondChanceExcercises.pop()
       } else {
         this.showResult()
       }
-      console.log(this.currentExcercise)
+      // perc = ((pEarned/pPos) * 100).toFixed();
     },
     showResult() {
       console.log('$$$$ RESLUT ###')
+    },
+    excerciseChecked(payload) {
+      console.log(`emit is working ${payload}`)
+      if (typeof payload == 'number') {
+        this.correctAnswers += 1
+      } else if (typeof payload == 'object' && this.excercises.length <= 1) {
+        secondChanceExcercises.push(payload)
+      }
+      this.disableButton = false
     },
     async checkSign(canvasImage) {
       let tensorImage = tf.browser
@@ -141,6 +154,11 @@ export default {
       // }
     },
   },
+  computed: {
+    buttonDisabled() {
+      return this.disableButton
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -150,6 +168,10 @@ export default {
   align-items: center;
   justify-content: space-around;
   height: calc(100vh - 50px);
-  /* background-color:blue */
+
+  .next-button {
+    width: 5rem;
+    height: 5rem;
+  }
 }
 </style>

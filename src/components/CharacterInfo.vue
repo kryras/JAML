@@ -22,25 +22,10 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {}
-  },
-  created() {},
-  mounted() {
-    // console.log(this.data.meanings)
-    // console.log(this.asd)
-  },
 }
 </script>
 <style lang="scss" scoped>
 .character-info-container {
-  /* background-color: red ; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-
-  /* height: calc(100vh - 50px); */
-
   .character {
     --font-size: 10rem;
     font-weight: normal;
