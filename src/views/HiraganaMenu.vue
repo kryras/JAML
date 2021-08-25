@@ -3,7 +3,13 @@
     <h1 class="title">HIRAGANA</h1>
     <div class="lessons-container">
       <div class="lesson" v-for="(element, element_key) in hiragana" :key="element_key">
-        <LessonBubble :title="element['title']" :character="element['icon']" completion="75" />
+        <LessonBubble
+          class="lesson__start"
+          :title="element['title']"
+          :character="element['icon']"
+          :completion="progress[element_key]"
+          @click="startLesson(element_key)"
+        />
       </div>
     </div>
   </div>
@@ -20,13 +26,26 @@ export default {
   data() {
     return {
       hiragana: hiraganaData,
+      progress: {},
     }
   },
   mounted() {
-    console.log(this.hiragana['hiragana1']['data'])
+    let lessonsProgress = localStorage.getItem('lessonsProgress')
+    if (lessonsProgress) {
+      lessonsProgress = JSON.parse(lessonsProgress)
+      if (lessonsProgress[`${this.$route.path.split('/')[1]}`] !== undefined) {
+        this.progress = lessonsProgress[`${this.$route.path.split('/')[1]}`]
+      }
+    }
+    // console.log(this.hiragana['hiragana1']['data'])
+
     // console.log(wanakana.isJapanese('泣き虫。！〜２￥ｚｅｎｋａｋｕ'))
   },
-  method: {},
+  methods: {
+    startLesson(element_key) {
+      this.$router.push({ name: 'KanaLesson', params: { alphabet: 'hiragana',  id: `${element_key}` } })
+    },
+  },
 }
 </script>
 
@@ -58,6 +77,10 @@ export default {
 
     .lesson {
       margin: 20px;
+
+      &__start {
+        cursor: pointer;
+      }
     }
 
     .lesson:nth-child(3n + 3) {

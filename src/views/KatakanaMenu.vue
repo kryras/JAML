@@ -7,7 +7,7 @@
           class="lesson__start"
           :title="element['title']"
           :character="element['icon']"
-          completion="75"
+          :completion="progress[element_key]"
           @click="startLesson(element_key)"
         />
       </div>
@@ -26,16 +26,22 @@ export default {
   data() {
     return {
       katakana: katakanaData,
+      progress: {},
     }
   },
   mounted() {
+    let lessonsProgress = localStorage.getItem('lessonsProgress')
+    if (lessonsProgress) {
+      lessonsProgress = JSON.parse(lessonsProgress)
+      if (lessonsProgress[`${this.$route.path.split('/')[1]}`] !== undefined) {
+        this.progress = lessonsProgress[`${this.$route.path.split('/')[1]}`]
+      }
+    }
     // console.log(wanakana.isJapanese('泣き虫。！〜２￥ｚｅｎｋａｋｕ'))
   },
   methods: {
     startLesson(element_key) {
-      // console.log(`Lesson key: ${element_key}`)
-      // console.log(this.katakana[`${element_key}`]['data'])
-      this.$router.push({ name: 'KanaLesson', params: { id: `${element_key}` }})
+      this.$router.push({ name: 'KanaLesson', params: { alphabet: 'katakana',  id: `${element_key}` } })
     },
   },
 }

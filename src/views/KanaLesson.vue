@@ -16,6 +16,13 @@
     ></component>
     <Button color="orange" @click="nextExcercise" class="next-button" :disabled="buttonDisabled">NEXT</Button>
   </div>
+  <div class="result" v-if="displayResult">
+    <h2>Correct answers:</h2>
+    <h2>{{ correctAnswers }} / {{ excercisesLength }} ({{ result }}%)</h2>
+    <Button color="orange" @click="finishLesson">
+      FINISH
+    </Button>
+  </div>
 </template>
 <script>
 import Loader from '@/components/Loader.vue'
@@ -26,7 +33,6 @@ import ExcerciseMeaningToCharacter from '@/components/ExcerciseMeaningToCharacte
 import ExcerciseCharacterToMeaning from '@/components/ExcerciseCharacterToMeaning.vue'
 import mixins from '@/scripts/mixins.js'
 import * as tf from '@tensorflow/tfjs'
-// import { toRaw } from 'vue'
 
 export default {
   components: {
@@ -65,18 +71,17 @@ export default {
       excercisesLength: null,
       correctAnswers: 0,
       secondChanceExcercises: [],
-      secondChanceExcercisesLength: null,
       currentExcercise: null,
       disableButton: false,
+      result: null,
+      displayResult: false,
     }
   },
   async created() {
     window.scrollTo(0, 0)
     try {
-      let alphabet = this.$route.path.split('/')[1]
-      let lesson = require(`@/assets/lessons/hiraganakatakana/${alphabet}.json`)
+      let lesson = require(`@/assets/lessons/hiraganakatakana/${this.$route.params.alphabet}.json`)
       this.data = lesson[`${this.$route.params.id}`]['data']
-
       this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/model.json`)
       // let ten = tf.zeros([1, 48, 48, 1], 'int32')
       // let model = toRaw(this.model)
@@ -91,7 +96,6 @@ export default {
       this.$router.push({ name: 'NotFound' })
     }
   },
-
   methods: {
     prepareLesson() {
       const excercises = ['ExcerciseDrawCharacter', 'ExcerciseMeaningToCharacter', 'ExcerciseCharacterToMeaning']
@@ -114,23 +118,41 @@ export default {
       } else if (this.secondChanceExcercises.length > 0) {
         this.currentExcercise = this.secondChanceExcercises.shift()
         this.disableButton = true
-      } else {
-        this.showResult()
       }
     },
     showResult() {
-      console.log('$$$$ RESLUT ###')
-      // perc = ((pEarned/pPos) * 100).toFixed();
+      this.result = ((this.correctAnswers / this.excercisesLength) * 100).toFixed()
+      this.displayResult = true
+      this.saveResult()
+    },
+    saveResult() {
+      let lessonsProgress = localStorage.getItem('lessonsProgress')
+      if (lessonsProgress) {
+        lessonsProgress = JSON.parse(lessonsProgress)
+      } else {
+        lessonsProgress = {}
+      }
+
+      if (lessonsProgress[`${this.$route.params.alphabet}`] === undefined) {
+        lessonsProgress[`${this.$route.params.alphabet}`] = {}
+      }
+      lessonsProgress[`${this.$route.params.alphabet}`][`${this.$route.params.id}`] = parseInt(this.result)
+      localStorage.setItem('lessonsProgress', JSON.stringify(lessonsProgress))
+    },
+    finishLesson() {
+      this.$router.back()
     },
     excerciseChecked(payload) {
       if (typeof payload == 'number') {
         this.correctAnswers += 1
-        console.log('dodanie punktu')
       } else if (typeof payload == 'object' && payload.secondChance) {
-        console.log('dodanie seocnd chance')
         this.secondChanceExcercises.push({ ...payload, secondChance: false })
       }
       this.disableButton = false
+      if (this.excercises.length === 0 && this.secondChanceExcercises.length === 0) {
+        this.disableButton = true
+        this.showResult()
+      }
     },
   },
   computed: {
@@ -142,13 +164,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .kana-lesson-container {
-  /* display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: space-around; */
-  /* min-height: calc(100vh - 50px); */
-  /* max-height: 1080px; */
-
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;
@@ -161,8 +176,29 @@ export default {
   }
 
   #component {
-    /* background: red; */
     min-height: calc(75vh - 50px);
+  }
+}
+
+.result {
+  width: calc(100% - var(--navbar-width));
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
+
+  background-color: hsla(0, 0%, 0%, 0.75);
+  height: 50vh;
+  position: fixed;
+  top: 50%;
+  color: white;
+  transform: translate(0, -50%);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  & > h2,
+  & > button {
+    margin: 5px auto;
   }
 }
 </style>

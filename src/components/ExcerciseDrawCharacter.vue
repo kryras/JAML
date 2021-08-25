@@ -44,8 +44,13 @@ export default {
     }
   },
   mounted() {
-    let alphabet = this.$route.path.split('/')[1]
-    ;({ katakanaLabels: this.labels } = require(`@/assets/lessons/hiraganakatakana/${alphabet}_labels.js`))
+    try {
+      let alphabet = this.$route.path.split('/')[1]
+      ;({labels: this.labels }= require(`@/assets/lessons/hiraganakatakana/${alphabet}_labels.js`))
+    } catch (e) {
+      console.log(e)
+      this.$router.push({ name: 'NotFound' })
+    }
   },
   methods: {
     async checkCanvas(payload) {

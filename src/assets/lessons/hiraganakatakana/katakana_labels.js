@@ -1,5 +1,5 @@
 
-export const katakanaLabels = ["ヲ",
+export const labels = ["ヲ",
     "イ",
     "エ",
     "ア",

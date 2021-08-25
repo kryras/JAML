@@ -18,7 +18,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "katakana" */ '../views/KatakanaMenu.vue')
   },
   {
-    path: '/katakana/:id',
+    path: '/:alphabet/:id',
     name: 'KanaLesson',
     component: () => import(/* webpackChunkName: "kanalesson" */'../views/KanaLesson.vue')
   },
