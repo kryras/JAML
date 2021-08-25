@@ -10,13 +10,13 @@
       <font-awesome-icon :icon="'home'" :class="['icon']" />
       <span>Home</span>
     </router-link>
-    <router-link :to="{ name: 'MenuKatakana' }">
-      <img :class="['icon']" src="@/assets/logo_katakana.svg" />
-      <span>Katakana</span>
-    </router-link>
     <router-link :to="{ name: 'MenuHiragana' }">
       <img :class="['icon']" src="@/assets/logo_hiragana.svg" />
       <span>Hiragana</span>
+    </router-link>
+    <router-link :to="{ name: 'MenuKatakana' }">
+      <img :class="['icon']" src="@/assets/logo_katakana.svg" />
+      <span>Katakana</span>
     </router-link>
     <router-link :to="{ name: 'MenuKanji' }">
       <img :class="['icon']" src="@/assets/logo_kanji.svg" />

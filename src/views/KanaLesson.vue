@@ -1,25 +1,25 @@
 <template>
   <Loader v-if="loading" />
   <div v-else class="kana-lesson-container">
-    <!-- <Canvas @getCanvas='checkSign' /> -->
     <component
       v-if="currentExcercise"
       :is="currentExcercise.type"
       :data="currentExcercise.data"
+      :secondChance="currentExcercise.secondChance"
       :lesson="data"
+      :model="model"
       v-dynamic-events="knownEvents"
       @excerciseChecked="excerciseChecked"
+      @getCanvas="excerciseChecked"
       :key="currentExcercise.data"
+      id="component"
     ></component>
     <Button color="orange" @click="nextExcercise" class="next-button" :disabled="buttonDisabled">NEXT</Button>
   </div>
 </template>
 <script>
-/* eslint-disable */
-
 import Loader from '@/components/Loader.vue'
 import Button from '@/components/Button.vue'
-// import Canvas from '@/components/Canvas.vue'
 import CharacterInfo from '@/components/CharacterInfo.vue'
 import ExcerciseDrawCharacter from '@/components/ExcerciseDrawCharacter.vue'
 import ExcerciseMeaningToCharacter from '@/components/ExcerciseMeaningToCharacter.vue'
@@ -32,7 +32,6 @@ export default {
   components: {
     Loader,
     Button,
-    // Canvas,
     CharacterInfo,
     ExcerciseDrawCharacter,
     ExcerciseMeaningToCharacter,
@@ -82,6 +81,7 @@ export default {
       // let ten = tf.zeros([1, 48, 48, 1], 'int32')
       // let model = toRaw(this.model)
       // await model.predict(ten)
+      // this.model.summary()
 
       this.prepareLesson()
       this.nextExcercise()
@@ -99,7 +99,7 @@ export default {
       excercises.forEach((excercise) => {
         const shuffledData = this.shuffleArray([...this.data])
         shuffledData.forEach((data) => {
-          this.excercises.push({ type: excercise, data: data })
+          this.excercises.push({ type: excercise, data: data, secondChance: true })
         })
       })
       for (let index = this.data.length - 1; index >= 0; index--) {
@@ -112,46 +112,25 @@ export default {
         this.currentExcercise = this.excercises.pop()
         this.disableButton = this.currentExcercise.type === 'CharacterInfo' ? false : true
       } else if (this.secondChanceExcercises.length > 0) {
-        this.secondChanceExcercisesLength = this.secondChanceExcercisesLength === null ? this.secondChanceExcercises.length : this.secondChanceExcercisesLength
-        this.currentExcercise = this.secondChanceExcercises.pop()
+        this.currentExcercise = this.secondChanceExcercises.shift()
+        this.disableButton = true
       } else {
         this.showResult()
       }
-      // perc = ((pEarned/pPos) * 100).toFixed();
     },
     showResult() {
       console.log('$$$$ RESLUT ###')
+      // perc = ((pEarned/pPos) * 100).toFixed();
     },
     excerciseChecked(payload) {
-      console.log(`emit is working ${payload}`)
       if (typeof payload == 'number') {
         this.correctAnswers += 1
-      } else if (typeof payload == 'object' && this.excercises.length <= 1) {
-        secondChanceExcercises.push(payload)
+        console.log('dodanie punktu')
+      } else if (typeof payload == 'object' && payload.secondChance) {
+        console.log('dodanie seocnd chance')
+        this.secondChanceExcercises.push({ ...payload, secondChance: false })
       }
       this.disableButton = false
-    },
-    async checkSign(canvasImage) {
-      let tensorImage = tf.browser
-        .fromPixels(canvasImage)
-        .resizeNearestNeighbor([48, 48])
-        .div(255)
-        .toInt()
-        .mean(2)
-        .expandDims(2)
-        .expandDims(0)
-        .arraySync()
-      tensorImage = tf.cast(tensorImage, 'int32')
-      console.log(tensorImage)
-      // try {
-      //   let model = toRaw(this.model)
-      //   let result = await model.predict(tensorImage)
-      //   console.log(result.dataSync().indexOf(Math.max(...result.dataSync())), Math.max(...result.dataSync()))
-      //   this.predictedClass = result.dataSync().indexOf(Math.max(...result.dataSync()))
-      //   this.predictedClassPercent = Math.max(...result.dataSync())
-      // } catch (e) {
-      //   console.error(e)
-      // }
     },
   },
   computed: {
@@ -163,15 +142,27 @@ export default {
 </script>
 <style lang="scss" scoped>
 .kana-lesson-container {
-  display: flex;
+  /* display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  justify-content: space-around;
-  height: calc(100vh - 50px);
+  justify-content: space-around; */
+  /* min-height: calc(100vh - 50px); */
+  /* max-height: 1080px; */
 
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  align-items: center;
   .next-button {
     width: 5rem;
     height: 5rem;
+    margin: 5px;
+    margin: 10px auto;
+  }
+
+  #component {
+    /* background: red; */
+    min-height: calc(75vh - 50px);
   }
 }
 </style>

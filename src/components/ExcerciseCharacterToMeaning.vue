@@ -37,6 +37,10 @@ export default {
       type: Object,
       required: true,
     },
+    secondChance: {
+      type: Boolean,
+      required: false,
+    },
   },
   data() {
     return {
@@ -76,7 +80,9 @@ export default {
           return element.character === this.data.character
         })
         this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
-        this.$emit('excerciseChecked', { type: this.$options.name, data: this.data })
+        // if(this.secondChance) {
+        this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        // }  
       }
     },
   },
@@ -113,10 +119,10 @@ export default {
       min-height: 5rem;
       height: auto;
     }
-    
+
     &__text {
       overflow-wrap: break-word;
-      
+
       span::after {
         content: ', ';
       }

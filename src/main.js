@@ -15,7 +15,8 @@ import {
     faInfoCircle,
     faEraser,
     faCheck,
-    faFrown
+    faFrown,
+    faExchangeAlt
 } from '@fortawesome/free-solid-svg-icons'
 library.add(
     faCat,
@@ -26,7 +27,8 @@ library.add(
     faInfoCircle,
     faEraser,
     faCheck,
-    faFrown
+    faFrown,
+    faExchangeAlt
 );
 
 

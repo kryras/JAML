@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <canvas id="sketchpad"></canvas>
+  <div class="canvas-container">
+    <canvas :class="answer" id="sketchpad"></canvas>
     <div class="buttons">
-      <Button color="white" icon='eraser' @click="clearCanvas"></Button>
-      <Button color="orange" icon='check' @click="emitCanvas"></Button>
+      <Button color="white" icon="eraser" @click="clearCanvas" :disabled="disableButton"></Button>
+      <Button color="orange" icon="check" @click.once="emitCanvas" :disabled="disableButton"></Button>
     </div>
   </div>
 </template>
@@ -13,6 +13,12 @@ import Button from '@/components/Button.vue'
 export default {
   components: {
     Button,
+  },
+  props: {
+    answer: {
+      type: String,
+      required: false,
+    },
   },
   data() {
     return {
@@ -32,8 +38,7 @@ export default {
         b: 0,
       },
       mousedown: false,
-      predictedClass: null,
-      predictedClassPercent: null,
+      disableButton: false,
     }
   },
   mounted() {
@@ -42,8 +47,9 @@ export default {
   methods: {
     init() {
       this.canvas = document.getElementById('sketchpad')
-      this.canvas.width = 384
-      this.canvas.height = 384
+      const dimensions = 192
+      this.canvas.width = dimensions
+      this.canvas.height = dimensions
       if (this.canvas.getContext) {
         this.ctx = this.canvas.getContext('2d')
       }
@@ -124,43 +130,49 @@ export default {
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
     },
     emitCanvas() {
+      this.disableButton = true
       let canvasImage = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
-      // console.log(`${canvasImage.data}`);
       this.$emit('getCanvas', canvasImage)
-    }
+    },
   },
 }
 </script>
 <style lang="scss" scoped>
-.container {
-  display: flex;
-  flex-flow: column wrap;
-  /* justify-content: center; */
-  align-items: center;
+.canvas-container {
   user-select: none;
-  max-width: 384px;
-
+  max-width: 192px;
+  margin: auto;
 
   .buttons {
-  width: 100%;
-  
-  button + button {
-    
-    margin-left: 10px;
+    width: 100%;
+
+    button + button {
+      margin-left: 10px;
+    }
+    & > button {
+      --margin: 5px;
+      width: calc(50% - var(--margin));
+      margin-top: calc(2 * var(--margin));
+    }
   }
-  & > button {
-    --margin: 5px;
-    width: calc(50% - var(--margin));
-    margin-top: calc(2 * var(--margin));
-  }
-}
 }
 
 #sketchpad {
   max-width: 100%;
   border: 1px solid var(--color-details);
   border-radius: 5px;
-  position: relative; /* Necessary for correct mouse co-ords in Firefox */
+  position: relative;
+  margin-top: 10pxpx;
+}
+
+.wrong {
+  box-shadow: 0 0 5px 5px hsl(0, 97%, 39%) !important;
+  border: 1px solid hsl(0, 97%, 39%) !important;
+}
+
+.correct {
+  box-shadow: 0 0 5px 5px hsl(120, 88%, 35%) !important;
+  border: 1px solid hsl(120, 88%, 35%) !important;
 }
 
 #clearbutton {

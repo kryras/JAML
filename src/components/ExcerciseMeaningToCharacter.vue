@@ -35,6 +35,10 @@ export default {
       type: Object,
       required: true,
     },
+    secondChance: {
+      type: Boolean,
+      required: false,
+    },
   },
   data() {
     return {
@@ -74,7 +78,7 @@ export default {
           return element.character === this.data.character
         })
         this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
-        this.$emit('excerciseChecked', { type: this.$options.name, data: this.data })
+        this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
       }
     },
   },

@@ -28,6 +28,20 @@ export default {
   --navbar-width: 200px;
 }
 
+/* PWA orientation */
+@media screen and (orientation: landscape) and (display-mode: standalone) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
 *,
 *::after,
 *::before {
