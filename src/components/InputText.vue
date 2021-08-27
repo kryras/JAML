@@ -11,6 +11,7 @@
         :placeholder="placeholder"
         v-model="value"
         :disabled="disabled"
+        autocomplete="off"
       />
       <button @click="$emit('buttonClicked')" class="icon-container" v-if="icon">
         <font-awesome-icon :icon="icon" class="icon" />
@@ -86,7 +87,8 @@ export default {
     position: relative;
 
     .text-input {
-      width: 90%;
+      /* width: 90%; */
+      width: 100%;
       height: 2.9rem;
       font-size: 1.2rem;
       text-align: center;
