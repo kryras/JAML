@@ -3,7 +3,7 @@
     <canvas :class="answer" id="sketchpad"></canvas>
     <div class="buttons">
       <Button color="white" icon="eraser" @click="clearCanvas" :disabled="disableButton"></Button>
-      <Button color="orange" icon="check" @click.once="emitCanvas" :disabled="disableButton"></Button>
+      <Button color="orange" icon="check" @click="emitCanvas" :disabled="disableButton"></Button>
     </div>
   </div>
 </template>
@@ -18,6 +18,10 @@ export default {
     answer: {
       type: String,
       required: false,
+    },
+    disableButton: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -38,7 +42,6 @@ export default {
         b: 0,
       },
       mousedown: false,
-      disableButton: false,
     }
   },
   mounted() {
@@ -130,7 +133,6 @@ export default {
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
     },
     emitCanvas() {
-      this.disableButton = true
       let canvasImage = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
       this.$emit('getCanvas', canvasImage)
     },

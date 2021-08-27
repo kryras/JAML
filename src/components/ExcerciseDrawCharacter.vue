@@ -10,8 +10,7 @@
       </div>
     </h1>
     <h2 class="description">Draw the character:</h2>
-    <!-- <h1>{{ data }}</h1> -->
-    <Canvas @getCanvas="checkCanvas" :answer="answer" />
+    <Canvas @getCanvas="checkCanvas" :answer="answer" :disableButton="disableCanvasButton" />
   </div>
 </template>
 <script>
@@ -41,12 +40,15 @@ export default {
       showMeaning: true,
       labels: [],
       answer: null,
+      disableCanvasButton: false
     }
   },
   mounted() {
     try {
-      let alphabet = this.$route.path.split('/')[1]
-      ;({labels: this.labels }= require(`@/assets/lessons/hiraganakatakana/${alphabet}_labels.js`))
+      let alphabet = this.$route.path.split('/')[1].toLowerCase()
+      let folder = alphabet.includes('hiragana') || alphabet.includes('katakana') ? 'hiraganakatakana' : 'kanji'
+
+      ;({ labels: this.labels } = require(`@/assets/lessons/${folder}/${alphabet}_labels.js`))
     } catch (e) {
       console.log(e)
       this.$router.push({ name: 'NotFound' })
@@ -54,6 +56,7 @@ export default {
   },
   methods: {
     async checkCanvas(payload) {
+      this.disableCanvasButton = true
       this.checkCharacter(payload)
     },
     async checkCharacter(canvasImage) {

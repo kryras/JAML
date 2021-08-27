@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="hiragana-menu-container">
     <h1 class="title">HIRAGANA</h1>
     <div class="lessons-container">
       <div class="lesson" v-for="(element, element_key) in hiragana" :key="element_key">
@@ -33,8 +33,8 @@ export default {
     let lessonsProgress = localStorage.getItem('lessonsProgress')
     if (lessonsProgress) {
       lessonsProgress = JSON.parse(lessonsProgress)
-      if (lessonsProgress[`${this.$route.path.split('/')[1]}`] !== undefined) {
-        this.progress = lessonsProgress[`${this.$route.path.split('/')[1]}`]
+      if (lessonsProgress[`${this.$route.path.split('/')[1].toLowerCase()}`] !== undefined) {
+        this.progress = lessonsProgress[`${this.$route.path.split('/')[1].toLowerCase()}`]
       }
     }
     // console.log(this.hiragana['hiragana1']['data'])
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.hiragana-menu-container {
   max-width: var(--xxl);
   margin: auto;
 

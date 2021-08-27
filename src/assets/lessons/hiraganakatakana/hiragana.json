@@ -1,6 +1,6 @@
 {
     "hiragana1": {
-        "title": "Hiragana 1",
+        "title": "a, i, u, e, o, n",
         "icon": "1",
         "data": [
             {
@@ -30,7 +30,7 @@
         ]
     },
     "hiragana2": {
-        "title": "Hiragana 2",
+        "title": "k-",
         "icon": "2",
         "data": [
             {
@@ -56,7 +56,7 @@
         ]
     },
     "hiragana3": {
-        "title": "Hiragana 3",
+        "title": "s-",
         "icon": "3",
         "data": [
             {
@@ -82,7 +82,7 @@
         ]
     },
     "hiragana4": {
-        "title": "Hiragana 4",
+        "title": "t-",
         "icon": "4",
         "data": [
             {
@@ -108,7 +108,7 @@
         ]
     },
     "hiragana5": {
-        "title": "Hiragana 5",
+        "title": "n-",
         "icon": "5",
         "data": [
             {
@@ -134,7 +134,7 @@
         ]
     },
     "hiragana6": {
-        "title": "Hiragana 6",
+        "title": "h-",
         "icon": "6",
         "data": [
             {
@@ -160,7 +160,7 @@
         ]
     },
     "hiragana7": {
-        "title": "Hiragana 7",
+        "title": "m-",
         "icon": "7",
         "data": [
             {
@@ -186,7 +186,7 @@
         ]
     },
     "hiragana8": {
-        "title": "Hiragana 8",
+        "title": "y-",
         "icon": "8",
         "data": [
             {
@@ -204,7 +204,7 @@
         ]
     },
     "hiragana9": {
-        "title": "Hiragana 9",
+        "title": "r-",
         "icon": "9",
         "data": [
             {
@@ -230,7 +230,7 @@
         ]
     },
     "hiragana10": {
-        "title": "Hiragana 10",
+        "title": "w-",
         "icon": "10",
         "data": [
             {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="katakana-menu-container">
     <h1 class="title">KATAKANA</h1>
     <div class="lessons-container">
       <div class="lesson" v-for="(element, element_key) in katakana" :key="element_key">
@@ -17,8 +17,6 @@
 
 <script>
 import katakanaData from '@/assets/lessons/hiraganakatakana/katakana.json'
-// import * as wanakana from '@/scripts/wanakana.js'
-// console.log(`test ${wanakana.toKana('TOFUGUnosushi')}`);
 import LessonBubble from '@/components/LessonBubble.vue'
 
 export default {
@@ -33,22 +31,21 @@ export default {
     let lessonsProgress = localStorage.getItem('lessonsProgress')
     if (lessonsProgress) {
       lessonsProgress = JSON.parse(lessonsProgress)
-      if (lessonsProgress[`${this.$route.path.split('/')[1]}`] !== undefined) {
-        this.progress = lessonsProgress[`${this.$route.path.split('/')[1]}`]
+      if (lessonsProgress[`${this.$route.path.split('/')[1].toLowerCase()}`] !== undefined) {
+        this.progress = lessonsProgress[`${this.$route.path.split('/')[1].toLowerCase()}`]
       }
     }
-    // console.log(wanakana.isJapanese('泣き虫。！〜２￥ｚｅｎｋａｋｕ'))
   },
   methods: {
     startLesson(element_key) {
-      this.$router.push({ name: 'KanaLesson', params: { alphabet: 'katakana',  id: `${element_key}` } })
+      this.$router.push({ name: 'KanaLesson', params: { alphabet: 'katakana', id: `${element_key}` } })
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.container {
+.katakana-menu-container {
   max-width: var(--xxl);
   margin: auto;
 

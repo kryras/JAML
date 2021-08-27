@@ -16,7 +16,10 @@ import {
     faEraser,
     faCheck,
     faFrown,
-    faExchangeAlt
+    faExchangeAlt,
+    faHourglassHalf,
+    faPaintBrush,
+    faTimes
 } from '@fortawesome/free-solid-svg-icons'
 library.add(
     faCat,
@@ -28,7 +31,10 @@ library.add(
     faEraser,
     faCheck,
     faFrown,
-    faExchangeAlt
+    faExchangeAlt,
+    faHourglassHalf,
+    faPaintBrush,
+    faTimes
 );
 
 

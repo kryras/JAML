@@ -26,6 +26,9 @@ export default {
 
   /* navbar */
   --navbar-width: 200px;
+
+  /* content width */
+  --xxl: 1400px;
 }
 
 /* PWA orientation */

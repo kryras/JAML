@@ -80,8 +80,8 @@ export default {
   async created() {
     window.scrollTo(0, 0)
     try {
-      let lesson = require(`@/assets/lessons/hiraganakatakana/${this.$route.params.alphabet}.json`)
-      this.data = lesson[`${this.$route.params.id}`]['data']
+      let lesson = require(`@/assets/lessons/hiraganakatakana/${this.$route.params.alphabet.toLowerCase()}.json`)
+      this.data = lesson[`${this.$route.params.id.toLowerCase()}`]['data']
       this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/model.json`)
       // let ten = tf.zeros([1, 48, 48, 1], 'int32')
       // let model = toRaw(this.model)
@@ -133,10 +133,10 @@ export default {
         lessonsProgress = {}
       }
 
-      if (lessonsProgress[`${this.$route.params.alphabet}`] === undefined) {
-        lessonsProgress[`${this.$route.params.alphabet}`] = {}
+      if (lessonsProgress[`${this.$route.params.alphabet.toLowerCase()}`] === undefined) {
+        lessonsProgress[`${this.$route.params.alphabet.toLowerCase()}`] = {}
       }
-      lessonsProgress[`${this.$route.params.alphabet}`][`${this.$route.params.id}`] = parseInt(this.result)
+      lessonsProgress[`${this.$route.params.alphabet.toLowerCase()}`][`${this.$route.params.id.toLowerCase()}`] = parseInt(this.result)
       localStorage.setItem('lessonsProgress', JSON.stringify(lessonsProgress))
     },
     finishLesson() {

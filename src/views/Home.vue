@@ -32,7 +32,7 @@ import LessonBubble from '@/components/LessonBubble.vue'
 
 export default {
   name: 'Home',
-  components: {
+  components: { 
     LessonBubble,
   },
 }

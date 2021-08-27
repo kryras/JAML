@@ -1,6 +1,6 @@
 {
     "katakana1": {
-        "title": "a, i, u, e, o, n",
+        "title": "Katakana 1 (a, i, u, e, o)",
         "icon": "1",
         "data": [
             {
@@ -30,7 +30,7 @@
         ]
     },
     "katakana2": {
-        "title": "k-",
+        "title": "Katakana 2",
         "icon": "2",
         "data": [
             {
@@ -56,7 +56,7 @@
         ]
     },
     "katakana3": {
-        "title": "s-",
+        "title": "Katakana 3",
         "icon": "3",
         "data": [
             {
@@ -82,7 +82,7 @@
         ]
     },
     "katakana4": {
-        "title": "t-",
+        "title": "Katakana 4",
         "icon": "4",
         "data": [
             {
@@ -108,7 +108,7 @@
         ]
     },
     "katakana5": {
-        "title": "n-",
+        "title": "Katakana 5",
         "icon": "5",
         "data": [
             {
@@ -134,7 +134,7 @@
         ]
     },
     "katakana6": {
-        "title": "h-",
+        "title": "Katakana 6",
         "icon": "6",
         "data": [
             {
@@ -160,7 +160,7 @@
         ]
     },
     "katakana7": {
-        "title": "m-",
+        "title": "Katakana 7",
         "icon": "7",
         "data": [
             {
@@ -186,7 +186,7 @@
         ]
     },
     "katakana8": {
-        "title": "y-",
+        "title": "Katakana 8",
         "icon": "8",
         "data": [
             {
@@ -204,7 +204,7 @@
         ]
     },
     "katakana9": {
-        "title": "r-",
+        "title": "Katakana 9",
         "icon": "9",
         "data": [
             {
@@ -230,7 +230,7 @@
         ]
     },
     "katakana10": {
-        "title": "w-",
+        "title": "Katakana 10",
         "icon": "10",
         "data": [
             {
