@@ -1,10 +1,10 @@
 <template>
   <div class="mtc-container">
-    <h1 class="meanings">
-      <span v-for="meaning in data.meanings" :key="meaning">{{ meaning }}</span>
+    <h1 class="meanings" :class="{ 'meanings-kanji' : data.kanji}">
+      <span v-for="meaning in data.meanings" :key="meaning" class="meaning">{{ meaning }}</span>
     </h1>
     <h2 class="description">Choose the correct answer:</h2>
-    <div class="character">
+    <div class="character" v-if="data.character">
       <Button
         class="character__elements"
         v-for="(answer, idx) in answers"
@@ -14,6 +14,18 @@
         @click="checkAnswer(answer, idx)"
       >
         {{ answer.character }}
+      </Button>
+    </div>
+    <div class="character" v-else-if="data.kanji">
+      <Button
+        class="character__elements"
+        v-for="(answer, idx) in answers"
+        :key="answer"
+        color="white"
+        :ref="setItemRef"
+        @click="checkAnswer(answer, idx)"
+      >
+        {{ answer.kanji }}
       </Button>
     </div>
   </div>
@@ -53,8 +65,14 @@ export default {
       if (this.answers.length > 2) {
         break
       }
-      if (temp[index].character !== this.data.character) {
-        this.answers.push(temp[index])
+      if (this.data.character) {
+        if (temp[index].character !== this.data.character) {
+          this.answers.push(temp[index])
+        }
+      } else {
+        if (temp[index].kanji !== this.data.kanji) {
+          this.answers.push(temp[index])
+        }
       }
     }
     this.shuffleArray(this.answers)
@@ -69,16 +87,30 @@ export default {
       this.itemRefs.forEach((button) => {
         button.$el.disabled = true
       })
-      if (this.data.character === answer.character) {
-        this.itemRefs[idx].$el.classList.value += ' correct'
-        this.$emit('excerciseChecked', 1)
+      if (this.data.character) {
+        if (this.data.character === answer.character) {
+          this.itemRefs[idx].$el.classList.value += ' correct'
+          this.$emit('excerciseChecked', 1)
+        } else {
+          this.itemRefs[idx].$el.classList.value += ' wrong'
+          let correctAnswerIdx = this.answers.findIndex((element) => {
+            return element.character === this.data.character
+          })
+          this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
+          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        }
       } else {
-        this.itemRefs[idx].$el.classList.value += ' wrong'
-        let correctAnswerIdx = this.answers.findIndex((element) => {
-          return element.character === this.data.character
-        })
-        this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
-        this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        if (this.data.kanji === answer.kanji) {
+          this.itemRefs[idx].$el.classList.value += ' correct'
+          this.$emit('excerciseChecked', 1)
+        } else {
+          this.itemRefs[idx].$el.classList.value += ' wrong'
+          let correctAnswerIdx = this.answers.findIndex((element) => {
+            return element.kanji === this.data.kanji
+          })
+          this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
+          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        }
       }
     },
   },
@@ -115,9 +147,7 @@ export default {
     --font-size: 10rem;
     font-weight: normal;
     font-size: var(--font-size);
-    line-height: var(--font-size);
     overflow-wrap: break-word;
-
     span::after {
       content: ', ';
     }
@@ -126,6 +156,13 @@ export default {
     }
     &__text {
     }
+  }
+  
+  .meanings-kanji {
+    margin: 20px auto;
+    line-height: 2rem;
+    font-size: 2rem;
+    hyphens: auto;
   }
 }
 </style>

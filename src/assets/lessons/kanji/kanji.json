@@ -1,245 +1,1350 @@
 {
-    "katakana1": {
-        "title": "Katakana 1 (a, i, u, e, o)",
+    "kanji1": {
+        "title": "JLPT N5 (part 1)",
         "icon": "1",
         "data": [
             {
-                "character": "ア",
-                "meanings": ["a"]
+                "kanji": "見",
+                "meanings": [
+                    "see",
+                    "hopes",
+                    "chances",
+                    "idea",
+                    "opinion",
+                    "look at",
+                    "visible"
+                ],
+                "kun_readings": [
+                    "み.る",
+                    "み.える",
+                    "み.せる"
+                ],
+                "on_readings": [
+                    "ケン"
+                ]
             },
             {
-                "character": "イ",
-                "meanings": ["i"]
+                "kanji": "今",
+                "meanings": [
+                    "now"
+                ],
+                "kun_readings": [
+                    "いま"
+                ],
+                "on_readings": [
+                    "コン",
+                    "キン"
+                ]
             },
             {
-                "character": "ウ",
-                "meanings": ["u"]
+                "kanji": "金",
+                "meanings": [
+                    "gold"
+                ],
+                "kun_readings": [
+                    "かね",
+                    "かな-",
+                    "-がね"
+                ],
+                "on_readings": [
+                    "キン",
+                    "コン",
+                    "ゴン"
+                ]
             },
             {
-                "character": "エ",
-                "meanings": ["e"]
+                "kanji": "午",
+                "meanings": [
+                    "noon",
+                    "sign of the horse",
+                    "11AM-1PM",
+                    "seventh sign of Chinese zodiac"
+                ],
+                "kun_readings": [
+                    "うま"
+                ],
+                "on_readings": [
+                    "ゴ"
+                ]
             },
             {
-                "character": "オ",
-                "meanings": ["o"]
+                "kanji": "先",
+                "meanings": [
+                    "before",
+                    "ahead",
+                    "previous",
+                    "future",
+                    "precedence"
+                ],
+                "kun_readings": [
+                    "さき",
+                    "ま.ず"
+                ],
+                "on_readings": [
+                    "セン"
+                ]
             },
             {
-                "character": "ン",
-                "meanings": ["n"]
+                "kanji": "名",
+                "meanings": [
+                    "name",
+                    "noted",
+                    "distinguished",
+                    "reputation"
+                ],
+                "kun_readings": [
+                    "な",
+                    "-な"
+                ],
+                "on_readings": [
+                    "メイ",
+                    "ミョウ"
+                ]
+            },
+            {
+                "kanji": "半",
+                "meanings": [
+                    "half",
+                    "middle",
+                    "odd number",
+                    "semi-",
+                    "part-"
+                ],
+                "kun_readings": [
+                    "なか.ば"
+                ],
+                "on_readings": [
+                    "ハン"
+                ]
+            },
+            {
+                "kanji": "食",
+                "meanings": [
+                    "eat",
+                    "food"
+                ],
+                "kun_readings": [
+                    "く.う",
+                    "く.らう",
+                    "た.べる",
+                    "は.む"
+                ],
+                "on_readings": [
+                    "ショク",
+                    "ジキ"
+                ]
+            },
+            {
+                "kanji": "毎",
+                "meanings": [
+                    "every"
+                ],
+                "kun_readings": [
+                    "ごと",
+                    "-ごと.に"
+                ],
+                "on_readings": [
+                    "マイ"
+                ]
             }
         ]
     },
-    "katakana2": {
-        "title": "Katakana 2",
+    "kanji2": {
+        "title": "JLPT N5 (part 2)",
         "icon": "2",
         "data": [
             {
-                "character": "カ",
-                "meanings": ["ka"]
+                "kanji": "一",
+                "meanings": [
+                    "one",
+                    "one radical (no.1)"
+                ],
+                "kun_readings": [
+                    "ひと-",
+                    "ひと.つ"
+                ],
+                "on_readings": [
+                    "イチ",
+                    "イツ"
+                ]
             },
             {
-                "character": "キ",
-                "meanings": ["ki"]
+                "kanji": "二",
+                "meanings": [
+                    "two",
+                    "two radical (no. 7)"
+                ],
+                "kun_readings": [
+                    "ふた",
+                    "ふた.つ",
+                    "ふたたび"
+                ],
+                "on_readings": [
+                    "ニ",
+                    "ジ"
+                ]
             },
             {
-                "character": "ク",
-                "meanings": ["ku"]
+                "kanji": "三",
+                "meanings": [
+                    "three"
+                ],
+                "kun_readings": [
+                    "み",
+                    "み.つ",
+                    "みっ.つ"
+                ],
+                "on_readings": [
+                    "サン",
+                    "ゾウ"
+                ]
             },
             {
-                "character": "ケ",
-                "meanings": ["ke"]
+                "kanji": "四",
+                "meanings": [
+                    "four"
+                ],
+                "kun_readings": [
+                    "よ",
+                    "よ.つ",
+                    "よっ.つ",
+                    "よん"
+                ],
+                "on_readings": [
+                    "シ"
+                ]
             },
             {
-                "character": "コ",
-                "meanings": ["ko"]
+                "kanji": "五",
+                "meanings": [
+                    "five"
+                ],
+                "kun_readings": [
+                    "いつ",
+                    "いつ.つ"
+                ],
+                "on_readings": [
+                    "ゴ"
+                ]
+            },
+            {
+                "kanji": "六",
+                "meanings": [
+                    "six"
+                ],
+                "kun_readings": [
+                    "む",
+                    "む.つ",
+                    "むっ.つ",
+                    "むい"
+                ],
+                "on_readings": [
+                    "ロク",
+                    "リク"
+                ]
+            },
+            {
+                "kanji": "七",
+                "meanings": [
+                    "seven"
+                ],
+                "kun_readings": [
+                    "なな",
+                    "なな.つ",
+                    "なの"
+                ],
+                "on_readings": [
+                    "シチ"
+                ]
+            },
+            {
+                "kanji": "八",
+                "meanings": [
+                    "eight",
+                    "eight radical (no. 12)"
+                ],
+                "kun_readings": [
+                    "や",
+                    "や.つ",
+                    "やっ.つ",
+                    "よう"
+                ],
+                "on_readings": [
+                    "ハチ"
+                ]
+            },
+            {
+                "kanji": "九",
+                "meanings": [
+                    "nine"
+                ],
+                "kun_readings": [
+                    "ここの",
+                    "ここの.つ"
+                ],
+                "on_readings": [
+                    "キュウ",
+                    "ク"
+                ]
+            },
+            {
+                "kanji": "十",
+                "meanings": [
+                    "ten"
+                ],
+                "kun_readings": [
+                    "とお",
+                    "と"
+                ],
+                "on_readings": [
+                    "ジュウ",
+                    "ジッ",
+                    "ジュッ"
+                ]
+            },
+            {
+                "kanji": "百",
+                "meanings": [
+                    "hundred"
+                ],
+                "kun_readings": [
+                    "もも"
+                ],
+                "on_readings": [
+                    "ヒャク",
+                    "ビャク"
+                ]
+            },
+            {
+                "kanji": "千",
+                "meanings": [
+                    "thousand"
+                ],
+                "kun_readings": [
+                    "ち"
+                ],
+                "on_readings": [
+                    "セン"
+                ]
+            },
+            {
+                "kanji": "万",
+                "meanings": [
+                    "ten thousand",
+                    "10,000"
+                ],
+                "kun_readings": [
+                    "よろず"
+                ],
+                "on_readings": [
+                    "マン",
+                    "バン"
+                ]
             }
         ]
     },
-    "katakana3": {
-        "title": "Katakana 3",
+    "kanji3": {
+        "title": "JLPT N5 (part 3)",
         "icon": "3",
         "data": [
             {
-                "character": "サ",
-                "meanings": ["sa"]
+                "kanji": "東",
+                "meanings": [
+                    "east"
+                ],
+                "kun_readings": [
+                    "ひがし"
+                ],
+                "on_readings": [
+                    "トウ"
+                ]
             },
             {
-                "character": "シ",
-                "meanings": ["shi"]
+                "kanji": "西",
+                "meanings": [
+                    "west",
+                    "Spain"
+                ],
+                "kun_readings": [
+                    "にし"
+                ],
+                "on_readings": [
+                    "セイ",
+                    "サイ",
+                    "ス"
+                ]
             },
             {
-                "character": "ス",
-                "meanings": ["su"]
+                "kanji": "北",
+                "meanings": [
+                    "north"
+                ],
+                "kun_readings": [
+                    "きた"
+                ],
+                "on_readings": [
+                    "ホク"
+                ]
             },
             {
-                "character": "セ",
-                "meanings": ["se"]
+                "kanji": "南",
+                "meanings": [
+                    "south"
+                ],
+                "kun_readings": [
+                    "みなみ"
+                ],
+                "on_readings": [
+                    "ナン",
+                    "ナ"
+                ]
             },
             {
-                "character": "ソ",
-                "meanings": ["so"]
+                "kanji": "国",
+                "meanings": [
+                    "country"
+                ],
+                "kun_readings": [
+                    "くに"
+                ],
+                "on_readings": [
+                    "コク"
+                ]
+            },
+            {
+                "kanji": "年",
+                "meanings": [
+                    "year",
+                    "counter for years"
+                ],
+                "kun_readings": [
+                    "とし"
+                ],
+                "on_readings": [
+                    "ネン"
+                ]
+            },
+            {
+                "kanji": "月",
+                "meanings": [
+                    "month",
+                    "moon"
+                ],
+                "kun_readings": [
+                    "つき"
+                ],
+                "on_readings": [
+                    "ゲツ",
+                    "ガツ"
+                ]
+            },
+            {
+                "kanji": "日",
+                "meanings": [
+                    "day",
+                    "sun",
+                    "Japan",
+                    "counter for days"
+                ],
+                "kun_readings": [
+                    "ひ",
+                    "-び",
+                    "-か"
+                ],
+                "on_readings": [
+                    "ニチ",
+                    "ジツ"
+                ]
+            },
+            {
+                "kanji": "時",
+                "meanings": [
+                    "time",
+                    "hour"
+                ],
+                "kun_readings": [
+                    "とき",
+                    "-どき"
+                ],
+                "on_readings": [
+                    "ジ"
+                ]
             }
         ]
     },
-    "katakana4": {
-        "title": "Katakana 4",
+    "kanji4": {
+        "title": "JLPT N5 (part 4)",
         "icon": "4",
         "data": [
             {
-                "character": "タ",
-                "meanings": ["ta"]
+                "kanji": "外",
+                "meanings": [
+                    "outside"
+                ],
+                "kun_readings": [
+                    "そと",
+                    "ほか",
+                    "はず.す",
+                    "はず.れる",
+                    "と-"
+                ],
+                "on_readings": [
+                    "ガイ",
+                    "ゲ"
+                ]
             },
             {
-                "character": "チ",
-                "meanings": ["chi"]
+                "kanji": "中",
+                "meanings": [
+                    "in",
+                    "inside",
+                    "middle",
+                    "mean",
+                    "center"
+                ],
+                "kun_readings": [
+                    "なか",
+                    "うち",
+                    "あた.る"
+                ],
+                "on_readings": [
+                    "チュウ"
+                ],
+                "name_readings": [
+                    "あたる",
+                    "かなえ"
+                ]
             },
             {
-                "character": "ツ",
-                "meanings": ["tsu"]
+                "kanji": "上",
+                "meanings": [
+                    "above",
+                    "up"
+                ],
+                "kun_readings": [
+                    "うえ",
+                    "-うえ",
+                    "うわ-",
+                    "かみ",
+                    "あ.げる",
+                    "-あ.げる",
+                    "あ.がる",
+                    "-あ.がる",
+                    "あ.がり",
+                    "-あ.がり",
+                    "のぼ.る",
+                    "のぼ.り",
+                    "のぼ.せる",
+                    "のぼ.す",
+                    "たてまつ.る"
+                ],
+                "on_readings": [
+                    "ジョウ",
+                    "ショウ",
+                    "シャン"
+                ]
             },
             {
-                "character": "テ",
-                "meanings": ["te"]
+                "kanji": "下",
+                "meanings": [
+                    "below",
+                    "down",
+                    "descend",
+                    "give",
+                    "low",
+                    "inferior"
+                ],
+                "kun_readings": [
+                    "した",
+                    "しも",
+                    "もと",
+                    "さ.げる",
+                    "さ.がる",
+                    "くだ.る",
+                    "くだ.り",
+                    "くだ.す",
+                    "-くだ.す",
+                    "くだ.さる",
+                    "お.ろす",
+                    "お.りる"
+                ],
+                "on_readings": [
+                    "カ",
+                    "ゲ"
+                ]
             },
             {
-                "character": "ト",
-                "meanings": ["to"]
+                "kanji": "後",
+                "grade": 2,
+                "stroke_count": 9,
+                "meanings": [
+                    "behind",
+                    "back",
+                    "later"
+                ],
+                "kun_readings": [
+                    "のち",
+                    "うし.ろ",
+                    "うしろ",
+                    "あと",
+                    "おく.れる"
+                ],
+                "on_readings": [
+                    "ゴ",
+                    "コウ"
+                ]
+            },
+            {
+                "kanji": "前",
+                "meanings": [
+                    "in front",
+                    "before"
+                ],
+                "kun_readings": [
+                    "まえ",
+                    "-まえ"
+                ],
+                "on_readings": [
+                    "ゼン"
+                ]
+            },
+            {
+                "kanji": "左",
+                "meanings": [
+                    "left"
+                ],
+                "kun_readings": [
+                    "ひだり"
+                ],
+                "on_readings": [
+                    "サ",
+                    "シャ"
+                ]
+            },
+            {
+                "kanji": "右",
+                "meanings": [
+                    "right"
+                ],
+                "kun_readings": [
+                    "みぎ"
+                ],
+                "on_readings": [
+                    "ウ",
+                    "ユウ"
+                ]
             }
         ]
     },
-    "katakana5": {
-        "title": "Katakana 5",
+    "kanji5": {
+        "title": "JLPT N5 (part 5)",
         "icon": "5",
         "data": [
             {
-                "character": "ナ",
-                "meanings": ["na"]
+                "kanji": "子",
+                "meanings": [
+                    "child",
+                    "sign of the rat",
+                    "11PM-1AM",
+                    "first sign of Chinese zodiac"
+                ],
+                "kun_readings": [
+                    "こ",
+                    "-こ",
+                    "ね"
+                ],
+                "on_readings": [
+                    "シ",
+                    "ス",
+                    "ツ"
+                ]
             },
             {
-                "character": "ニ",
-                "meanings": ["ni"]
+                "kanji": "人",
+                "meanings": [
+                    "person"
+                ],
+                "kun_readings": [
+                    "ひと",
+                    "-り",
+                    "-と"
+                ],
+                "on_readings": [
+                    "ジン",
+                    "ニン"
+                ]
             },
             {
-                "character": "ヌ",
-                "meanings": ["nu"]
+                "kanji": "父",
+                "meanings": [
+                    "father"
+                ],
+                "kun_readings": [
+                    "ちち"
+                ],
+                "on_readings": [
+                    "フ"
+                ]
             },
             {
-                "character": "ネ",
-                "meanings": ["ne"]
+                "kanji": "母",
+                "meanings": [
+                    "mother"
+                ],
+                "kun_readings": [
+                    "はは",
+                    "も"
+                ],
+                "on_readings": [
+                    "ボ"
+                ]
             },
             {
-                "character": "ノ",
-                "meanings": ["no"]
+                "kanji": "小",
+                "meanings": [
+                    "little",
+                    "small"
+                ],
+                "kun_readings": [
+                    "ちい.さい",
+                    "こ-",
+                    "お-",
+                    "さ-"
+                ],
+                "on_readings": [
+                    "ショウ"
+                ]
+            },
+            {
+                "kanji": "高",
+                "meanings": [
+                    "tall",
+                    "high",
+                    "expensive"
+                ],
+                "kun_readings": [
+                    "たか.い",
+                    "たか",
+                    "-だか",
+                    "たか.まる",
+                    "たか.める"
+                ],
+                "on_readings": [
+                    "コウ"
+                ]
+            },
+            {
+                "kanji": "友",
+                "meanings": [
+                    "friend"
+                ],
+                "kun_readings": [
+                    "とも"
+                ],
+                "on_readings": [
+                    "ユウ"
+                ]
+            },
+            {
+                "kanji": "女",
+                "meanings": [
+                    "woman",
+                    "female"
+                ],
+                "kun_readings": [
+                    "おんな",
+                    "め"
+                ],
+                "on_readings": [
+                    "ジョ",
+                    "ニョ",
+                    "ニョウ"
+                ]
+            },
+            {
+                "kanji": "男",
+                "meanings": [
+                    "male"
+                ],
+                "kun_readings": [
+                    "おとこ",
+                    "お"
+                ],
+                "on_readings": [
+                    "ダン",
+                    "ナン"
+                ]
             }
         ]
     },
-    "katakana6": {
-        "title": "Katakana 6",
+    "kanji6": {
+        "title": "JLPT N5 (part 6)",
         "icon": "6",
         "data": [
             {
-                "character": "ハ",
-                "meanings": ["ha"]
+                "kanji": "川",
+                "meanings": [
+                    "stream",
+                    "river",
+                    "river or three-stroke river radical (no. 47)"
+                ],
+                "kun_readings": [
+                    "かわ"
+                ],
+                "on_readings": [
+                    "セン"
+                ]
             },
             {
-                "character": "ヒ",
-                "meanings": ["hi"]
+                "kanji": "雨",
+                "meanings": [
+                    "rain"
+                ],
+                "kun_readings": [
+                    "あめ",
+                    "あま-",
+                    "-さめ"
+                ],
+                "on_readings": [
+                    "ウ"
+                ]
             },
             {
-                "character": "フ",
-                "meanings": ["fu"]
+                "kanji": "火",
+                "meanings": [
+                    "fire"
+                ],
+                "kun_readings": [
+                    "ひ",
+                    "-び",
+                    "ほ-"
+                ],
+                "on_readings": [
+                    "カ"
+                ]
             },
             {
-                "character": "ヘ",
-                "meanings": ["he"]
+                "kanji": "水",
+                "meanings": [
+                    "water"
+                ],
+                "kun_readings": [
+                    "みず",
+                    "みず-"
+                ],
+                "on_readings": [
+                    "スイ"
+                ]
             },
             {
-                "character": "ホ",
-                "meanings": ["ho"]
+                "kanji": "山",
+                "meanings": [
+                    "mountain"
+                ],
+                "kun_readings": [
+                    "やま"
+                ],
+                "on_readings": [
+                    "サン",
+                    "セン"
+                ]
+            },
+            {
+                "kanji": "土",
+                "meanings": [
+                    "soil",
+                    "earth",
+                    "ground",
+                    "Turkey"
+                ],
+                "kun_readings": [
+                    "つち"
+                ],
+                "on_readings": [
+                    "ド",
+                    "ト"
+                ]
+            },
+            {
+                "kanji": "電",
+                "meanings": [
+                    "electricity"
+                ],
+                "kun_readings": [],
+                "on_readings": [
+                    "デン"
+                ]
+            },
+            {
+                "kanji": "木",
+                "meanings": [
+                    "tree",
+                    "wood"
+                ],
+                "kun_readings": [
+                    "き",
+                    "こ-"
+                ],
+                "on_readings": [
+                    "ボク",
+                    "モク"
+                ]
             }
         ]
     },
-    "katakana7": {
-        "title": "Katakana 7",
+    "kanji7": {
+        "title": "JLPT N5 (part 7)",
         "icon": "7",
         "data": [
             {
-                "character": "マ",
-                "meanings": ["ma"]
+                "kanji": "書",
+                "meanings": [
+                    "write"
+                ],
+                "kun_readings": [
+                    "か.く",
+                    "-が.き",
+                    "-がき"
+                ],
+                "on_readings": [
+                    "ショ"
+                ]
             },
             {
-                "character": "ミ",
-                "meanings": ["mi"]
+                "kanji": "本",
+                "meanings": [
+                    "book",
+                    "present",
+                    "main",
+                    "origin",
+                    "true",
+                    "real",
+                    "counter for long cylindrical things"
+                ],
+                "kun_readings": [
+                    "もと"
+                ],
+                "on_readings": [
+                    "ホン"
+                ]
             },
             {
-                "character": "ム",
-                "meanings": ["mu"]
+                "kanji": "校",
+                "meanings": [
+                    "exam",
+                    "school",
+                    "printing",
+                    "proof",
+                    "correction"
+                ],
+                "kun_readings": [],
+                "on_readings": [
+                    "コウ",
+                    "キョウ"
+                ]
             },
             {
-                "character": "メ",
-                "meanings": ["me"]
+                "kanji": "読",
+                "meanings": [
+                    "read"
+                ],
+                "kun_readings": [
+                    "よ.む",
+                    "-よ.み"
+                ],
+                "on_readings": [
+                    "ドク",
+                    "トク",
+                    "トウ"
+                ]
             },
             {
-                "character": "モ",
-                "meanings": ["mo"]
+                "kanji": "出",
+                "meanings": [
+                    "exit",
+                    "leave",
+                    "go out",
+                    "come out",
+                    "put out",
+                    "protrude"
+                ],
+                "kun_readings": [
+                    "で.る",
+                    "-で",
+                    "だ.す",
+                    "-だ.す",
+                    "い.でる",
+                    "い.だす"
+                ],
+                "on_readings": [
+                    "シュツ",
+                    "スイ"
+                ]
+            },
+            {
+                "kanji": "行",
+                "meanings": [
+                    "going",
+                    "journey",
+                    "carry out",
+                    "conduct",
+                    "act",
+                    "line",
+                    "row",
+                    "bank"
+                ],
+                "kun_readings": [
+                    "い.く",
+                    "ゆ.く",
+                    "-ゆ.き",
+                    "-ゆき",
+                    "-い.き",
+                    "-いき",
+                    "おこな.う",
+                    "おこ.なう"
+                ],
+                "on_readings": [
+                    "コウ",
+                    "ギョウ",
+                    "アン"
+                ]
+            },
+            {
+                "kanji": "学",
+                "meanings": [
+                    "study",
+                    "learning",
+                    "science"
+                ],
+                "kun_readings": [
+                    "まな.ぶ"
+                ],
+                "on_readings": [
+                    "ガク"
+                ]
+            },
+            {
+                "kanji": "語",
+                "meanings": [
+                    "word",
+                    "speech",
+                    "language"
+                ],
+                "kun_readings": [
+                    "かた.る",
+                    "かた.らう"
+                ],
+                "on_readings": [
+                    "ゴ"
+                ]
+            },
+            {
+                "kanji": "聞",
+                "meanings": [
+                    "hear",
+                    "ask",
+                    "listen"
+                ],
+                "kun_readings": [
+                    "き.く",
+                    "き.こえる"
+                ],
+                "on_readings": [
+                    "ブン",
+                    "モン"
+                ]
             }
         ]
     },
-    "katakana8": {
-        "title": "Katakana 8",
+    "kanji8": {
+        "title": "JLPT N5 (part 8)",
         "icon": "8",
         "data": [
             {
-                "character": "ヤ",
-                "meanings": ["ya"]
+                "kanji": "話",
+                "meanings": [
+                    "tale",
+                    "talk"
+                ],
+                "kun_readings": [
+                    "はな.す",
+                    "はなし"
+                ],
+                "on_readings": [
+                    "ワ"
+                ]
             },
             {
-                "character": "ユ",
-                "meanings": ["yu"]
+                "kanji": "長",
+                "meanings": [
+                    "long",
+                    "leader",
+                    "superior",
+                    "senior"
+                ],
+                "kun_readings": [
+                    "なが.い",
+                    "おさ"
+                ],
+                "on_readings": [
+                    "チョウ"
+                ]
             },
             {
-                "character": "ヨ",
-                "meanings": ["yo"]
+                "kanji": "入",
+                "meanings": [
+                    "enter",
+                    "insert"
+                ],
+                "kun_readings": [
+                    "い.る",
+                    "-い.る",
+                    "-い.り",
+                    "い.れる",
+                    "-い.れ",
+                    "はい.る"
+                ],
+                "on_readings": [
+                    "ニュウ",
+                    "ジュ"
+                ]
+            },
+            {
+                "kanji": "円",
+                "meanings": [
+                    "circle",
+                    "yen",
+                    "round"
+                ],
+                "kun_readings": [
+                    "まる.い",
+                    "まる",
+                    "まど",
+                    "まど.か",
+                    "まろ.やか"
+                ],
+                "on_readings": [
+                    "エン"
+                ]
+            },
+            {
+                "kanji": "来",
+                "meanings": [
+                    "come",
+                    "due",
+                    "next",
+                    "cause",
+                    "become"
+                ],
+                "kun_readings": [
+                    "く.る",
+                    "きた.る",
+                    "きた.す",
+                    "き.たす",
+                    "き.たる",
+                    "き",
+                    "こ"
+                ],
+                "on_readings": [
+                    "ライ",
+                    "タイ"
+                ]
+            },
+            {
+                "kanji": "気",
+                "meanings": [
+                    "spirit",
+                    "mind",
+                    "air",
+                    "atmosphere",
+                    "mood"
+                ],
+                "kun_readings": [
+                    "いき"
+                ],
+                "on_readings": [
+                    "キ",
+                    "ケ"
+                ]
+            },
+            {
+                "kanji": "休",
+                "meanings": [
+                    "rest",
+                    "day off",
+                    "retire",
+                    "sleep"
+                ],
+                "kun_readings": [
+                    "やす.む",
+                    "やす.まる",
+                    "やす.める"
+                ],
+                "on_readings": [
+                    "キュウ"
+                ]
             }
         ]
     },
-    "katakana9": {
-        "title": "Katakana 9",
+    "kanji9": {
+        "title": "JLPT N5 (part 9)",
         "icon": "9",
         "data": [
             {
-                "character": "ラ",
-                "meanings": ["ra"]
+                "kanji": "車",
+                "meanings": [
+                    "car"
+                ],
+                "kun_readings": [
+                    "くるま"
+                ],
+                "on_readings": [
+                    "シャ"
+                ]
             },
             {
-                "character": "リ",
-                "meanings": ["ri"]
+                "kanji": "何",
+                "meanings": [
+                    "what"
+                ],
+                "kun_readings": [
+                    "なに",
+                    "なん",
+                    "なに-",
+                    "なん-"
+                ],
+                "on_readings": [
+                    "カ"
+                ]
             },
             {
-                "character": "ル",
-                "meanings": ["ru"]
+                "kanji": "生",
+                "meanings": [
+                    "life",
+                    "genuine",
+                    "birth"
+                ],
+                "kun_readings": [
+                    "い.きる",
+                    "い.かす",
+                    "い.ける",
+                    "う.まれる",
+                    "うま.れる",
+                    "う.まれ",
+                    "うまれ",
+                    "う.む",
+                    "お.う",
+                    "は.える",
+                    "は.やす",
+                    "き",
+                    "なま",
+                    "なま-",
+                    "な.る",
+                    "な.す",
+                    "む.す",
+                    "-う"
+                ],
+                "on_readings": [
+                    "セイ",
+                    "ショウ"
+                ]
             },
             {
-                "character": "レ",
-                "meanings": ["re"]
+                "kanji": "分",
+                "meanings": [
+                    "part",
+                    "minute of time",
+                    "segment",
+                    "share",
+                    "degree",
+                    "one's lot",
+                    "duty",
+                    "understand",
+                    "know",
+                    "rate",
+                    "1%",
+                    "chances",
+                    "shaku\/100"
+                ],
+                "kun_readings": [
+                    "わ.ける",
+                    "わ.け",
+                    "わ.かれる",
+                    "わ.かる",
+                    "わ.かつ"
+                ],
+                "on_readings": [
+                    "ブン",
+                    "フン",
+                    "ブ"
+                ]
             },
             {
-                "character": "ロ",
-                "meanings": ["ro"]
+                "kanji": "間",
+                "meanings": [
+                    "interval",
+                    "space"
+                ],
+                "kun_readings": [
+                    "あいだ",
+                    "ま",
+                    "あい"
+                ],
+                "on_readings": [
+                    "カン",
+                    "ケン"
+                ]
             }
         ]
     },
-    "katakana10": {
-        "title": "Katakana 10",
+    "kanji10": {
+        "title": "JLPT N5 (part 10)",
         "icon": "10",
         "data": [
             {
-                "character": "ワ",
-                "meanings": ["wa"]
+                "kanji": "白",
+                "meanings": [
+                    "white"
+                ],
+                "kun_readings": [
+                    "しろ",
+                    "しら-",
+                    "しろ.い"
+                ],
+                "on_readings": [
+                    "ハク",
+                    "ビャク"
+                ]
             },
             {
-                "character": "ヲ",
-                "meanings": ["wo"]
+                "kanji": "天",
+                "meanings": [
+                    "heavens",
+                    "sky",
+                    "imperial"
+                ],
+                "kun_readings": [
+                    "あまつ",
+                    "あめ",
+                    "あま-"
+                ],
+                "on_readings": [
+                    "テン"
+                ]
+            },
+            {
+                "kanji": "古",
+                "meanings": [
+                    "old"
+                ],
+                "kun_readings": [
+                    "ふる.い",
+                    "ふる-",
+                    "-ふる.す"
+                ],
+                "on_readings": [
+                    "コ"
+                ]
             }
         ]
     }

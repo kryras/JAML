@@ -80,9 +80,11 @@ export default {
   async created() {
     window.scrollTo(0, 0)
     try {
-      let lesson = require(`@/assets/lessons/hiraganakatakana/${this.$route.params.alphabet.toLowerCase()}.json`)
+      let alphabet = this.$route.params.alphabet.toLowerCase() === "hiragana" || this.$route.params.alphabet.toLowerCase() === "katakana" ? "hiraganakatakana" : "kanji" 
+      let lesson = require(`@/assets/lessons/${alphabet}/${this.$route.params.alphabet.toLowerCase()}.json`)
       this.data = lesson[`${this.$route.params.id.toLowerCase()}`]['data']
-      this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/model.json`)
+      this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/${this.$route.params.alphabet.toLowerCase()}/model.json`)
+      
       // let ten = tf.zeros([1, 48, 48, 1], 'int32')
       // let model = toRaw(this.model)
       // await model.predict(ten)
@@ -164,6 +166,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .kana-lesson-container {
+  max-width: var(--xxl);
+  margin: auto;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;

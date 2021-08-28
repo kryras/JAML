@@ -11,14 +11,17 @@
             @click="startLesson(element_key)"
           />
         </div>
+        <LessonBubble
+            class="lesson__start"
+            title="Coming soon..."
+            icon="hourglass-half"
+          />
       </div>
     </div>
   </template>
   
   <script>
   import kanjiData from '@/assets/lessons/kanji/kanji.json'
-  // import * as wanakana from '@/scripts/wanakana.js'
-  // console.log(`test ${wanakana.toKana('TOFUGUnosushi')}`);
   import LessonBubble from '@/components/LessonBubble.vue'
   
   export default {
@@ -37,7 +40,6 @@
           this.progress = lessonsProgress[`${this.$route.path.split('/')[1].toLowerCase()}`]
         }
       }
-      // console.log(wanakana.isJapanese('泣き虫。！〜２￥ｚｅｎｋａｋｕ'))
     },
     methods: {
       startLesson(element_key) {

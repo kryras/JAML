@@ -74,9 +74,6 @@ export default {
       return wanakana.toRomaji(value)
     },
   },
-  mounted() {
-    console.log(this.getRomaji(this.element.kun_readings[0]))
-  },
 }
 </script>
 <style lang="scss" scoped>

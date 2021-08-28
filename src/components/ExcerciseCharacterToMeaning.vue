@@ -1,7 +1,10 @@
 <template>
   <div class="ctm-container">
-    <h1 class="character">
+    <h1 class="character" v-if="data.character">
       {{ data.character }}
+    </h1>
+    <h1 class="character" v-else-if="data.kanji">
+      {{ data.kanji }}
     </h1>
     <h2 class="description">Choose the correct answer:</h2>
     <div class="meanings">
@@ -13,7 +16,7 @@
         :ref="setItemRef"
         @click="checkAnswer(answer, idx)"
       >
-        <div class="meanings__text">
+        <div class="meanings__text" :class="{ 'meanings__text-kanji': data.kanji }">
           <span v-for="meaning in answer.meanings" :key="meaning">{{ meaning }}</span>
         </div>
       </Button>
@@ -55,8 +58,14 @@ export default {
       if (this.answers.length > 2) {
         break
       }
-      if (temp[index].character !== this.data.character) {
-        this.answers.push(temp[index])
+      if (this.data.character) {
+        if (temp[index].character !== this.data.character) {
+          this.answers.push(temp[index])
+        }
+      } else {
+        if (temp[index].kanji !== this.data.kanji) {
+          this.answers.push(temp[index])
+        }
       }
     }
     this.shuffleArray(this.answers)
@@ -71,18 +80,30 @@ export default {
       this.itemRefs.forEach((button) => {
         button.$el.disabled = true
       })
-      if (this.data.character === answer.character) {
-        this.itemRefs[idx].$el.classList.value += ' correct'
-        this.$emit('excerciseChecked', 1)
+      if (this.data.character) {
+        if (this.data.character === answer.character) {
+          this.itemRefs[idx].$el.classList.value += ' correct'
+          this.$emit('excerciseChecked', 1)
+        } else {
+          this.itemRefs[idx].$el.classList.value += ' wrong'
+          let correctAnswerIdx = this.answers.findIndex((element) => {
+            return element.character === this.data.character
+          })
+          this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
+          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        }
       } else {
-        this.itemRefs[idx].$el.classList.value += ' wrong'
-        let correctAnswerIdx = this.answers.findIndex((element) => {
-          return element.character === this.data.character
-        })
-        this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
-        // if(this.secondChance) {
-        this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
-        // }  
+        if (this.data.kanji === answer.kanji) {
+          this.itemRefs[idx].$el.classList.value += ' correct'
+          this.$emit('excerciseChecked', 1)
+        } else {
+          this.itemRefs[idx].$el.classList.value += ' wrong'
+          let correctAnswerIdx = this.answers.findIndex((element) => {
+            return element.kanji === this.data.kanji
+          })
+          this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
+          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        }
       }
     },
   },
@@ -129,6 +150,11 @@ export default {
       span:last-of-type::after {
         display: none;
       }
+    }
+
+    &__text-kanji {
+      font-size: 1rem;
+      hyphens: auto;
     }
   }
 }

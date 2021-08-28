@@ -3,10 +3,17 @@
     <font-awesome-icon icon="exchange-alt" @click="showMeaning = !showMeaning" class="replace" />
     <h1 class="meanings">
       <div v-if="showMeaning">
-        <span class="meaning" v-for="meaning in data.meanings" :key="meaning">{{ meaning }}</span>
+        <span
+          class="meaning"
+          :class="{ 'meaning-kanji': data.kanji }"
+          v-for="meaning in data.meanings"
+          :key="meaning"
+          >{{ meaning }}</span
+        >
       </div>
       <div v-else>
-        <span class="character">{{ data.character }}</span>
+        <span class="character" v-if="data.character">{{ data.character }}</span>
+        <span class="character" v-if="data.kanji">{{ data.kanji }}</span>
       </div>
     </h1>
     <h2 class="description">Draw the character:</h2>
@@ -40,7 +47,7 @@ export default {
       showMeaning: true,
       labels: [],
       answer: null,
-      disableCanvasButton: false
+      disableCanvasButton: false,
     }
   },
   mounted() {
@@ -119,6 +126,13 @@ export default {
       overflow-wrap: anywhere;
       font-size: var(--font-size);
       line-height: var(--font-size);
+    }
+
+    .meaning-kanji {
+      margin: 20px auto;
+      line-height: 2rem;
+      font-size: 2rem;
+      hyphens: auto;
     }
 
     span::after {
