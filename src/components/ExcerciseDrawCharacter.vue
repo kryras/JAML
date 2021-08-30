@@ -89,12 +89,22 @@ export default {
       }
     },
     checkAnswer(predictedClass) {
-      if (this.data.character === predictedClass) {
-        this.answer = 'correct'
-        this.$emit('excerciseChecked', 1)
+      if (this.data.character) {
+        if (this.data.character === predictedClass) {
+          this.answer = 'correct'
+          this.$emit('excerciseChecked', 1)
+        } else {
+          this.answer = 'wrong'
+          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        }
       } else {
-        this.answer = 'wrong'
-        this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        if (this.data.kanji === predictedClass) {
+          this.answer = 'correct'
+          this.$emit('excerciseChecked', 1)
+        } else {
+          this.answer = 'wrong'
+          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+        }
       }
     },
   },

@@ -32,7 +32,7 @@ export default {
 }
 
 /* PWA orientation */
-@media screen and (orientation: landscape) and (display-mode: standalone) {
+@media screen and (orientation: landscape) and (display-mode: standalone) and (max-width: 768px) {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
