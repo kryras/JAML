@@ -80,10 +80,26 @@ export default {
       try {
         let model = toRaw(this.model)
         let result = await model.predict(tensorImage)
-        this.predictedClass = result.dataSync().indexOf(Math.max(...result.dataSync()))
-        this.predictedClassPercent = Math.max(...result.dataSync())
-        console.log(this.labels[this.predictedClass], this.predictedClassPercent)
-        this.checkAnswer(this.labels[this.predictedClass])
+        if(this.data.character) {
+          this.predictedClass = result.dataSync().indexOf(Math.max(...result.dataSync()))
+          this.predictedClassPercent = Math.max(...result.dataSync())
+          console.log(this.labels[this.predictedClass], this.predictedClassPercent)
+          this.checkAnswer(this.labels[this.predictedClass])
+        } else {
+          let top5predictions = []
+          let predictedClass = null
+          result = Array.from(result.dataSync())
+          for (let index = 0; index < 5; index++) {
+            predictedClass = result.indexOf(Math.max(...result))
+            top5predictions.push(predictedClass)
+            result.splice(predictedClass, 1)
+          }
+          this.checkAnswer(
+            top5predictions.map((el) => {
+              return this.labels[el]
+            })
+          )
+        }
       } catch (e) {
         console.error(e)
       }
@@ -98,7 +114,8 @@ export default {
           this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
         }
       } else {
-        if (this.data.kanji === predictedClass) {
+        console.log(predictedClass);
+        if (predictedClass.includes(this.data.kanji)) {
           this.answer = 'correct'
           this.$emit('excerciseChecked', 1)
         } else {

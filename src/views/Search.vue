@@ -67,11 +67,13 @@ export default {
       predictedClasses: [],
       searchResults: [],
       value: '',
+      labels: [],
     }
   },
   async mounted() {
     try {
-      this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/model.json`)
+      this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}kanji/model.json`)
+      ;({ labels: this.labels } = require(`@/assets/lessons/kanji/kanji_labels.js`))
     } catch (e) {
       console.log(e)
       this.$router.push({ name: 'NotFound' })
@@ -87,7 +89,6 @@ export default {
       )
     },
     getInputValue(value) {
-      console.log('szukam: ' + value)
       this.searchCharacters(value)
     },
     searchCharacters(value) {
@@ -111,7 +112,6 @@ export default {
         } else {
           let isExactSearch = value.indexOf('*') // -1 = yes, else = no
           value = value.replaceAll('*', '')
-          console.log(value)
           let romaji, katakana, hiragana
           if (wanakana.isHiragana(value)) {
             romaji = wanakana.toRomaji(value)
@@ -128,7 +128,6 @@ export default {
           }
 
           if (isExactSearch === -1) {
-            console.log('exact')
             for (const kanji in this.kanjiDict) {
               this.kanjiDict[kanji].meanings.forEach((el) => {
                 if (el.toLowerCase() === romaji.toLowerCase()) {
@@ -189,7 +188,6 @@ export default {
       this.loading = false
     },
     prepareCanvas() {
-      console.log('button clicked')
       if (this.showCanvas) {
         this.disableInput = false
         this.showCanvas = false
@@ -225,12 +223,7 @@ export default {
           top5predictions.push(predictedClass)
           result.splice(predictedClass, 1)
         }
-        console.log('po wynikach', top5predictions)
         this.getPredictedKanjis(top5predictions)
-        // change - top5 has indexes, get real kanjis
-        // this.predictedClasseses
-        // console.log(this.predictedClass, this.predictedClassPercent)
-        // this.checkAnswer(this.labels[this.predictedClass])
       } catch (e) {
         console.error(e)
       }
@@ -238,8 +231,7 @@ export default {
     getPredictedKanjis(values) {
       this.predictedClasses = []
       values.forEach((el) => {
-        // this.predictedClasses.push(this.labels[el])
-        this.predictedClasses.push(el)
+        this.predictedClasses.push(this.labels[el])
       })
     },
   },

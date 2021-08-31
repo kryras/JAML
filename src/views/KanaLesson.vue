@@ -83,7 +83,7 @@ export default {
       let alphabet = this.$route.params.alphabet.toLowerCase() === "hiragana" || this.$route.params.alphabet.toLowerCase() === "katakana" ? "hiraganakatakana" : "kanji" 
       let lesson = require(`@/assets/lessons/${alphabet}/${this.$route.params.alphabet.toLowerCase()}.json`)
       this.data = lesson[`${this.$route.params.id.toLowerCase()}`]['data']
-      this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/${this.$route.params.alphabet.toLowerCase()}/model.json`)
+      this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/${this.$route.params.alphabet.toLowerCase()}model.json`)
       
       // let ten = tf.zeros([1, 48, 48, 1], 'int32')
       // let model = toRaw(this.model)
