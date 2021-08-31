@@ -9,9 +9,29 @@
 
 <script>
 import Navbar from './components/Navbar.vue'
+import * as tf from '@tensorflow/tfjs'
 
 export default {
   components: { Navbar },
+  async mounted() {
+    try {
+      await tf.loadLayersModel('indexeddb://hiragana')
+      await tf.loadLayersModel('indexeddb://katakana')
+      await tf.loadLayersModel('indexeddb://kanji')
+    } catch (e) {
+      try {
+        const modelKanji = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/kanji/model.json`)
+        await modelKanji.save('indexeddb://kanji')
+        const modelHiragana = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/hiragana/model.json`)
+        await modelHiragana.save('indexeddb://hiragana')
+        const modelKatakana = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/katakana/model.json`)
+        await modelKatakana.save('indexeddb://katakana')
+      } catch (e) {
+        console.log(e)
+        this.$router.push({ name: 'NotFound' })
+      }
+    }
+  },
 }
 </script>
 

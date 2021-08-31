@@ -86,16 +86,16 @@ export default {
           console.log(this.labels[this.predictedClass], this.predictedClassPercent)
           this.checkAnswer(this.labels[this.predictedClass])
         } else {
-          let top5predictions = []
+          let topPredictions = []
           let predictedClass = null
           result = Array.from(result.dataSync())
-          for (let index = 0; index < 5; index++) {
+          for (let index = 0; index < 15; index++) {
             predictedClass = result.indexOf(Math.max(...result))
-            top5predictions.push(predictedClass)
+            topPredictions.push(predictedClass)
             result.splice(predictedClass, 1)
           }
           this.checkAnswer(
-            top5predictions.map((el) => {
+            topPredictions.map((el) => {
               return this.labels[el]
             })
           )

@@ -72,7 +72,7 @@ export default {
   },
   async mounted() {
     try {
-      this.model = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}kanji/model.json`)
+      this.model = await tf.loadLayersModel(`indexeddb://kanji`)
       ;({ labels: this.labels } = require(`@/assets/lessons/kanji/kanji_labels.js`))
     } catch (e) {
       console.log(e)
@@ -215,15 +215,15 @@ export default {
       try {
         let model = toRaw(this.model)
         let result = await model.predict(tensorImage)
-        let top5predictions = []
+        let topPredictions = []
         let predictedClass = null
         result = Array.from(result.dataSync())
-        for (let index = 0; index < 5; index++) {
+        for (let index = 0; index < 10; index++) {
           predictedClass = result.indexOf(Math.max(...result))
-          top5predictions.push(predictedClass)
+          topPredictions.push(predictedClass)
           result.splice(predictedClass, 1)
         }
-        this.getPredictedKanjis(top5predictions)
+        this.getPredictedKanjis(topPredictions)
       } catch (e) {
         console.error(e)
       }
