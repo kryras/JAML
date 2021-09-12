@@ -89,7 +89,7 @@ export default {
           let topPredictions = []
           let predictedClass = null
           result = Array.from(result.dataSync())
-          for (let index = 0; index < 15; index++) {
+          for (let index = 0; index < 25; index++) {
             predictedClass = result.indexOf(Math.max(...result))
             topPredictions.push(predictedClass)
             result.splice(predictedClass, 1)

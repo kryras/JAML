@@ -7,7 +7,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import {
-    faCat,
     faBars,
     faPlus,
     faSearch,
@@ -19,10 +18,10 @@ import {
     faExchangeAlt,
     faHourglassHalf,
     faPaintBrush,
-    faTimes
+    faTimes,
+    faGraduationCap
 } from '@fortawesome/free-solid-svg-icons'
 library.add(
-    faCat,
     faBars,
     faPlus,
     faSearch,
@@ -34,7 +33,8 @@ library.add(
     faExchangeAlt,
     faHourglassHalf,
     faPaintBrush,
-    faTimes
+    faTimes,
+    faGraduationCap
 );
 
 

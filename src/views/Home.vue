@@ -1,8 +1,7 @@
 <template>
   <div class="home-container">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div class="logo">
-      <img class="logo__img" src="@/assets/logo.png" />
+      <img class="logo__img" src="@/assets/logo.png" alt="logo" />
       <h1 class="logo__title">An application for learning Japanese alphabets with machine learning assistance</h1>
     </div>
 
@@ -32,7 +31,7 @@ import LessonBubble from '@/components/LessonBubble.vue'
 
 export default {
   name: 'Home',
-  components: { 
+  components: {
     LessonBubble,
   },
 }
@@ -84,7 +83,7 @@ export default {
 }
 
 .icon {
-  filter: invert(54%) sepia(97%) saturate(1110%) hue-rotate(331deg) brightness(101%) contrast(101%); /* box-shadow: 0 0 10px  var(--color-background-white); */
+  filter: invert(54%) sepia(97%) saturate(1110%) hue-rotate(331deg) brightness(101%) contrast(101%);
   width: 2rem;
   height: 2rem;
   z-index: 102;

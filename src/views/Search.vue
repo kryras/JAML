@@ -109,6 +109,8 @@ export default {
               }
             }
           }
+        } else if (value.length === 1 && value.indexOf('*') !== -1) {
+          this.searchResults = this.kanjiDict
         } else {
           let isExactSearch = value.indexOf('*') // -1 = yes, else = no
           value = value.replaceAll('*', '')

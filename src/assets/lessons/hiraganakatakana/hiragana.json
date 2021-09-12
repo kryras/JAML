@@ -168,7 +168,7 @@
                 "meanings": ["ma"]
             },
             {
-                "character": "ま",
+                "character": "み",
                 "meanings": ["mi"]
             },
             {
@@ -234,7 +234,197 @@
         "icon": "10",
         "data": [
             {
+                "character": "わ",
+                "meanings": ["wa"]
+            },
+            {
+                "character": "を",
+                "meanings": ["wo"]
+            }
+        ]
+    },
+    "hiragana11": {
+        "title": "All in one",
+        "icon": "graduation-cap",
+        "data": [
+            {
+                "character": "あ",
+                "meanings": ["a"]
+            },
+            {
+                "character": "い",
+                "meanings": ["i"]
+            },
+            {
+                "character": "う",
+                "meanings": ["u"]
+            },
+            {
+                "character": "え",
+                "meanings": ["e"]
+            },
+            {
+                "character": "お",
+                "meanings": ["o"]
+            },
+            {
+                "character": "ん",
+                "meanings": ["n"]
+            },
+            {
+                "character": "か",
+                "meanings": ["ka"]
+            },
+            {
+                "character": "き",
+                "meanings": ["ki"]
+            },
+            {
+                "character": "く",
+                "meanings": ["ku"]
+            },
+            {
+                "character": "け",
+                "meanings": ["ke"]
+            },
+            {
+                "character": "こ",
+                "meanings": ["ko"]
+            },
+            {
+                "character": "さ",
+                "meanings": ["sa"]
+            },
+            {
+                "character": "し",
+                "meanings": ["shi"]
+            },
+            {
+                "character": "す",
+                "meanings": ["su"]
+            },
+            {
+                "character": "せ",
+                "meanings": ["se"]
+            },
+            {
+                "character": "そ",
+                "meanings": ["so"]
+            },
+            {
+                "character": "た",
+                "meanings": ["ta"]
+            },
+            {
+                "character": "ち",
+                "meanings": ["chi"]
+            },
+            {
+                "character": "つ",
+                "meanings": ["tsu"]
+            },
+            {
+                "character": "て",
+                "meanings": ["te"]
+            },
+            {
+                "character": "と",
+                "meanings": ["to"]
+            },
+            {
+                "character": "な",
+                "meanings": ["na"]
+            },
+            {
+                "character": "に",
+                "meanings": ["ni"]
+            },
+            {
+                "character": "ぬ",
+                "meanings": ["nu"]
+            },
+            {
+                "character": "ね",
+                "meanings": ["ne"]
+            },
+            {
+                "character": "の",
+                "meanings": ["no"]
+            },
+            {
+                "character": "は",
+                "meanings": ["ha"]
+            },
+            {
+                "character": "ひ",
+                "meanings": ["hi"]
+            },
+            {
+                "character": "ふ",
+                "meanings": ["fu"]
+            },
+            {
+                "character": "へ",
+                "meanings": ["he"]
+            },
+            {
+                "character": "ほ",
+                "meanings": ["ho"]
+            },
+            {
+                "character": "ま",
+                "meanings": ["ma"]
+            },
+            {
+                "character": "み",
+                "meanings": ["mi"]
+            },
+            {
+                "character": "む",
+                "meanings": ["mu"]
+            },
+            {
+                "character": "め",
+                "meanings": ["me"]
+            },
+            {
+                "character": "も",
+                "meanings": ["mo"]
+            },
+            {
+                "character": "や",
+                "meanings": ["ya"]
+            },
+            {
+                "character": "ゆ",
+                "meanings": ["yu"]
+            },
+            {
+                "character": "よ",
+                "meanings": ["yo"]
+            },
+            {
+                "character": "ら",
+                "meanings": ["ra"]
+            },
+            {
+                "character": "り",
+                "meanings": ["ri"]
+            },
+            {
+                "character": "る",
+                "meanings": ["ru"]
+            },
+            {
+                "character": "れ",
+                "meanings": ["re"]
+            },
+            {
                 "character": "ろ",
+                "meanings": ["ro"]
+            },
+            {
+                "character": "わ",
                 "meanings": ["wa"]
             },
             {

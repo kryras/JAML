@@ -7,6 +7,7 @@
           class="lesson__start"
           :title="element['title']"
           :character="element['icon']"
+          :icon="element['icon'].length > 2 ? element['icon'] : undefined"
           :completion="progress[element_key]"
           @click="startLesson(element_key)"
         />

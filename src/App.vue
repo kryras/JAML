@@ -95,7 +95,7 @@ a:visited {
   overflow-x: hidden;
   height: 100vh;
   padding-top: 3rem;
-  /* max-width: 1920px; */
+
   @media only screen and (min-width: 768px) {
     background-image: url(./assets/background_desktop.svg);
     background-position: left calc(var(--navbar-width) / 2) center;

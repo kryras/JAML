@@ -7,6 +7,7 @@
           class="lesson__start"
           :title="element['title']"
           :character="element['icon']"
+          :icon="element['icon'].length > 2 ? element['icon'] : undefined"
           :completion="progress[element_key]"
           @click="startLesson(element_key)"
         />
@@ -17,8 +18,6 @@
 
 <script>
 import hiraganaData from '@/assets/lessons/hiraganakatakana/hiragana.json'
-// import * as wanakana from '@/scripts/wanakana.js'
-// console.log(`test ${wanakana.toKana('TOFUGUnosushi')}`);
 import LessonBubble from '@/components/LessonBubble.vue'
 
 export default {
@@ -37,13 +36,10 @@ export default {
         this.progress = lessonsProgress[`${this.$route.path.split('/')[1].toLowerCase()}`]
       }
     }
-    // console.log(this.hiragana['hiragana1']['data'])
-
-    // console.log(wanakana.isJapanese('泣き虫。！〜２￥ｚｅｎｋａｋｕ'))
   },
   methods: {
     startLesson(element_key) {
-      this.$router.push({ name: 'KanaLesson', params: { alphabet: 'hiragana',  id: `${element_key}` } })
+      this.$router.push({ name: 'KanaLesson', params: { alphabet: 'hiragana', id: `${element_key}` } })
     },
   },
 }
