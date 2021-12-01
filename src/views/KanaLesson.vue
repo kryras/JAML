@@ -1,5 +1,7 @@
 <template>
-  <Loader v-if="loading" />
+  <div class="loader" v-if="loading">
+    <Loader />
+  </div>
   <div v-else class="kana-lesson-container">
     <component
       v-if="currentExcercise"
@@ -205,5 +207,15 @@ export default {
   & > button {
     margin: 5px auto;
   }
+}
+
+.loader {
+  $offset: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - #{$offset});
+  transform: translateY(-#{$offset});
+  width: 100%;
 }
 </style>

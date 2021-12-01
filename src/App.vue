@@ -1,5 +1,8 @@
 <template>
-  <div id="main-container">
+  <div class="loaderContainer" v-if="isLoading">
+    <Loader />
+  </div>
+  <div id="main-container" v-else>
     <Navbar />
     <main class="main-content">
       <router-view />
@@ -9,28 +12,41 @@
 
 <script>
 import Navbar from './components/Navbar.vue'
+import Loader from './components/Loader.vue'
 import * as tf from '@tensorflow/tfjs'
 
 export default {
-  components: { Navbar },
+  components: { Navbar, Loader },
+  data() {
+    return {
+      isLoading: true,
+    }
+  },
   async mounted() {
     try {
-      await tf.loadLayersModel('indexeddb://hiragana')
-      await tf.loadLayersModel('indexeddb://katakana')
-      await tf.loadLayersModel('indexeddb://kanji')
+      await Promise.all([
+        tf.loadLayersModel('indexeddb://hiragana'),
+        tf.loadLayersModel('indexeddb://katakana'),
+        tf.loadLayersModel('indexeddb://kanji'),
+      ])
     } catch (e) {
       try {
-        const modelKanji = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/kanji/model.json`)
-        await modelKanji.save('indexeddb://kanji')
-        const modelHiragana = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/hiragana/model.json`)
-        await modelHiragana.save('indexeddb://hiragana')
-        const modelKatakana = await tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/katakana/model.json`)
-        await modelKatakana.save('indexeddb://katakana')
+        const [modelKanji, modelHiragana, modelKatakana] = await Promise.all([
+          tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/kanji/model.json`),
+          tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/hiragana/model.json`),
+          tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/katakana/model.json`),
+        ])
+        await Promise.all([
+          modelKanji.save('indexeddb://kanji'),
+          modelHiragana.save('indexeddb://hiragana'),
+          modelKatakana.save('indexeddb://katakana'),
+        ])
       } catch (e) {
         console.log(e)
         this.$router.push({ name: 'NotFound' })
       }
     }
+    this.isLoading = false
   },
 }
 </script>
@@ -85,6 +101,16 @@ a:visited {
   text-align: center;
   color: #000000;
   font-size: 100%;
+}
+
+.loaderContainer {
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: var(--color-background-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-content {

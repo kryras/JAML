@@ -1,7 +1,9 @@
 <template>
-  <div class="search-container">
+  <div class="loader" v-if="loading">
+    <Loader />
+  </div>
+  <div class="search-container" v-else>
     <h1 class="title">SEARCH KANJI</h1>
-    <Loader v-if="loading" />
     <div class="input">
       <div class="input-tooltip">
         <p style="font-weight: bold;">Examples:</p>
@@ -58,7 +60,7 @@ export default {
   components: { Loader, InputText, Canvas, Button, DictionaryKanjiDetails },
   data() {
     return {
-      kanjiDict: kanjiData,
+      kanjiDict: Object.keys(kanjiData).map((key) => kanjiData[key]),
       disableInput: false,
       showCanvas: false,
       model: null,
@@ -78,7 +80,6 @@ export default {
       console.log(e)
       this.$router.push({ name: 'NotFound' })
     }
-
     this.loading = false
   },
   methods: {
@@ -92,13 +93,14 @@ export default {
       this.searchCharacters(value)
     },
     searchCharacters(value) {
-      this.value = value
-      this.loading = true
-      this.searchResults = []
+      this.value = value.trim()
       value = value.trim()
+      this.searchResults = []
       if (value.length > 0) {
         if (this.isKanji(value) && value.length === 1) {
-          this.searchResults.push(this.kanjiDict[value])
+          this.searchResults = this.kanjiDict.filter((element) => {
+            return element.kanji === value
+          })
         } else if (value.toLowerCase().startsWith('jlpt')) {
           let jlpt = value.split(' ')
           if (jlpt.length > 1) {
@@ -187,7 +189,6 @@ export default {
           this.searchResults = Array.from(new Set(this.searchResults))
         }
       }
-      this.loading = false
     },
     prepareCanvas() {
       if (this.showCanvas) {
@@ -304,5 +305,15 @@ export default {
       font-weight: normal;
     }
   }
+}
+
+.loader {
+  $offset: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - #{$offset});
+  transform: translateY(-#{$offset});
+  width: 100%;
 }
 </style>
