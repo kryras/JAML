@@ -1,8 +1,14 @@
 <template>
   <div class="toggle-container" @click="toggleNavigation">
-    <font-awesome-icon :icon="navOpen ? 'plus' : 'bars'" :class="[{ 'toggle-open': navOpen }, 'toggle']" />
+    <font-awesome-icon
+      :icon="navOpen ? 'plus' : 'bars'"
+      :class="[{ 'toggle-open': navOpen }, 'toggle']"
+    />
   </div>
-  <nav v-if="navOpen" class="navigation">
+  <nav
+    class="navigation"
+    :class="[navOpen ? 'navigation--open' : 'navigation--closed']"
+  >
     <div class="logo">
       <img class="logo__img" src="@/assets/logo.png" />
     </div>
@@ -31,37 +37,43 @@
       <span>About</span>
     </router-link>
   </nav>
-  <div class="background" v-if="navOpen" @click="toggleNavigation"></div>
+  <transition name="fade">
+    <div class="background" v-if="navOpen" @click="toggleNavigation"></div>
+  </transition>
 </template>
+
 <script>
 export default {
   data() {
     return {
       navOpen: false,
-    }
+    };
   },
   created() {
-    window.addEventListener('resize', this.openNavigation)
+    window.addEventListener("resize", this.openNavigation);
   },
   mounted() {
-    this.openNavigation()
+    this.openNavigation();
   },
   unmounted() {
-    window.removeEventListener('resize', this.openNavigation)
+    window.removeEventListener("resize", this.openNavigation);
   },
   methods: {
     toggleNavigation() {
-      this.navOpen = !this.navOpen
+      this.navOpen = !this.navOpen;
     },
     openNavigation() {
       if (!this.navOpen && window.innerWidth >= 768) {
-        this.navOpen = true
+        this.navOpen = true;
       }
     },
   },
-}
+};
 </script>
+
 <style lang="scss" scoped>
+$transition-time: 200ms;
+
 .toggle-container {
   width: 3rem;
   height: 3rem;
@@ -87,7 +99,8 @@ export default {
 }
 
 .icon {
-  filter: invert(54%) sepia(97%) saturate(1110%) hue-rotate(331deg) brightness(101%) contrast(101%); /* box-shadow: 0 0 10px  var(--color-background-white); */
+  filter: invert(54%) sepia(97%) saturate(1110%) hue-rotate(331deg)
+    brightness(101%) contrast(101%);
   width: 2rem;
   height: 2rem;
   z-index: -1;
@@ -106,6 +119,16 @@ export default {
   }
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity #{$transition-time};
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .navigation {
   z-index: 100;
   background-color: var(--color-background-white);
@@ -118,19 +141,19 @@ export default {
   bottom: 0;
   min-width: var(--navbar-width);
   overflow-y: auto;
-  direction: rtl;
-  margin-top: 50px;
   box-shadow: 0 0 2px var(--color-details);
+  transition: transform #{$transition-time};
 
-  & > * {
-    direction: ltr;
+  &--open {
+    transform: translateX(0);
+  }
+
+  &--closed {
+    transform: translateX(calc(var(--navbar-width) * -1));
   }
 }
 
 .logo {
-  position: fixed;
-  top: 0;
-  left: 0;
   background-color: var(--color-background-white);
   width: calc(var(--navbar-width) - 0px);
   height: 50px;
