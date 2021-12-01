@@ -1,14 +1,8 @@
 <template>
   <div class="toggle-container" @click="toggleNavigation">
-    <font-awesome-icon
-      :icon="navOpen ? 'plus' : 'bars'"
-      :class="[{ 'toggle-open': navOpen }, 'toggle']"
-    />
+    <font-awesome-icon :icon="navOpen ? 'plus' : 'bars'" :class="[{ 'toggle-open': navOpen }, 'toggle']" />
   </div>
-  <nav
-    class="navigation"
-    :class="[navOpen ? 'navigation--open' : 'navigation--closed']"
-  >
+  <nav class="navigation" :class="[navOpen ? 'navigation--open' : 'navigation--closed']">
     <div class="logo">
       <img class="logo__img" src="@/assets/logo.png" />
     </div>
@@ -47,28 +41,28 @@ export default {
   data() {
     return {
       navOpen: false,
-    };
+    }
   },
   created() {
-    window.addEventListener("resize", this.openNavigation);
+    window.addEventListener('resize', this.openNavigation)
   },
   mounted() {
-    this.openNavigation();
+    this.openNavigation()
   },
   unmounted() {
-    window.removeEventListener("resize", this.openNavigation);
+    window.removeEventListener('resize', this.openNavigation)
   },
   methods: {
     toggleNavigation() {
-      this.navOpen = !this.navOpen;
+      this.navOpen = !this.navOpen
     },
     openNavigation() {
       if (!this.navOpen && window.innerWidth >= 768) {
-        this.navOpen = true;
+        this.navOpen = true
       }
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -99,8 +93,7 @@ $transition-time: 200ms;
 }
 
 .icon {
-  filter: invert(54%) sepia(97%) saturate(1110%) hue-rotate(331deg)
-    brightness(101%) contrast(101%);
+  filter: invert(54%) sepia(97%) saturate(1110%) hue-rotate(331deg) brightness(101%) contrast(101%);
   width: 2rem;
   height: 2rem;
   z-index: -1;
