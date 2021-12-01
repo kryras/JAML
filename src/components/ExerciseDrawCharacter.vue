@@ -26,7 +26,7 @@ import { toRaw } from 'vue'
 import * as tf from '@tensorflow/tfjs'
 
 export default {
-  name: 'ExcerciseDrawCharacter',
+  name: 'ExerciseDrawCharacter',
   components: { Canvas },
   props: {
     data: {
@@ -108,19 +108,19 @@ export default {
       if (this.data.character) {
         if (this.data.character === predictedClass) {
           this.answer = 'correct'
-          this.$emit('excerciseChecked', 1)
+          this.$emit('exerciseChecked', 1)
         } else {
           this.answer = 'wrong'
-          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+          this.$emit('exerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
         }
       } else {
         console.log(predictedClass);
         if (predictedClass.includes(this.data.kanji)) {
           this.answer = 'correct'
-          this.$emit('excerciseChecked', 1)
+          this.$emit('exerciseChecked', 1)
         } else {
           this.answer = 'wrong'
-          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+          this.$emit('exerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
         }
       }
     },

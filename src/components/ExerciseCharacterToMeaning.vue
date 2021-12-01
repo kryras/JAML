@@ -28,7 +28,7 @@ import mixins from '@/scripts/mixins.js'
 import Button from '@/components/Button.vue'
 
 export default {
-  name: 'ExcerciseCharacterToMeaning',
+  name: 'ExerciseCharacterToMeaning',
   components: { Button },
   mixins: [mixins],
   props: {
@@ -83,26 +83,26 @@ export default {
       if (this.data.character) {
         if (this.data.character === answer.character) {
           this.itemRefs[idx].$el.classList.value += ' correct'
-          this.$emit('excerciseChecked', 1)
+          this.$emit('exerciseChecked', 1)
         } else {
           this.itemRefs[idx].$el.classList.value += ' wrong'
           let correctAnswerIdx = this.answers.findIndex((element) => {
             return element.character === this.data.character
           })
           this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
-          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+          this.$emit('exerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
         }
       } else {
         if (this.data.kanji === answer.kanji) {
           this.itemRefs[idx].$el.classList.value += ' correct'
-          this.$emit('excerciseChecked', 1)
+          this.$emit('exerciseChecked', 1)
         } else {
           this.itemRefs[idx].$el.classList.value += ' wrong'
           let correctAnswerIdx = this.answers.findIndex((element) => {
             return element.kanji === this.data.kanji
           })
           this.itemRefs[correctAnswerIdx].$el.classList.value += ' correct'
-          this.$emit('excerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
+          this.$emit('exerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
         }
       }
     },

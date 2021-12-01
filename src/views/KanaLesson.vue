@@ -4,23 +4,23 @@
   </div>
   <div v-else class="kana-lesson-container">
     <component
-      v-if="currentExcercise"
-      :is="currentExcercise.type"
-      :data="currentExcercise.data"
-      :secondChance="currentExcercise.secondChance"
+      v-if="currentExercise"
+      :is="currentExercise.type"
+      :data="currentExercise.data"
+      :secondChance="currentExercise.secondChance"
       :lesson="data"
       :model="model"
       v-dynamic-events="knownEvents"
-      @excerciseChecked="excerciseChecked"
-      @getCanvas="excerciseChecked"
-      :key="currentExcercise.data"
+      @exerciseChecked="exerciseChecked"
+      @getCanvas="exerciseChecked"
+      :key="currentExercise.data"
       id="component"
     ></component>
-    <Button color="orange" @click="nextExcercise" class="next-button" :disabled="buttonDisabled">NEXT</Button>
+    <Button color="orange" @click="nextExercise" class="next-button" :disabled="buttonDisabled">NEXT</Button>
   </div>
   <div class="result" v-if="displayResult">
     <h2>Correct answers:</h2>
-    <h2>{{ correctAnswers }} / {{ excercisesLength }} ({{ result }}%)</h2>
+    <h2>{{ correctAnswers }} / {{ exercisesLength }} ({{ result }}%)</h2>
     <Button color="orange" @click="finishLesson">
       FINISH
     </Button>
@@ -30,9 +30,9 @@
 import Loader from '@/components/Loader.vue'
 import Button from '@/components/Button.vue'
 import CharacterInfo from '@/components/CharacterInfo.vue'
-import ExcerciseDrawCharacter from '@/components/ExcerciseDrawCharacter.vue'
-import ExcerciseMeaningToCharacter from '@/components/ExcerciseMeaningToCharacter.vue'
-import ExcerciseCharacterToMeaning from '@/components/ExcerciseCharacterToMeaning.vue'
+import ExerciseDrawCharacter from '@/components/ExerciseDrawCharacter.vue'
+import ExerciseMeaningToCharacter from '@/components/ExerciseMeaningToCharacter.vue'
+import ExerciseCharacterToMeaning from '@/components/ExerciseCharacterToMeaning.vue'
 import mixins from '@/scripts/mixins.js'
 import * as tf from '@tensorflow/tfjs'
 
@@ -41,9 +41,9 @@ export default {
     Loader,
     Button,
     CharacterInfo,
-    ExcerciseDrawCharacter,
-    ExcerciseMeaningToCharacter,
-    ExcerciseCharacterToMeaning,
+    ExerciseDrawCharacter,
+    ExerciseMeaningToCharacter,
+    ExerciseCharacterToMeaning,
   },
   directives: {
     DynamicEvents: {
@@ -65,15 +65,15 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      knownEvents: ['getCanvas', 'excerciseChecked'],
+      knownEvents: ['getCanvas', 'exerciseChecked'],
       loading: true,
       model: null,
       data: [],
-      excercises: [],
-      excercisesLength: null,
+      exercises: [],
+      exercisesLength: null,
       correctAnswers: 0,
-      secondChanceExcercises: [],
-      currentExcercise: null,
+      secondChanceExercises: [],
+      currentExercise: null,
       disableButton: false,
       result: null,
       displayResult: false,
@@ -92,7 +92,7 @@ export default {
       this.model = await tf.loadLayersModel(`indexeddb://${this.$route.params.alphabet.toLowerCase()}`)
 
       this.prepareLesson()
-      this.nextExcercise()
+      this.nextExercise()
       this.loading = false
     } catch (e) {
       console.log(e)
@@ -101,30 +101,30 @@ export default {
   },
   methods: {
     prepareLesson() {
-      const excercises = ['ExcerciseDrawCharacter', 'ExcerciseMeaningToCharacter', 'ExcerciseCharacterToMeaning']
-      this.excercisesLength = this.data.length * excercises.length
-      excercises.forEach((excercise) => {
+      const exercises = ['ExerciseDrawCharacter', 'ExerciseMeaningToCharacter', 'ExerciseCharacterToMeaning']
+      this.exercisesLength = this.data.length * exercises.length
+      exercises.forEach((exercise) => {
         const shuffledData = this.shuffleArray([...this.data])
         shuffledData.forEach((data) => {
-          this.excercises.push({ type: excercise, data: data, secondChance: true })
+          this.exercises.push({ type: exercise, data: data, secondChance: true })
         })
       })
       for (let index = this.data.length - 1; index >= 0; index--) {
-        this.excercises.push({ type: 'CharacterInfo', data: this.data[index] })
+        this.exercises.push({ type: 'CharacterInfo', data: this.data[index] })
       }
     },
-    nextExcercise() {
+    nextExercise() {
       this.disableButton = true
-      if (this.excercises.length > 0) {
-        this.currentExcercise = this.excercises.pop()
-        this.disableButton = this.currentExcercise.type === 'CharacterInfo' ? false : true
-      } else if (this.secondChanceExcercises.length > 0) {
-        this.currentExcercise = this.secondChanceExcercises.shift()
+      if (this.exercises.length > 0) {
+        this.currentExercise = this.exercises.pop()
+        this.disableButton = this.currentExercise.type === 'CharacterInfo' ? false : true
+      } else if (this.secondChanceExercises.length > 0) {
+        this.currentExercise = this.secondChanceExercises.shift()
         this.disableButton = true
       }
     },
     showResult() {
-      this.result = ((this.correctAnswers / this.excercisesLength) * 100).toFixed()
+      this.result = ((this.correctAnswers / this.exercisesLength) * 100).toFixed()
       this.displayResult = true
       this.saveResult()
     },
@@ -147,14 +147,14 @@ export default {
     finishLesson() {
       this.$router.back()
     },
-    excerciseChecked(payload) {
+    exerciseChecked(payload) {
       if (typeof payload == 'number') {
         this.correctAnswers += 1
       } else if (typeof payload == 'object' && payload.secondChance) {
-        this.secondChanceExcercises.push({ ...payload, secondChance: false })
+        this.secondChanceExercises.push({ ...payload, secondChance: false })
       }
       this.disableButton = false
-      if (this.excercises.length === 0 && this.secondChanceExcercises.length === 0) {
+      if (this.exercises.length === 0 && this.secondChanceExercises.length === 0) {
         this.disableButton = true
         this.showResult()
       }
