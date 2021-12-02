@@ -16,7 +16,9 @@
       :key="currentExercise.data"
       id="component"
     ></component>
-    <Button color="orange" @click="nextExercise" class="next-button" :disabled="buttonDisabled">NEXT</Button>
+    <Button color="orange" @click="nextExercise" class="next-button" :disabled="buttonDisabled" ref="buttonNext"
+      >NEXT</Button
+    >
   </div>
   <div class="result" v-if="displayResult">
     <h2>Correct answers:</h2>
@@ -163,6 +165,7 @@ export default {
         this.disableButton = true
         this.showResult()
       }
+      this.$nextTick(() => this.$refs.buttonNext.$el.focus())
     },
   },
   computed: {
