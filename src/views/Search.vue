@@ -75,6 +75,9 @@ export default {
   async mounted() {
     try {
       this.model = await tf.loadLayersModel(`indexeddb://kanji`)
+      const warmupResult = toRaw(this.model).predict(tf.zeros([1, 48, 48, 1]))
+      warmupResult.dataSync()
+      warmupResult.dispose()
       ;({ labels: this.labels } = require(`@/assets/lessons/kanji/kanji_labels.js`))
     } catch (e) {
       console.log(e)

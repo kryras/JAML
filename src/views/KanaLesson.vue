@@ -35,6 +35,7 @@ import ExerciseMeaningToCharacter from '@/components/ExerciseMeaningToCharacter.
 import ExerciseCharacterToMeaning from '@/components/ExerciseCharacterToMeaning.vue'
 import mixins from '@/scripts/mixins.js'
 import * as tf from '@tensorflow/tfjs'
+import { toRaw } from 'vue'
 
 export default {
   components: {
@@ -90,6 +91,10 @@ export default {
       let lesson = require(`@/assets/lessons/${alphabet}/${this.$route.params.alphabet.toLowerCase()}.json`)
       this.data = lesson[`${this.$route.params.id.toLowerCase()}`]['data']
       this.model = await tf.loadLayersModel(`indexeddb://${this.$route.params.alphabet.toLowerCase()}`)
+
+      const warmupResult = toRaw(this.model).predict(tf.zeros([1, 48, 48, 1]))
+      warmupResult.dataSync()
+      warmupResult.dispose()
 
       this.prepareLesson()
       this.nextExercise()

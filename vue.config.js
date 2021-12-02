@@ -5,7 +5,7 @@ module.exports = {
   pwa: {
     name: 'JAML',
     themeColor: '#FF7B42',
-    msTileColor: '#000000',
+    msTileColor: '#FFFFFF',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
 
