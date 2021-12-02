@@ -2,7 +2,7 @@
 
 **An application for learning Japanese alphabets with machine learning assistance**
 
-| ![JAML](../media/screenshots/JAML_gif.gif?raw=true) |
+![JAML](../media/screenshots/JAML_gif.gif?raw=true)
 
 ---
 
