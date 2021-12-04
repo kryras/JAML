@@ -83,7 +83,6 @@ export default {
     }
   },
   async created() {
-    window.scrollTo(0, 0)
     try {
       let alphabet =
         this.$route.params.alphabet.toLowerCase() === 'hiragana' ||

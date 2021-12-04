@@ -72,8 +72,6 @@ export default {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
     overflow-x: hidden;
     position: absolute;
     top: 100%;
@@ -119,7 +117,7 @@ a:visited {
   background-size: cover;
   background-attachment: fixed;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 3rem;
 
   @media only screen and (min-width: 768px) {
