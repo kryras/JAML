@@ -126,7 +126,7 @@ export default {
         } else if (value.length === 1 && value.indexOf('*') !== -1) {
           this.searchResults = this.kanjiDict
         } else {
-          let isExactSearch = value.indexOf('*') // -1 = yes, else = no
+          let isExactSearch = value.indexOf('*') !== -1 ? true : false
           value = value.replaceAll('*', '')
           let romaji, katakana, hiragana
           if (wanakana.isHiragana(value)) {
@@ -143,7 +143,7 @@ export default {
             hiragana = wanakana.toHiragana(value)
           }
 
-          if (isExactSearch === -1) {
+          if (!isExactSearch) {
             for (const kanji in this.kanjiDict) {
               this.kanjiDict[kanji].meanings.forEach((el) => {
                 if (el.toLowerCase() === romaji.toLowerCase()) {
@@ -151,10 +151,7 @@ export default {
                   return
                 }
               })
-              if (
-                this.kanjiDict[kanji].heisig_en != null &&
-                this.kanjiDict[kanji].heisig_en.toLowerCase() === romaji.toLowerCase()
-              ) {
+              if (this.kanjiDict[kanji].heisig_en?.toLowerCase() === romaji.toLowerCase()) {
                 this.searchResults.push(this.kanjiDict[kanji])
               }
               this.kanjiDict[kanji].kun_readings.forEach((el) => {
@@ -178,10 +175,7 @@ export default {
                   return
                 }
               })
-              if (
-                this.kanjiDict[kanji].heisig_en != null &&
-                this.kanjiDict[kanji].heisig_en.toLowerCase().includes(romaji.toLowerCase())
-              ) {
+              if (this.kanjiDict[kanji].heisig_en?.toLowerCase().includes(romaji.toLowerCase())) {
                 this.searchResults.push(this.kanjiDict[kanji])
               }
               this.kanjiDict[kanji].kun_readings.forEach((el) => {
