@@ -59,7 +59,7 @@ import Button from '@/components/Button.vue'
 import Observer from '@/components/Observer.vue'
 import DictionaryKanjiDetails from '@/components/DictionaryKanjiDetails.vue'
 import kanjiData from '@/assets/dict/kanji_dict.json'
-import * as wanakana from '@/scripts/wanakana.js'
+import { isHiragana, isKatakana, isRomaji, toRomaji, toHiragana, toKatakana } from '@/scripts/wanakana.js'
 import { toRaw } from 'vue'
 import * as tf from '@tensorflow/tfjs'
 
@@ -129,18 +129,18 @@ export default {
           let isExactSearch = value.indexOf('*') !== -1 ? true : false
           value = value.replaceAll('*', '')
           let romaji, katakana, hiragana
-          if (wanakana.isHiragana(value)) {
-            romaji = wanakana.toRomaji(value)
-            katakana = wanakana.toKatakana(value)
+          if (isHiragana(value)) {
+            romaji = toRomaji(value)
+            katakana = toKatakana(value)
             hiragana = value
-          } else if (wanakana.isKatakana(value)) {
-            romaji = wanakana.toRomaji(value)
+          } else if (isKatakana(value)) {
+            romaji = toRomaji(value)
             katakana = value
-            hiragana = wanakana.toHiragana(value)
-          } else if (wanakana.isRomaji(value)) {
+            hiragana = toHiragana(value)
+          } else if (isRomaji(value)) {
             romaji = value
-            katakana = wanakana.toKatakana(value)
-            hiragana = wanakana.toHiragana(value)
+            katakana = toKatakana(value)
+            hiragana = toHiragana(value)
           }
 
           if (!isExactSearch) {
