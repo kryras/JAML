@@ -1,5 +1,6 @@
 <template>
   <div class="dict-kanji-container">
+    <span class="number" v-if="index">{{ index }}/{{ total }}</span>
     <h1 class="kanji">{{ element.kanji }}</h1>
     <section class="details">
       <div>
@@ -68,6 +69,12 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      required: false,
+    },
+    total: {
+      required: false,
+    },
   },
   methods: {
     getRomaji(value) {
@@ -83,6 +90,15 @@ export default {
   background-color: var(--color-background-white);
   border-radius: 5px;
   border: 2px solid var(--color-details);
+  position: relative;
+
+  .number {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 0.9rem;
+    color: var(--color-light-gray);
+  }
 
   .kanji {
     font-weight: normal;

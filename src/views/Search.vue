@@ -37,11 +37,17 @@
       </Button>
     </div>
     <p class="counter" v-if="searchResults.length >= 0 && value.length > 0">Found: {{ searchResults.length }}</p>
-    <DictionaryKanjiDetails
-      v-for="(item, index) in searchResults"
-      :key="index"
-      :element="item"
-    ></DictionaryKanjiDetails>
+    <div class="search-results">
+      <DictionaryKanjiDetails
+        v-for="(item, index) in searchResultsPart"
+        :key="index"
+        :element="item"
+        :index="index + 1"
+        :total="searchResults.length"
+      >
+      </DictionaryKanjiDetails>
+      <Observer @intersect="loadMoreResults" />
+    </div>
   </div>
 </template>
 
@@ -50,6 +56,7 @@ import InputText from '@/components/InputText.vue'
 import Canvas from '@/components/Canvas.vue'
 import Loader from '@/components/Loader.vue'
 import Button from '@/components/Button.vue'
+import Observer from '@/components/Observer.vue'
 import DictionaryKanjiDetails from '@/components/DictionaryKanjiDetails.vue'
 import kanjiData from '@/assets/dict/kanji_dict.json'
 import * as wanakana from '@/scripts/wanakana.js'
@@ -57,7 +64,7 @@ import { toRaw } from 'vue'
 import * as tf from '@tensorflow/tfjs'
 
 export default {
-  components: { Loader, InputText, Canvas, Button, DictionaryKanjiDetails },
+  components: { Loader, InputText, Canvas, Button, Observer, DictionaryKanjiDetails },
   data() {
     return {
       kanjiDict: Object.keys(kanjiData).map((key) => kanjiData[key]),
@@ -68,6 +75,8 @@ export default {
       icon: 'paint-brush',
       predictedClasses: [],
       searchResults: [],
+      searchResultsPart: [],
+      searchResultsPosition: 0,
       value: '',
       labels: [],
     }
@@ -191,6 +200,9 @@ export default {
           }
           this.searchResults = Array.from(new Set(this.searchResults))
         }
+        this.searchResultsPosition = 0
+        this.searchResultsPart = []
+        this.loadMoreResults()
       }
     },
     prepareCanvas() {
@@ -239,6 +251,16 @@ export default {
       values.forEach((el) => {
         this.predictedClasses.push(this.labels[el])
       })
+    },
+    loadMoreResults() {
+      if (this.searchResults.length > 0 && this.searchResultsPosition <= this.searchResults.length) {
+        const offset = 50
+        this.searchResultsPart = [
+          ...this.searchResultsPart,
+          ...this.searchResults.slice(this.searchResultsPosition, this.searchResultsPosition + offset),
+        ]
+        this.searchResultsPosition += offset
+      }
     },
   },
 }
