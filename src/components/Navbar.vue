@@ -149,15 +149,14 @@ $transition-time: 200ms;
 .logo {
   background-color: var(--color-background-white);
   width: calc(var(--navbar-width) - 0px);
-  height: 50px;
-  position: 101;
+  z-index: 101;
   box-shadow: 0 0 2px var(--color-details);
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  height: 50px;
   &__img {
-    position: fixed;
-    left: calc(var(--navbar-width) / 2);
-    top: calc(50px / 2);
-    transform: translate(-50%, -50%);
     user-select: none;
     width: 100px;
     height: auto;
