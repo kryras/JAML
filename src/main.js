@@ -19,7 +19,8 @@ import {
     faHourglassHalf,
     faPaintBrush,
     faTimes,
-    faGraduationCap
+    faGraduationCap,
+    faArrowUp
 } from '@fortawesome/free-solid-svg-icons'
 library.add(
     faBars,
@@ -34,7 +35,8 @@ library.add(
     faHourglassHalf,
     faPaintBrush,
     faTimes,
-    faGraduationCap
+    faGraduationCap,
+    faArrowUp
 );
 
 

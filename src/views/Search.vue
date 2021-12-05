@@ -48,6 +48,7 @@
       </DictionaryKanjiDetails>
       <Observer @intersect="loadMoreResults" />
     </div>
+    <ButtonScrollTop />
   </div>
 </template>
 
@@ -58,13 +59,14 @@ import Loader from '@/components/Loader.vue'
 import Button from '@/components/Button.vue'
 import Observer from '@/components/Observer.vue'
 import DictionaryKanjiDetails from '@/components/DictionaryKanjiDetails.vue'
+import ButtonScrollTop from '@/components/ButtonScrollTop.vue'
 import kanjiData from '@/assets/dict/kanji_dict.json'
 import { isHiragana, isKatakana, isRomaji, toRomaji, toHiragana, toKatakana } from '@/scripts/wanakana.js'
 import { toRaw } from 'vue'
 import * as tf from '@tensorflow/tfjs'
 
 export default {
-  components: { Loader, InputText, Canvas, Button, Observer, DictionaryKanjiDetails },
+  components: { Loader, InputText, Canvas, Button, Observer, DictionaryKanjiDetails, ButtonScrollTop },
   data() {
     return {
       kanjiDict: Object.keys(kanjiData).map((key) => kanjiData[key]),

@@ -61,7 +61,7 @@
   </div>
 </template>
 <script>
-import * as wanakana from '@/scripts/wanakana.js'
+import { toRomaji } from '@/scripts/wanakana.js'
 
 export default {
   props: {
@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     getRomaji(value) {
-      return wanakana.toRomaji(value)
+      return toRomaji(value)
     },
   },
 }
