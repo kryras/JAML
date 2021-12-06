@@ -16,9 +16,20 @@ if (process.env.NODE_ENV === 'production') {
     },
     updatefound () {
       console.log('New content is downloading.')
+      register()
     },
-    updated () {
-      console.log('New content is available; please refresh.')
+    updated (registration) {
+      console.log('New content is available')
+      registration.waiting.postMessage({ type: 'SKIP_WAITING' })
+      var refreshing
+      navigator.serviceWorker.addEventListener('controllerchange',
+        function () {
+          if (refreshing) return;
+          console.log("Refreshing")
+          refreshing = true
+          window.location.reload(true)
+        }
+      );
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')
