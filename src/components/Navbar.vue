@@ -57,9 +57,7 @@ export default {
       this.navOpen = !this.navOpen
     },
     openNavigation() {
-      if (!this.navOpen && window.innerWidth >= 768) {
-        this.navOpen = true
-      }
+      window.innerWidth >= 768 ? (this.navOpen = true) : (this.navOpen = false)
     },
   },
 }
@@ -172,6 +170,7 @@ a {
   height: 50px;
   padding: 10px;
   width: 100%;
+  user-select: none;
 
   &:hover {
     text-shadow: 0px 0px 2px var(--color-details);
