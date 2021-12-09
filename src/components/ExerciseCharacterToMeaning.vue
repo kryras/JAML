@@ -142,9 +142,7 @@ export default {
       height: auto;
     }
 
-    &__text {
-      overflow-wrap: break-word;
-
+    &__text { 
       span::after {
         content: ',\00a0';
       }
@@ -152,9 +150,12 @@ export default {
         display: none;
       }
     }
-
+    
     &__text-kanji {
       font-size: 1rem;
+      display: flex;
+      flex-flow: column wrap;
+      overflow-wrap: break-word;
       hyphens: auto;
     }
   }
