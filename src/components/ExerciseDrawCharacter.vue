@@ -103,6 +103,7 @@ export default {
 <style lang="scss" scoped>
 .dc-container {
   position: relative;
+
   .replace {
     cursor: pointer;
     position: absolute;
@@ -115,33 +116,35 @@ export default {
     color: var(--color-details);
     z-index: 2;
   }
+
   .meanings {
     --font-size: 10rem;
     font-weight: normal;
-    position: relative;
-    overflow-wrap: break-word;
+    height: var(--font-size);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 
     .meaning,
     .character {
-      overflow-wrap: anywhere;
       font-size: var(--font-size);
       line-height: var(--font-size);
     }
 
     .meaning-kanji {
-      margin: 20px auto;
-      line-height: 2rem;
-      font-size: 2rem;
+      display: inline-block;
+      overflow-wrap: break-word;
+      line-height: clamp(1.4rem, 8vw, 2rem);
+      font-size: clamp(1.4rem, 8vw, 2rem);
       hyphens: auto;
     }
 
     span::after {
-      content: ', ';
+      content: ',\00a0';
     }
     span:last-of-type::after {
       display: none;
-    }
-    &__text {
     }
   }
 

@@ -119,6 +119,7 @@ export default {
     font-weight: normal;
     font-size: var(--font-size);
     line-height: var(--font-size);
+    min-height: var(--font-size);
   }
 
   .description {
@@ -145,7 +146,7 @@ export default {
       overflow-wrap: break-word;
 
       span::after {
-        content: ', ';
+        content: ',\00a0';
       }
       span:last-of-type::after {
         display: none;

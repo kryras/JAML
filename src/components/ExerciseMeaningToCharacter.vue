@@ -1,6 +1,6 @@
 <template>
   <div class="mtc-container">
-    <h1 class="meanings" :class="{ 'meanings-kanji' : data.kanji}">
+    <h1 class="meanings" :class="{ 'meanings-kanji': data.kanji }">
       <span v-for="meaning in data.meanings" :key="meaning" class="meaning">{{ meaning }}</span>
     </h1>
     <h2 class="description">Choose the correct answer:</h2>
@@ -147,19 +147,26 @@ export default {
     --font-size: 10rem;
     font-weight: normal;
     font-size: var(--font-size);
+    line-height: var(--font-size);
+    min-height: var(--font-size);
     overflow-wrap: break-word;
+
     span::after {
-      content: ', ';
+      content: ',\00a0';
     }
+
     span:last-of-type::after {
       display: none;
     }
-    &__text {
-    }
   }
-  
+
   .meanings-kanji {
-    margin: 20px auto;
+    display: flex;
+    flex-flow: row wrap;
+    overflow-wrap: break-word;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     line-height: 2rem;
     font-size: 2rem;
     hyphens: auto;
