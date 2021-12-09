@@ -62,8 +62,7 @@ import DictionaryKanjiDetails from '@/components/DictionaryKanjiDetails.vue'
 import ButtonScrollTop from '@/components/ButtonScrollTop.vue'
 import kanjiData from '@/assets/dict/kanji_dict.json'
 import { isHiragana, isKatakana, isRomaji, toRomaji, toHiragana, toKatakana } from '@/scripts/wanakana.js'
-import { toRaw } from 'vue'
-import * as tf from '@tensorflow/tfjs'
+import { warmUpModel, predict } from '@/scripts/tf-worker-api.js'
 
 export default {
   components: { Loader, InputText, Canvas, Button, Observer, DictionaryKanjiDetails, ButtonScrollTop },
@@ -85,10 +84,7 @@ export default {
   },
   async mounted() {
     try {
-      this.model = await tf.loadLayersModel(`indexeddb://kanji`)
-      const warmupResult = toRaw(this.model).predict(tf.zeros([1, 48, 48, 1]))
-      warmupResult.dataSync()
-      warmupResult.dispose()
+      await warmUpModel('kanji')
       ;({ labels: this.labels } = require(`@/assets/lessons/kanji/kanji_labels.js`))
     } catch (e) {
       console.log(e)
@@ -216,28 +212,10 @@ export default {
       this.checkCharacter(payload)
     },
     async checkCharacter(canvasImage) {
-      let tensorImage = tf.browser
-        .fromPixels(canvasImage)
-        .resizeNearestNeighbor([48, 48])
-        .div(255)
-        .toInt()
-        .mean(2)
-        .expandDims(2)
-        .expandDims(0)
-        .arraySync()
-      tensorImage = tf.cast(tensorImage, 'int32')
       try {
-        let model = toRaw(this.model)
-        let result = await model.predict(tensorImage)
-        let topPredictions = []
-        let predictedClass = null
-        result = Array.from(result.dataSync())
-        for (let index = 0; index < 10; index++) {
-          predictedClass = result.indexOf(Math.max(...result))
-          topPredictions.push(predictedClass)
-          result.splice(predictedClass, 1)
-        }
-        this.getPredictedKanjis(topPredictions)
+        const quantity = 10
+        let results = await predict(['kanji', canvasImage, quantity])
+        this.getPredictedKanjis(results)
       } catch (e) {
         console.error(e)
       }
@@ -334,7 +312,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: calc(100vh - #{$offset});
-  transform: translateY(-#{$offset});
+  transform: translateY(calc(-#{$offset} + 2.25rem));
   width: 100%;
 }
 </style>

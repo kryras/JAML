@@ -22,8 +22,7 @@
 </template>
 <script>
 import Canvas from '@/components/Canvas.vue'
-import { toRaw } from 'vue'
-import * as tf from '@tensorflow/tfjs'
+import { predict } from '@/scripts/tf-worker-api.js'
 
 export default {
   name: 'ExerciseDrawCharacter',
@@ -32,10 +31,6 @@ export default {
     data: {
       type: Object,
       required: true,
-    },
-    model: {
-      required: true,
-      type: Object,
     },
     secondChance: {
       type: Boolean,
@@ -67,35 +62,14 @@ export default {
       this.checkCharacter(payload)
     },
     async checkCharacter(canvasImage) {
-      let tensorImage = tf.browser
-        .fromPixels(canvasImage)
-        .resizeNearestNeighbor([48, 48])
-        .div(255)
-        .toInt()
-        .mean(2)
-        .expandDims(2)
-        .expandDims(0)
-        .arraySync()
-      tensorImage = tf.cast(tensorImage, 'int32')
       try {
-        let model = toRaw(this.model)
-        let result = await model.predict(tensorImage)
-        if(this.data.character) {
-          this.predictedClass = result.dataSync().indexOf(Math.max(...result.dataSync()))
-          this.predictedClassPercent = Math.max(...result.dataSync())
-          console.log(this.labels[this.predictedClass], this.predictedClassPercent)
-          this.checkAnswer(this.labels[this.predictedClass])
+        const quantity = this.data.character ? 1 : 25
+        let results = await predict([this.$route.params.alphabet.toLowerCase(), canvasImage, quantity])
+        if (this.data.character) {
+          this.checkAnswer(this.labels[results[0]])
         } else {
-          let topPredictions = []
-          let predictedClass = null
-          result = Array.from(result.dataSync())
-          for (let index = 0; index < 25; index++) {
-            predictedClass = result.indexOf(Math.max(...result))
-            topPredictions.push(predictedClass)
-            result.splice(predictedClass, 1)
-          }
           this.checkAnswer(
-            topPredictions.map((el) => {
+            results.map((el) => {
               return this.labels[el]
             })
           )
@@ -114,7 +88,6 @@ export default {
           this.$emit('exerciseChecked', { type: this.$options.name, data: this.data, secondChance: this.secondChance })
         }
       } else {
-        console.log(predictedClass);
         if (predictedClass.includes(this.data.kanji)) {
           this.answer = 'correct'
           this.$emit('exerciseChecked', 1)

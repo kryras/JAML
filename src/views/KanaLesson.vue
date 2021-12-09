@@ -9,7 +9,6 @@
       :data="currentExercise.data"
       :secondChance="currentExercise.secondChance"
       :lesson="data"
-      :model="model"
       v-dynamic-events="knownEvents"
       @exerciseChecked="exerciseChecked"
       @getCanvas="exerciseChecked"
@@ -36,8 +35,7 @@ import ExerciseDrawCharacter from '@/components/ExerciseDrawCharacter.vue'
 import ExerciseMeaningToCharacter from '@/components/ExerciseMeaningToCharacter.vue'
 import ExerciseCharacterToMeaning from '@/components/ExerciseCharacterToMeaning.vue'
 import mixins from '@/scripts/mixins.js'
-import * as tf from '@tensorflow/tfjs'
-import { toRaw } from 'vue'
+import { warmUpModel } from '@/scripts/tf-worker-api'
 
 export default {
   components: {
@@ -70,7 +68,6 @@ export default {
     return {
       knownEvents: ['getCanvas', 'exerciseChecked'],
       loading: true,
-      model: null,
       data: [],
       exercises: [],
       exercisesLength: null,
@@ -91,12 +88,7 @@ export default {
           : 'kanji'
       let lesson = require(`@/assets/lessons/${alphabet}/${this.$route.params.alphabet.toLowerCase()}.json`)
       this.data = lesson[`${this.$route.params.id.toLowerCase()}`]['data']
-      this.model = await tf.loadLayersModel(`indexeddb://${this.$route.params.alphabet.toLowerCase()}`)
-
-      const warmupResult = toRaw(this.model).predict(tf.zeros([1, 48, 48, 1]))
-      warmupResult.dataSync()
-      warmupResult.dispose()
-
+      await warmUpModel(this.$route.params.alphabet.toLowerCase())
       this.prepareLesson()
       this.nextExercise()
       this.loading = false
@@ -222,7 +214,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: calc(100vh - #{$offset});
-  transform: translateY(-#{$offset});
+  transform: translateY(calc(-#{$offset} + 2.25rem));
   width: 100%;
 }
 </style>
