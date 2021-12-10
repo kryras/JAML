@@ -155,7 +155,7 @@ export default {
       font-size: 1rem;
       display: flex;
       flex-flow: column wrap;
-      overflow-wrap: break-word;
+      overflow-wrap: anywhere;
       hyphens: auto;
     }
   }

@@ -135,8 +135,8 @@ export default {
     .meaning-kanji {
       display: inline-block;
       overflow-wrap: break-word;
-      line-height: clamp(1.4rem, 8vw, 2rem);
-      font-size: clamp(1.4rem, 8vw, 2rem);
+      line-height: clamp(1.4rem, 6vw, 2rem);
+      font-size: clamp(1.4rem, 6vw, 2rem);
       hyphens: auto;
     }
 

@@ -140,7 +140,7 @@ $transition-time: 200ms;
   }
 
   &--closed {
-    transform: translateX(calc(var(--navbar-width) * -1));
+    transform: translateX(calc(calc(var(--navbar-width) * -1) - 5px));
   }
 }
 
