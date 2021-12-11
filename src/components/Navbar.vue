@@ -57,7 +57,7 @@ export default {
       this.navOpen = !this.navOpen
     },
     openNavigation() {
-      window.innerWidth >= 768 ? (this.navOpen = true) : (this.navOpen = false)
+      window.innerWidth >= 1025 ? (this.navOpen = true) : (this.navOpen = false)
     },
   },
 }
@@ -75,7 +75,7 @@ $transition-time: 200ms;
   position: fixed;
   z-index: 101;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 1025px) {
     display: none;
   }
 }
@@ -105,7 +105,7 @@ $transition-time: 200ms;
   background-color: hsla(0, 0%, 0%, 0.4);
   z-index: 99;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 1025px) {
     display: none;
   }
 }

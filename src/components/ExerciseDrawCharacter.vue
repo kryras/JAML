@@ -154,6 +154,7 @@ export default {
     font-size: var(--font-size);
     line-height: var(--font-size);
     margin: 5px auto;
+    user-select: none;
   }
 }
 </style>

@@ -68,7 +68,7 @@ export default {
 }
 
 /* PWA orientation */
-@media screen and (orientation: landscape) and (display-mode: standalone) and (max-width: 768px) {
+@media screen and (orientation: landscape) and (display-mode: standalone) and (max-width: 1024px) {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
@@ -120,7 +120,11 @@ a:visited {
   min-height: 100vh;
   padding-top: 3rem;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    background-image: url(./assets/background_desktop.svg);
+  }
+
+  @media only screen and (min-width: 1025px) {
     background-image: url(./assets/background_desktop.svg);
     background-position: left calc(var(--navbar-width) / 2) center;
     background-size: cover;

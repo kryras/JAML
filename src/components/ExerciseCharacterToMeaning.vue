@@ -7,9 +7,10 @@
       {{ data.kanji }}
     </h1>
     <h2 class="description">Choose the correct answer:</h2>
-    <div class="meanings">
+    <div class="meanings" :class="{ 'meanings-kanji': data.kanji }">
       <Button
         class="meanings__elements"
+        :class="{ 'meanings__elements-kanji': data.kanji }"
         v-for="(answer, idx) in answers"
         :key="answer"
         color="white"
@@ -128,21 +129,33 @@ export default {
     font-size: var(--font-size);
     line-height: var(--font-size);
     margin: 5px auto;
+    user-select: none;
   }
   .meanings {
     display: flex;
     justify-content: center;
     align-content: center;
+
+    &-kanji {
+      flex-flow: column wrap;
+    }
+
     &__elements {
-      --font-size: 2rem;
+      --font-size: clamp(2rem, 6vw, 3rem);
       font-size: var(--font-size);
       margin: 8px;
       width: 5rem;
-      min-height: 5rem;
+      width: clamp(5rem, 15vw, 6.5rem);
+      min-height: clamp(5rem, 15vw, 6.5rem);
       height: auto;
+
+      &-kanji {
+        min-height: clamp(5rem, 15vw, 6.5rem);
+        min-width: min(80vw, 80%);
+      }
     }
 
-    &__text { 
+    &__text {
       span::after {
         content: ',\00a0';
       }
@@ -150,13 +163,13 @@ export default {
         display: none;
       }
     }
-    
+
     &__text-kanji {
-      font-size: 1rem;
+      font-size: clamp(1rem, 50%, 2rem);
       display: flex;
-      flex-flow: column wrap;
-      overflow-wrap: anywhere;
-      hyphens: auto;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

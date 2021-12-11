@@ -127,11 +127,12 @@ export default {
     align-content: center;
 
     &__elements {
-      --font-size: 2rem;
+      --font-size: clamp(2rem, 6vw, 3rem);
       font-size: var(--font-size);
       margin: 8px;
       width: 5rem;
-      min-height: 5rem;
+      width: clamp(5rem, 15vw, 6.5rem);
+      min-height: clamp(5rem, 15vw, 6.5rem);
       height: auto;
     }
   }
@@ -142,6 +143,7 @@ export default {
     font-size: var(--font-size);
     line-height: var(--font-size);
     margin: 5px auto;
+    user-select: none;
   }
   .meanings {
     --font-size: 10rem;

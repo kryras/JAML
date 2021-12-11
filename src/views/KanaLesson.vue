@@ -174,11 +174,13 @@ export default {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;
   align-items: center;
+
   .next-button {
     width: 5rem;
     height: 5rem;
-    margin: 5px;
     margin: 10px auto;
+    width: clamp(5rem, 15vw, 6.5rem);
+    min-height: clamp(5rem, 15vw, 6.5rem);
   }
 
   #component {
@@ -189,7 +191,7 @@ export default {
 .result {
   width: calc(100% - var(--navbar-width));
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1025px) {
     width: 100%;
   }
 

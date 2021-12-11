@@ -59,13 +59,13 @@ export default {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 1025px) {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       grid-gap: 70px 0;
     }
 
-    @media only screen and (max-width: 1024px) and (min-width: 768px) {
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 70px 0;
@@ -73,6 +73,7 @@ export default {
 
     .lesson {
       margin: 20px;
+      flex: 1 1 0px;
 
       &__start {
         cursor: pointer;
