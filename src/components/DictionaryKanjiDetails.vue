@@ -35,6 +35,14 @@
       </div>
 
       <div>
+        <strong>Stroke count:</strong>
+      </div>
+      <div>
+        <p v-if="element.stroke_count">{{ element.stroke_count }}</p>
+        <p v-if="element.stroke_count == null">-</p>
+      </div>
+
+      <div>
         <strong>JLPT:</strong>
       </div>
       <div>
@@ -103,6 +111,7 @@ export default {
   .kanji {
     font-weight: normal;
     margin: 10px auto;
+    font-size: 4rem;
   }
 
   .details {

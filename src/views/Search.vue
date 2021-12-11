@@ -12,7 +12,9 @@
         <p>neko</p>
         <p>cat (exact match)</p>
         <p>cat* (all with the phrase)</p>
+        <p>STROKES 9</p>
         <p>JLPT 2</p>
+        <p>GRADE 8</p>
       </div>
       <InputText
         @getInput="getInputValue"
@@ -121,7 +123,27 @@ export default {
               }
             }
           }
-        } else if (value.length === 1 && value.indexOf('*') !== -1) {
+        } else if (value.toLowerCase().startsWith('strokes')) {
+          let strokes = value.split(' ')
+          if (strokes.length > 1) {
+            strokes = strokes[strokes.length - 1]
+            for (const kanji in this.kanjiDict) {
+              if (this.kanjiDict[kanji].stroke_count === parseInt(strokes, 10)) {
+                this.searchResults.push(this.kanjiDict[kanji])
+              }
+            }
+          }
+        } else if (value.toLowerCase().startsWith('grade')) {
+          let grade = value.split(' ')
+          if (grade.length > 1) {
+            grade = grade[grade.length - 1]
+            for (const kanji in this.kanjiDict) {
+              if (this.kanjiDict[kanji].grade === parseInt(grade, 10)) {
+                this.searchResults.push(this.kanjiDict[kanji])
+              }
+            }
+          }
+        } else if (value.indexOf('*') !== -1 && new Set(value).size === 1) {
           this.searchResults = this.kanjiDict
         } else {
           let isExactSearch = value.indexOf('*') !== -1 ? true : false
@@ -259,15 +281,23 @@ export default {
     position: relative;
   }
 
+  @media screen and (min-width: 1025px) {
+    .input,
+    .search-results {
+      max-width: 90%;
+      margin: auto;
+    }
+  }
+
   .input-tooltip {
     display: none;
     position: absolute;
     background: var(--color-background-white);
-    top: -115px;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -92%);
     padding: 5px;
     border-radius: 5px;
+    min-width: 155px;
     border: 2px solid var(--color-details);
     z-index: 50;
     font-size: 0.8rem;
