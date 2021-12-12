@@ -93,11 +93,11 @@ export default {
       if (!e) e = event
 
       if (e.offsetX) {
-        this.mouse.x = e.offsetX + window.scrollX
-        this.mouse.y = e.offsetY + window.scrollY
+        this.mouse.x = e.offsetX
+        this.mouse.y = e.offsetY
       } else if (e.layerX) {
-        this.mouse.x = e.layerX + window.scrollX
-        this.mouse.y = e.layerY + window.scrollY
+        this.mouse.x = e.layerX
+        this.mouse.y = e.layerY
       }
     },
     sketchpad_touchStart(e) {

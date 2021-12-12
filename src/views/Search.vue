@@ -63,7 +63,7 @@ import Observer from '@/components/Observer.vue'
 import DictionaryKanjiDetails from '@/components/DictionaryKanjiDetails.vue'
 import ButtonScrollTop from '@/components/ButtonScrollTop.vue'
 import kanjiData from '@/assets/dict/kanji_dict.json'
-import { isHiragana, isKatakana, isRomaji, toRomaji, toHiragana, toKatakana } from '@/scripts/wanakana.js'
+import { toRomaji, toHiragana, toKatakana } from '@/scripts/wanakana.js'
 import { warmUpModel, predict } from '@/scripts/tf-worker-api.js'
 
 export default {
@@ -104,120 +104,103 @@ export default {
     getInputValue(value) {
       this.searchCharacters(value)
     },
+    isSearchingAttributeContainingNumber(value) {
+      const inputValue = value.split(' ')
+      const attributes = ['jlpt', 'strokes', 'grade']
+      return inputValue.length === 2 && attributes.indexOf(inputValue[0]) !== -1 && parseInt(inputValue[1], 10)
+    },
+    isSearchingAllKanji(value) {
+      return value.indexOf('*') !== -1 && new Set(value).size === 1
+    },
+    getKanjiWithExactAttributeValue(collection, attribute, value, singleKanji = false, singleValue = false) {
+      if (singleKanji) {
+        if (singleValue && collection[attribute] === value) {
+          this.searchResults.push(collection)
+        } else if (!singleValue) {
+          for (const attributeValue of collection[attribute]) {
+            if (attributeValue.replaceAll('.', '') === value) {
+              this.searchResults.push(collection)
+              break
+            }
+          }
+        }
+      } else {
+        collection.forEach((kanji) => {
+          if (kanji[attribute] === value) {
+            this.searchResults.push(kanji)
+          }
+        })
+      }
+    },
+    getKanjiWithAttributeContainingValue(collection, attribute, value, singleKanji = false, singleValue = false) {
+      if (singleKanji) {
+        if (singleValue && collection[attribute]?.includes(value)) {
+          this.searchResults.push(collection)
+        } else if (!singleValue) {
+          for (const attributeValue of collection[attribute]) {
+            if (attributeValue.replaceAll('.', '').includes(value)) {
+              this.searchResults.push(collection)
+              break
+            }
+          }
+        }
+      } else {
+        collection.forEach((kanji) => {
+          if (kanji[attribute].includes(value)) {
+            this.searchResults.push(kanji)
+          }
+        })
+      }
+    },
+    convertValueToAllAlphabets(value) {
+      return {
+        romaji: toRomaji(value),
+        katakana: toKatakana(value),
+        hiragana: toHiragana(value),
+      }
+    },
+    getAttributeNameWithNumber(value) {
+      const inputValue = value.split(' ')
+      return { name: inputValue[0] === 'strokes' ? 'stroke_count' : inputValue[0], number: parseInt(inputValue[1], 10) }
+    },
     searchCharacters(value) {
       this.value = value.trim()
-      value = value.trim()
+      value = value.trim().toLowerCase()
+      if (value.length === 0) return
       this.searchResults = []
-      if (value.length > 0) {
-        if (this.isKanji(value) && value.length === 1) {
-          this.searchResults = this.kanjiDict.filter((element) => {
-            return element.kanji === value
-          })
-        } else if (value.toLowerCase().startsWith('jlpt')) {
-          let jlpt = value.split(' ')
-          if (jlpt.length > 1) {
-            jlpt = jlpt[jlpt.length - 1]
-            for (const kanji in this.kanjiDict) {
-              if (this.kanjiDict[kanji].jlpt === parseInt(jlpt, 10)) {
-                this.searchResults.push(this.kanjiDict[kanji])
-              }
-            }
-          }
-        } else if (value.toLowerCase().startsWith('strokes')) {
-          let strokes = value.split(' ')
-          if (strokes.length > 1) {
-            strokes = strokes[strokes.length - 1]
-            for (const kanji in this.kanjiDict) {
-              if (this.kanjiDict[kanji].stroke_count === parseInt(strokes, 10)) {
-                this.searchResults.push(this.kanjiDict[kanji])
-              }
-            }
-          }
-        } else if (value.toLowerCase().startsWith('grade')) {
-          let grade = value.split(' ')
-          if (grade.length > 1) {
-            grade = grade[grade.length - 1]
-            for (const kanji in this.kanjiDict) {
-              if (this.kanjiDict[kanji].grade === parseInt(grade, 10)) {
-                this.searchResults.push(this.kanjiDict[kanji])
-              }
-            }
-          }
-        } else if (value.indexOf('*') !== -1 && new Set(value).size === 1) {
-          this.searchResults = this.kanjiDict
-        } else {
-          let isExactSearch = value.indexOf('*') !== -1 ? true : false
-          value = value.replaceAll('*', '')
-          let romaji, katakana, hiragana
-          if (isHiragana(value)) {
-            romaji = toRomaji(value)
-            katakana = toKatakana(value)
-            hiragana = value
-          } else if (isKatakana(value)) {
-            romaji = toRomaji(value)
-            katakana = value
-            hiragana = toHiragana(value)
-          } else if (isRomaji(value)) {
-            romaji = value
-            katakana = toKatakana(value)
-            hiragana = toHiragana(value)
-          }
 
-          if (!isExactSearch) {
-            for (const kanji in this.kanjiDict) {
-              this.kanjiDict[kanji].meanings.forEach((el) => {
-                if (el.toLowerCase() === romaji.toLowerCase()) {
-                  this.searchResults.push(this.kanjiDict[kanji])
-                  return
-                }
-              })
-              if (this.kanjiDict[kanji].heisig_en?.toLowerCase() === romaji.toLowerCase()) {
-                this.searchResults.push(this.kanjiDict[kanji])
-              }
-              this.kanjiDict[kanji].kun_readings.forEach((el) => {
-                if (el.replaceAll('.', '') === hiragana) {
-                  this.searchResults.push(this.kanjiDict[kanji])
-                  return
-                }
-              })
-              this.kanjiDict[kanji].on_readings.forEach((el) => {
-                if (el.replaceAll('.', '') === katakana) {
-                  this.searchResults.push(this.kanjiDict[kanji])
-                  return
-                }
-              })
-            }
-          } else {
-            for (const kanji in this.kanjiDict) {
-              this.kanjiDict[kanji].meanings.forEach((el) => {
-                if (el.toLowerCase().includes(romaji.toLowerCase())) {
-                  this.searchResults.push(this.kanjiDict[kanji])
-                  return
-                }
-              })
-              if (this.kanjiDict[kanji].heisig_en?.toLowerCase().includes(romaji.toLowerCase())) {
-                this.searchResults.push(this.kanjiDict[kanji])
-              }
-              this.kanjiDict[kanji].kun_readings.forEach((el) => {
-                if (el.replaceAll('.', '').includes(hiragana)) {
-                  this.searchResults.push(this.kanjiDict[kanji])
-                  return
-                }
-              })
-              this.kanjiDict[kanji].on_readings.forEach((el) => {
-                if (el.replaceAll('.', '').includes(katakana)) {
-                  this.searchResults.push(this.kanjiDict[kanji])
-                  return
-                }
-              })
-            }
+      if (this.isKanji(value) && value.length === 1) {
+        this.searchResults = [this.kanjiDict.find((element) => element.kanji === value)]
+      } else if (this.isSearchingAttributeContainingNumber(value)) {
+        const attribute = this.getAttributeNameWithNumber(value)
+        this.getKanjiWithExactAttributeValue(this.kanjiDict, attribute.name, attribute.number)
+      } else if (this.isSearchingAllKanji(value)) {
+        this.searchResults = this.kanjiDict
+      } else {
+        let isExactSearch = value.indexOf('*') === -1
+        value = value.replaceAll('*', '')
+        let { romaji, katakana, hiragana } = this.convertValueToAllAlphabets(value)
+
+        if (isExactSearch) {
+          for (const kanji of this.kanjiDict) {
+            this.getKanjiWithExactAttributeValue(kanji, 'meanings', romaji, true)
+            this.getKanjiWithExactAttributeValue(kanji, 'heisig_en', romaji, true, true)
+            this.getKanjiWithExactAttributeValue(kanji, 'kun_readings', hiragana, true)
+            this.getKanjiWithExactAttributeValue(kanji, 'on_readings', katakana, true)
           }
-          this.searchResults = Array.from(new Set(this.searchResults))
+        } else {
+          for (const kanji of this.kanjiDict) {
+            this.getKanjiWithAttributeContainingValue(kanji, 'meanings', romaji, true)
+            this.getKanjiWithAttributeContainingValue(kanji, 'heisig_en', romaji, true, true)
+            this.getKanjiWithAttributeContainingValue(kanji, 'kun_readings', hiragana, true)
+            this.getKanjiWithAttributeContainingValue(kanji, 'on_readings', katakana, true)
+          }
         }
-        this.searchResultsPosition = 0
-        this.searchResultsPart = []
-        this.loadMoreResults()
       }
+      this.searchResults = Array.from(new Set(this.searchResults))
+      this.searchResultsPosition = 0
+      this.searchResultsPart = []
+      this.loadMoreResults()
     },
     prepareCanvas() {
       if (this.showCanvas) {
