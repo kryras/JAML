@@ -45,7 +45,7 @@ export default {
   user-select: none;
 
   &__img {
-    width: 300px;
+    width: min(90vw, 300px);
     height: auto;
   }
 

@@ -156,6 +156,7 @@ export default {
     }
 
     &__text {
+      text-align: center;
       span::after {
         content: ',\00a0';
       }

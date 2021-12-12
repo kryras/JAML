@@ -13,7 +13,7 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import Loader from './components/Loader.vue'
-import * as tf from '@tensorflow/tfjs'
+import { loadLayersModel } from '@tensorflow/tfjs'
 
 export default {
   components: { Navbar, Loader },
@@ -25,16 +25,16 @@ export default {
   async mounted() {
     try {
       await Promise.all([
-        tf.loadLayersModel('indexeddb://hiragana'),
-        tf.loadLayersModel('indexeddb://katakana'),
-        tf.loadLayersModel('indexeddb://kanji'),
+        loadLayersModel('indexeddb://hiragana'),
+        loadLayersModel('indexeddb://katakana'),
+        loadLayersModel('indexeddb://kanji'),
       ])
     } catch (e) {
       try {
         const [modelKanji, modelHiragana, modelKatakana] = await Promise.all([
-          tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/kanji/model.json`),
-          tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/hiragana/model.json`),
-          tf.loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/katakana/model.json`),
+          loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/kanji/model.json`),
+          loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/hiragana/model.json`),
+          loadLayersModel(`${process.env.VUE_APP_MODEL_URL}/katakana/model.json`),
         ])
         await Promise.all([
           modelKanji.save('indexeddb://kanji'),
