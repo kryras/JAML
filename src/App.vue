@@ -67,18 +67,6 @@ export default {
   --xxl: 1400px;
 }
 
-/* PWA orientation */
-@media screen and (orientation: landscape) and (display-mode: standalone) and (max-width: 1024px) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-}
-
 *,
 *::after,
 *::before {
