@@ -8,10 +8,14 @@
 
 ## About
 
-The app allows learning the three Japanese alphabets (hiragana, katakana, kanji) by doing exercises such as matching meaning to character, matching character to meaning, drawing character which is further processed by CNN. It is possible to install the application (PWA) on supported devices and use it offline.
+JAML web app allows learning the three Japanese alphabets (hiragana, katakana, kanji) by doing exercises such as matching meaning to character, matching character to meaning, drawing character which is further processed by CNN. It is possible to install the application (PWA) on supported devices and use it offline.
 The user can select the alphabet on the home page or from the navigation, then select a lesson in which the user carries out a series of exercises. In case of an incorrect answer, the user has a second chance to do the exercise at the end of the lesson. After completing the entire lesson, the result is saved and visible in the lesson selection menu.
 The application allows to search for a kanji character by typing the translation, meaning, or pronunciation in any form, or by drawing a character.  
 
+## Link
+
+- GitHub Pages - [https://kryras.github.io/JAML](https://kryras.github.io/JAML)
+  
 ## Screenshots
 
 (click to enlarge)
